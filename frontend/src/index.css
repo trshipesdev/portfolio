@@ -1,0 +1,606 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Comic+Neue:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Source+Code+Pro:wght@400;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #faf7f5;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 0 0% 3.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 3.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 3.9%;
+        --primary: 0 0% 9%;
+        --primary-foreground: 0 0% 98%;
+        --secondary: 0 0% 96.1%;
+        --secondary-foreground: 0 0% 9%;
+        --muted: 0 0% 96.1%;
+        --muted-foreground: 0 0% 45.1%;
+        --accent: 0 0% 96.1%;
+        --accent-foreground: 0 0% 9%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 89.8%;
+        --input: 0 0% 89.8%;
+        --ring: 0 0% 3.9%;
+        --radius: 0.5rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply text-foreground;
+    }
+}
+
+/* ====================== RETRO 90s ENTRANCE ====================== */
+.retro-body {
+    background: #000;
+    color: #00ff66;
+    font-family: "Comic Neue", "Comic Sans MS", cursive;
+    min-height: 100vh;
+    background-image:
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(255, 255, 255, 0.6) 1px,
+            transparent 1.5px
+        ),
+        radial-gradient(
+            circle at 70% 30%,
+            rgba(255, 255, 255, 0.8) 1px,
+            transparent 1.5px
+        ),
+        radial-gradient(
+            circle at 40% 60%,
+            rgba(255, 255, 255, 0.5) 1px,
+            transparent 1.5px
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(255, 255, 255, 0.9) 1px,
+            transparent 1.5px
+        ),
+        radial-gradient(
+            circle at 10% 90%,
+            rgba(255, 255, 255, 0.6) 1px,
+            transparent 1.5px
+        ),
+        linear-gradient(180deg, #1a0033 0%, #000000 60%, #1a0033 100%);
+    background-size:
+        200px 200px, 250px 250px, 180px 180px, 220px 220px, 300px 300px, cover;
+    cursor:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><text y='18' font-size='18'>✨</text></svg>")
+            8 8,
+        auto;
+}
+
+.retro-blink {
+    animation: retro-blink 1s steps(2, start) infinite;
+}
+@keyframes retro-blink {
+    to {
+        visibility: hidden;
+    }
+}
+
+.retro-rainbow {
+    background: linear-gradient(
+        90deg,
+        #ff2fd6,
+        #ff9ff3,
+        #feca57,
+        #48dbfb,
+        #1dd1a1,
+        #ff2fd6
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: retro-rainbow 3s linear infinite;
+}
+@keyframes retro-rainbow {
+    to {
+        background-position: 200% 0;
+    }
+}
+
+.retro-marquee {
+    display: inline-block;
+    padding-left: 100%;
+    animation: retro-marquee 18s linear infinite;
+    white-space: nowrap;
+}
+@keyframes retro-marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.retro-btn {
+    display: inline-block;
+    background: linear-gradient(180deg, #ff69b4 0%, #ff1493 100%);
+    color: #fff;
+    padding: 18px 36px;
+    font-family: "Comic Neue", "Comic Sans MS", cursive;
+    font-weight: 700;
+    font-size: 26px;
+    border: 4px outset #ffb6d5;
+    text-shadow: 2px 2px 0 #7a004a;
+    box-shadow:
+        0 0 0 4px #000,
+        0 0 24px rgba(255, 105, 180, 0.7);
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.15s;
+}
+.retro-btn:active {
+    border-style: inset;
+    transform: translateY(2px);
+}
+.retro-btn:hover {
+    transform: scale(1.03) rotate(-1deg);
+}
+
+.retro-panel {
+    background: #0a0018;
+    border: 3px ridge #ff69b4;
+    padding: 16px;
+    box-shadow: 0 0 40px rgba(255, 105, 180, 0.35);
+}
+
+.retro-hr {
+    height: 6px;
+    border: none;
+    background: repeating-linear-gradient(
+        90deg,
+        #ff69b4 0 10px,
+        #ffff66 10px 20px,
+        #00ffff 20px 30px,
+        #ff69b4 30px 40px
+    );
+    margin: 12px 0;
+}
+
+.retro-link {
+    color: #66ccff;
+    text-decoration: underline;
+    font-weight: 700;
+}
+.retro-link:visited {
+    color: #ff99ff;
+}
+.retro-link:hover {
+    background: #ffff00;
+    color: #000;
+}
+
+.retro-star::before {
+    content: "★ ";
+    color: #ffd700;
+}
+.retro-heart::before {
+    content: "♡ ";
+    color: #ff69b4;
+}
+
+/* Unicorn pacman chaos */
+.unicorn-dot {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    margin-left: -7px;
+    margin-top: -7px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffd1f0 0%, #ff69b4 70%);
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.9);
+    animation: dot-pulse 1.4s ease-in-out infinite;
+}
+@keyframes dot-pulse {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.85;
+    }
+    50% {
+        transform: scale(1.35);
+        opacity: 1;
+    }
+}
+.unicorn-sprite {
+    position: absolute;
+    line-height: 0;
+    filter: drop-shadow(0 0 14px rgba(255, 105, 180, 0.9))
+        drop-shadow(0 0 6px #fff);
+    animation: unicorn-bob 0.35s ease-in-out infinite alternate;
+    will-change: transform;
+}
+.pixel-unicorn {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    display: block;
+}
+.pu-frame {
+    opacity: 0;
+    animation: pu-chomp 0.32s steps(1) infinite;
+}
+.pu-closed {
+    animation-delay: 0s;
+}
+.pu-open {
+    animation-delay: 0.16s;
+}
+@keyframes pu-chomp {
+    0%,
+    49.99% {
+        opacity: 1;
+    }
+    50%,
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes unicorn-bob {
+    from {
+        filter: drop-shadow(0 0 12px rgba(255, 105, 180, 0.8));
+    }
+    to {
+        filter: drop-shadow(0 0 22px rgba(255, 215, 0, 1))
+            drop-shadow(0 0 6px #fff);
+    }
+}
+.unicorn-chomp {
+    position: absolute;
+    left: 78%;
+    top: 40%;
+    font-size: 22px;
+    color: #fff;
+    animation: unicorn-chomp 0.28s steps(2) infinite;
+}
+@keyframes unicorn-chomp {
+    from {
+        transform: scale(0.4) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: scale(1.4) rotate(180deg);
+        opacity: 0.3;
+    }
+}
+
+/* ====================== FUTURE GLAM PORTFOLIO ====================== */
+.glam-body {
+    font-family: "DM Sans", sans-serif;
+    color: #1a1a1a;
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(244, 194, 194, 0.55) 0%,
+            transparent 45%
+        ),
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(212, 175, 55, 0.15) 0%,
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 50% 80%,
+            rgba(234, 226, 248, 0.6) 0%,
+            transparent 55%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(242, 215, 238, 0.5) 0%,
+            transparent 40%
+        ),
+        linear-gradient(180deg, #faf7f5 0%, #fff5f6 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.glam-serif {
+    font-family: "Playfair Display", "Times New Roman", serif;
+    letter-spacing: -0.02em;
+}
+
+.glam-glass {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 20px 60px -20px rgba(180, 140, 155, 0.25);
+}
+
+.glam-chip {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #6b5842;
+}
+
+.glam-underline {
+    background: linear-gradient(120deg, #f4c2c2 0%, #f4c2c2 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 30%;
+    background-position: 0 92%;
+    padding: 0 4px;
+}
+
+.glam-gold {
+    color: #b8952e;
+}
+
+.glam-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 28px;
+    transition:
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.6s ease;
+}
+.glam-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 40px 80px -20px rgba(180, 140, 155, 0.35);
+}
+.glam-card::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 28px;
+    background: linear-gradient(
+        130deg,
+        rgba(255, 255, 255, 0.9),
+        transparent 40%,
+        transparent 60%,
+        rgba(244, 194, 194, 0.35)
+    );
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
+
+.glam-cursor {
+    cursor:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'><circle cx='12' cy='12' r='4' fill='%23f4c2c2' stroke='%23b8952e' stroke-width='1'/></svg>")
+            10 10,
+        auto;
+}
+
+/* Transition flash */
+.makeover-flash {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+        circle,
+        #fff 0%,
+        #ffe1ec 30%,
+        #f4c2c2 60%,
+        transparent 100%
+    );
+    z-index: 100;
+    pointer-events: none;
+}
+
+/* Utility */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* ====================== TERMINAL (PRE-2003) ERA ====================== */
+.terminal-body {
+    background: #050805;
+    color: #33ff66;
+    font-family: "Source Code Pro", "Courier New", monospace;
+    min-height: 100vh;
+}
+
+.terminal-crt::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.25) 0px,
+        rgba(0, 0, 0, 0.25) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    z-index: 1;
+}
+
+.terminal-cursor-blink {
+    animation: terminal-blink 1s steps(2, start) infinite;
+}
+@keyframes terminal-blink {
+    to {
+        visibility: hidden;
+    }
+}
+
+.terminal-link {
+    color: #33ff66;
+    text-decoration: underline;
+}
+.terminal-link:visited {
+    color: #66ff99;
+}
+.terminal-link:hover {
+    background: #33ff66;
+    color: #050805;
+}
+
+.terminal-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #33ff66;
+    font-family: "Source Code Pro", "Courier New", monospace;
+    font-size: inherit;
+}
+.terminal-input::placeholder {
+    color: rgba(51, 255, 102, 0.5);
+}
+
+/* ====================== MODERN PROFESSIONAL PORTFOLIO ====================== */
+.modern-body {
+    background: #ffffff;
+    color: #111827;
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.modern-navbar {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.modern-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6b7280;
+}
+
+.modern-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #111827;
+    color: #fff;
+    padding: 13px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease;
+}
+.modern-btn:hover {
+    background: #1f2937;
+    transform: translateY(-1px);
+}
+.modern-btn:active {
+    transform: translateY(0);
+}
+
+.modern-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: #111827;
+    padding: 12px 26px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    border: 1px solid #d1d5db;
+    cursor: pointer;
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease;
+}
+.modern-btn-outline:hover {
+    border-color: #111827;
+    background: #f9fafb;
+}
+
+.modern-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: transparent;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    cursor: pointer;
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease,
+        color 0.15s ease;
+}
+.modern-icon-btn:hover {
+    border-color: #111827;
+    background: #f9fafb;
+    color: #111827;
+}
+
+.modern-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+.modern-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -8px rgba(17, 24, 39, 0.12);
+    border-color: #d1d5db;
+}
+
+.modern-tag {
+    display: inline-flex;
+    align-items: center;
+    background: #f3f4f6;
+    color: #374151;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.modern-link {
+    color: #111827;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease;
+}
+.modern-link:hover {
+    border-color: #111827;
+}
+
+.modern-divider {
+    border-top: 1px solid #e5e7eb;
+}
