@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Toaster } from "sonner";
 import "@/App.css";
@@ -21,6 +21,7 @@ function App() {
   // 'era' | 'jump' | 'update' | 'makeover' | 'reverse'
   const [stage, setStage] = useState("era");
   const [pendingEra, setPendingEra] = useState(null);
+  const [autoTrail, setAutoTrail] = useState(false);
 
   const isMyspaceModernPair = (a, b) =>
     (a === 1 && b === 2) || (a === 2 && b === 1);
@@ -48,6 +49,20 @@ function App() {
     setPendingEra(null);
     setStage("era");
   };
+
+  const goToTrail = () => {
+    setAutoTrail(true);
+    goToEra(0);
+  };
+
+  // Clear the auto-launch flag only after the terminal has had a chance to
+  // read it as its initial (mount-time) state, so it doesn't re-trigger on
+  // a later, unrelated visit to the terminal era.
+  useEffect(() => {
+    if (stage === "era" && autoTrail) {
+      setAutoTrail(false);
+    }
+  }, [stage, autoTrail]);
 
   const onReverseComplete = () => {
     setEraIndex(pendingEra ?? 1);
@@ -85,6 +100,7 @@ function App() {
             <TerminalEntrance
               onNext={() => goToEra(1)}
               onEnterMakeover={() => goToEra(3)}
+              autoStartTrail={autoTrail}
             />
           </motion.div>
         )}
@@ -101,6 +117,7 @@ function App() {
               onEnter={() => goToEra(3)}
               onEraPrev={() => goToEra(0)}
               onEraNext={() => goToEra(2)}
+              onGoToTrail={goToTrail}
             />
           </motion.div>
         )}

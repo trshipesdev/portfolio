@@ -19,7 +19,7 @@ const FAKE_REACTIONS = [
   { user: "recruiter_bob", color: "text-cyan-300", text: "adding 'has a guestbook that closes deals' to her offer letter" },
 ];
 
-const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
+const RetroEntrance = ({ onEnter, onEraPrev, onEraNext, onGoToTrail }) => {
   const [visitors, setVisitors] = useState(1029847);
   const [now, setNow] = useState(new Date());
   const [guestbookInput, setGuestbookInput] = useState("");
@@ -60,6 +60,44 @@ const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
 
   return (
     <div className="retro-body" data-testid="retro-entrance">
+      {/* Bouncing floppy disk easter egg -> straight to the terminal, trail already loaded */}
+      <motion.button
+        type="button"
+        onClick={onGoToTrail}
+        data-testid="floppy-trail-launcher"
+        title="play the escalation trail"
+        className="fixed bottom-4 right-4 z-40 flex flex-col items-center gap-1"
+        animate={{ y: [0, -16, 0], rotate: [-8, 8, -8] }}
+        transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+        whileHover={{ scale: 1.15 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <span
+          className="relative text-5xl"
+          style={{ filter: "drop-shadow(0 0 10px rgba(255,105,180,0.85))" }}
+        >
+          💾
+          <span className="absolute -top-2 -left-3 text-yellow-300 text-lg animate-ping">
+            ✨
+          </span>
+          <span
+            className="absolute -bottom-1 -right-3 text-pink-300 text-sm animate-ping"
+            style={{ animationDelay: "0.4s" }}
+          >
+            ✨
+          </span>
+          <span
+            className="absolute top-0 -right-4 text-cyan-300 text-base animate-pulse"
+            style={{ animationDelay: "0.8s" }}
+          >
+            ✦
+          </span>
+        </span>
+        <span className="retro-blink text-yellow-300 text-xs font-bold bg-black/70 px-2 py-0.5 rounded">
+          CLICK ME!!
+        </span>
+      </motion.button>
+
       {/* Top marquee */}
       <div className="w-full overflow-hidden bg-black border-b-4 border-fuchsia-500 py-2">
         <div className="retro-marquee text-yellow-300 text-lg font-bold">
