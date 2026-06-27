@@ -15,6 +15,14 @@ import {
   Copy,
   ExternalLink,
   ChevronDown,
+  Gift,
+  Rocket,
+  Palette,
+  AlertTriangle,
+  Server,
+  Hammer,
+  Headset,
+  Briefcase,
 } from "lucide-react";
 import {
   PROFILE,
@@ -23,6 +31,7 @@ import {
   EXPERIENCE,
   EDUCATION,
   MARQUEE_TOKENS,
+  HATS_PROOF,
 } from "../data/portfolio";
 import HatCycler from "@/components/HatCycler";
 import {
@@ -33,6 +42,14 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+
+const HAT_ICONS = {
+  escalation: AlertTriangle,
+  production: Server,
+  builder: Hammer,
+  customer: Headset,
+  business: Briefcase,
+};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -105,7 +122,15 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
           <a href="#about" data-testid="nav-about" className="hover:text-black transition">
             About
           </a>
-          <a href="#skills" data-testid="nav-skills" className="hover:text-black transition">
+          <a
+            href="#skills"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            data-testid="nav-skills"
+            className="hover:text-black transition"
+          >
             Toolkit
           </a>
           <a href="#experience" data-testid="nav-experience" className="hover:text-black transition">
@@ -217,18 +242,19 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
             >
               {PROFILE.tagline}
             </p>
-            <p className="mt-4 text-sm text-neutral-600">
-              <a
-                href={PROFILE.greetingCardHref}
-                target="_blank"
-                rel="noreferrer"
-                data-testid="greeting-card-link"
-                className="underline decoration-dotted underline-offset-4 hover:text-black italic"
-              >
-                see what my coworkers say about me for yourself (a card I got
-                when I went back and finished my degree 😎💪)
-              </a>
-            </p>
+            <motion.a
+              href={PROFILE.greetingCardHref}
+              target="_blank"
+              rel="noreferrer"
+              data-testid="greeting-card-link"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="glam-glass mt-6 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm md:text-base font-medium hover:text-[#b8952e] transition"
+            >
+              <Gift size={18} className="glam-gold flex-shrink-0" />
+              see what my coworkers say about me for yourself (a card I got
+              when I went back and finished my degree 😎💪)
+            </motion.a>
           </motion.div>
           <motion.div
             initial="hidden"
@@ -253,6 +279,18 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
             >
               Hire her <Mail size={14} />
             </button>
+            <button
+              type="button"
+              onClick={() =>
+                document
+                  .getElementById("experience")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              data-testid="hero-jump-to-resume"
+              className="glam-glass px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:scale-105 transition"
+            >
+              jump to resume <ArrowUpRight size={16} />
+            </button>
           </motion.div>
         </div>
 
@@ -276,136 +314,6 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
           </motion.div>
         </div>
       </header>
-
-      {/* WORK — Bento grid with real screenshots */}
-      <section
-        id="work"
-        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-32"
-      >
-        <div className="mb-10">
-          <p className="glam-chip inline-block mb-4">01 / Selected Work</p>
-          <h2 className="glam-serif text-5xl md:text-6xl font-medium max-w-3xl">
-            Take a <span className="italic glam-gold">peek</span> at what
-            I&apos;ve been building.
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[minmax(260px,auto)] gap-5">
-          {PROJECTS.map((p, i) => {
-            const span =
-              p.size === "hero" ? "md:col-span-8" : "md:col-span-4";
-            const isGated = p.action === "password-reveal";
-            const isImageOpen = p.action === "image-open";
-            const commonProps = {
-              "data-testid": `project-card-${p.id}`,
-              className: `glam-card glam-glass ${span} flex flex-col group overflow-hidden text-left`,
-              style: {
-                background: `linear-gradient(160deg, ${p.accent}55 0%, rgba(255,255,255,0.75) 55%)`,
-              },
-            };
-            const cardBody = (
-              <>
-                {/* Image */}
-                <div
-                  className={`relative w-full overflow-hidden ${
-                    p.size === "hero" ? "aspect-[16/10]" : "aspect-[4/3]"
-                  }`}
-                >
-                  <img
-                    src={p.image}
-                    alt={`${p.name} preview`}
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[900ms]"
-                  />
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: `linear-gradient(180deg, rgba(0,0,0,0) 40%, ${p.accent}66 100%)`,
-                    }}
-                  />
-                  <div className="absolute top-4 left-4 max-w-[calc(100%-4.5rem)]">
-                    <span className="glam-chip whitespace-normal leading-tight inline-block">
-                      {p.tag}
-                    </span>
-                  </div>
-                  <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/85 backdrop-blur border border-white flex items-center justify-center group-hover:rotate-45 transition-transform duration-500">
-                    {isGated ? (
-                      <Lock size={14} />
-                    ) : isImageOpen ? (
-                      <ExternalLink size={14} />
-                    ) : (
-                      <ArrowUpRight size={16} />
-                    )}
-                  </div>
-                </div>
-                {/* Body */}
-                <div className={`p-6 md:p-8 flex-1 flex flex-col`}>
-                  <h3
-                    className={`glam-serif font-medium leading-tight ${
-                      p.size === "hero"
-                        ? "text-4xl md:text-5xl"
-                        : "text-2xl md:text-3xl"
-                    }`}
-                  >
-                    {p.name}
-                  </h3>
-                  <p
-                    className={`mt-3 text-neutral-700 leading-relaxed ${
-                      p.size === "hero" ? "text-base" : "text-sm"
-                    }`}
-                  >
-                    {p.blurb}
-                  </p>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {p.stack.map((s) => (
-                      <span
-                        key={s}
-                        className="text-[10px] uppercase tracking-widest text-neutral-600 border border-neutral-400/40 rounded-full px-2.5 py-1"
-                      >
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </>
-            );
-
-            const motionWrapperProps = {
-              initial: "hidden",
-              whileInView: "visible",
-              viewport: { once: true, margin: "-80px" },
-              variants: fadeUp,
-              custom: i,
-            };
-
-            if (isGated) {
-              return (
-                <motion.button
-                  key={p.id}
-                  type="button"
-                  onClick={() => setGatedProject(p)}
-                  {...motionWrapperProps}
-                  {...commonProps}
-                >
-                  {cardBody}
-                </motion.button>
-              );
-            }
-            return (
-              <motion.a
-                key={p.id}
-                href={p.href}
-                target="_blank"
-                rel="noreferrer"
-                {...motionWrapperProps}
-                {...commonProps}
-              >
-                {cardBody}
-              </motion.a>
-            );
-          })}
-        </div>
-      </section>
 
       {/* ABOUT — I wear many hats */}
       <section
@@ -454,6 +362,44 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* PROOF CARDS — one per hat, evidence not adjectives */}
+      <section
+        id="proof"
+        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-32"
+      >
+        <p className="glam-chip inline-block mb-4">02.5 / Receipts</p>
+        <h2 className="glam-serif text-5xl md:text-6xl font-medium mb-12 max-w-3xl">
+          Every hat, <span className="italic glam-gold">backed up</span>.
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {HATS_PROOF.map((h, i) => {
+            const Icon = HAT_ICONS[h.icon];
+            return (
+              <motion.div
+                key={h.title}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                variants={fadeUp}
+                custom={i}
+                data-testid={`proof-card-${h.title.toLowerCase().replace(/\s+/g, "-")}`}
+                className={`glam-glass rounded-3xl p-8 flex flex-col gap-4 ${
+                  i === HATS_PROOF.length - 1 && HATS_PROOF.length % 2 === 1
+                    ? "md:col-span-2"
+                    : ""
+                }`}
+              >
+                <div className="w-11 h-11 rounded-full bg-white/70 flex items-center justify-center">
+                  <Icon size={20} className="glam-gold" />
+                </div>
+                <h3 className="glam-serif text-2xl font-medium">{h.title}</h3>
+                <p className="text-neutral-700 leading-relaxed">{h.proof}</p>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 
@@ -528,6 +474,186 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               </ul>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* WORK — Bento grid with real screenshots */}
+      <section
+        id="work"
+        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-32"
+      >
+        <div className="mb-10">
+          <p className="glam-chip inline-block mb-4">01 / Selected Work</p>
+          <h2 className="glam-serif text-5xl md:text-6xl font-medium max-w-3xl">
+            Take a <span className="italic glam-gold">peek</span> at what
+            I&apos;ve been building.
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[minmax(260px,auto)] gap-5">
+          {PROJECTS.map((p, i) => {
+            const span =
+              p.size === "hero" ? "md:col-span-8" : "md:col-span-4";
+            const isGated = p.action === "password-reveal";
+            const isImageOpen = p.action === "image-open";
+            const isComingSoon = p.action === "coming-soon";
+            const isInfo = p.action === "info";
+            const commonProps = {
+              "data-testid": `project-card-${p.id}`,
+              className: `glam-card glam-glass ${span} flex flex-col group overflow-hidden text-left`,
+              style: {
+                background: `linear-gradient(160deg, ${p.accent}55 0%, rgba(255,255,255,0.75) 55%)`,
+              },
+            };
+            const cardBody = (
+              <>
+                {/* Image */}
+                <div
+                  className={`relative w-full overflow-hidden ${
+                    p.size === "hero" ? "aspect-[16/10]" : "aspect-[4/3]"
+                  }`}
+                >
+                  {isComingSoon || isInfo ? (
+                    <div
+                      className="absolute inset-0 flex items-center justify-center"
+                      style={{
+                        background: `linear-gradient(160deg, ${p.accent}aa 0%, rgba(255,255,255,0.85) 100%)`,
+                      }}
+                    >
+                      {isComingSoon ? (
+                        <Rocket size={64} className="glam-gold opacity-60 group-hover:scale-110 transition-transform duration-500" />
+                      ) : (
+                        <Palette size={64} className="glam-gold opacity-60" />
+                      )}
+                    </div>
+                  ) : (
+                    <img
+                      src={p.image}
+                      alt={`${p.name} preview`}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[900ms]"
+                    />
+                  )}
+                  {!isComingSoon && !isInfo && (
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background: `linear-gradient(180deg, rgba(0,0,0,0) 40%, ${p.accent}66 100%)`,
+                      }}
+                    />
+                  )}
+                  <div className="absolute top-4 left-4 max-w-[calc(100%-4.5rem)]">
+                    <span className="glam-chip whitespace-normal leading-tight inline-block">
+                      {p.tag}
+                    </span>
+                  </div>
+                  {isComingSoon && (
+                    <div className="absolute top-5 -right-9 rotate-45 bg-[#111] text-white text-[10px] font-bold uppercase tracking-widest px-9 py-1">
+                      Coming Soon
+                    </div>
+                  )}
+                  {!isComingSoon && !isInfo && (
+                    <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/85 backdrop-blur border border-white flex items-center justify-center group-hover:rotate-45 transition-transform duration-500">
+                      {isGated ? (
+                        <Lock size={14} />
+                      ) : isImageOpen ? (
+                        <ExternalLink size={14} />
+                      ) : (
+                        <ArrowUpRight size={16} />
+                      )}
+                    </div>
+                  )}
+                </div>
+                {/* Body */}
+                <div className={`p-6 md:p-8 flex-1 flex flex-col`}>
+                  <h3
+                    className={`glam-serif font-medium leading-tight ${
+                      p.size === "hero"
+                        ? "text-4xl md:text-5xl"
+                        : "text-2xl md:text-3xl"
+                    }`}
+                  >
+                    {p.name}
+                  </h3>
+                  <p
+                    className={`mt-3 text-neutral-700 leading-relaxed ${
+                      p.size === "hero" ? "text-base" : "text-sm"
+                    }`}
+                  >
+                    {p.blurb}
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {p.stack.map((s) => (
+                      <span
+                        key={s}
+                        className="text-[10px] uppercase tracking-widest text-neutral-600 border border-neutral-400/40 rounded-full px-2.5 py-1"
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </>
+            );
+
+            const motionWrapperProps = {
+              initial: "hidden",
+              whileInView: "visible",
+              viewport: { once: true, margin: "-80px" },
+              variants: fadeUp,
+              custom: i,
+            };
+
+            if (isInfo) {
+              return (
+                <motion.div key={p.id} {...motionWrapperProps} {...commonProps}>
+                  {cardBody}
+                </motion.div>
+              );
+            }
+
+            if (isComingSoon) {
+              return (
+                <motion.button
+                  key={p.id}
+                  type="button"
+                  onClick={() =>
+                    toast(`${p.name} is still compiling. check back soon.`)
+                  }
+                  {...motionWrapperProps}
+                  {...commonProps}
+                >
+                  {cardBody}
+                </motion.button>
+              );
+            }
+
+            if (isGated) {
+              return (
+                <motion.button
+                  key={p.id}
+                  type="button"
+                  onClick={() => setGatedProject(p)}
+                  {...motionWrapperProps}
+                  {...commonProps}
+                >
+                  {cardBody}
+                </motion.button>
+              );
+            }
+            return (
+              <motion.a
+                key={p.id}
+                href={p.href}
+                target="_blank"
+                rel="noreferrer"
+                {...motionWrapperProps}
+                {...commonProps}
+              >
+                {cardBody}
+              </motion.a>
+            );
+          })}
         </div>
       </section>
 

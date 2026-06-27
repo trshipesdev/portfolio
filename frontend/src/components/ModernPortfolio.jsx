@@ -15,6 +15,8 @@ import {
   X,
   Copy,
   ExternalLink,
+  Rocket,
+  Palette,
 } from "lucide-react";
 import {
   PROFILE,
@@ -125,25 +127,53 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {PROJECTS.map((p) => {
               const isGated = p.action === "password-reveal";
+              const isComingSoon = p.action === "coming-soon";
+              const isInfo = p.action === "info";
               const cardBody = (
                 <>
                   <div className="overflow-hidden relative">
-                    <img
-                      src={p.image}
-                      alt={`${p.name} preview`}
-                      loading="lazy"
-                      className="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+                    {isComingSoon || isInfo ? (
+                      <div
+                        className="w-full aspect-[16/10] flex items-center justify-center"
+                        style={{
+                          background: `linear-gradient(160deg, ${p.accent} 0%, #f3f4f6 100%)`,
+                        }}
+                      >
+                        {isComingSoon ? (
+                          <Rocket size={48} className="text-gray-400/70 group-hover:scale-110 transition-transform duration-500" />
+                        ) : (
+                          <Palette size={48} className="text-gray-400/70" />
+                        )}
+                      </div>
+                    ) : (
+                      <img
+                        src={p.image}
+                        alt={`${p.name} preview`}
+                        loading="lazy"
+                        className="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    )}
                     {isGated && (
                       <span className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
                         <Lock size={13} />
                       </span>
                     )}
+                    {isComingSoon && (
+                      <div className="absolute top-3 -right-9 rotate-45 bg-gray-900 text-white text-[10px] font-bold uppercase tracking-widest px-9 py-1">
+                        Coming Soon
+                      </div>
+                    )}
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
                     <div className="flex items-start justify-between gap-2">
                       <h3 className="font-bold text-lg">{p.name}</h3>
-                      <ArrowUpRight size={16} className="mt-1 text-gray-400 group-hover:text-black transition flex-shrink-0" />
+                      {isComingSoon ? (
+                        <Rocket size={16} className="mt-1 text-gray-400 flex-shrink-0" />
+                      ) : isInfo ? (
+                        <Palette size={16} className="mt-1 text-gray-400 flex-shrink-0" />
+                      ) : (
+                        <ArrowUpRight size={16} className="mt-1 text-gray-400 group-hover:text-black transition flex-shrink-0" />
+                      )}
                     </div>
                     <p className="text-xs uppercase tracking-wide text-gray-500 mt-1">{p.tag}</p>
                     <p className="text-sm mt-3 text-gray-600 leading-relaxed">{p.blurb}</p>
@@ -157,6 +187,34 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
                   </div>
                 </>
               );
+
+              if (isInfo) {
+                return (
+                  <div
+                    key={p.id}
+                    data-testid={`project-card-${p.id}`}
+                    className="modern-card overflow-hidden flex flex-col text-left"
+                  >
+                    {cardBody}
+                  </div>
+                );
+              }
+
+              if (isComingSoon) {
+                return (
+                  <button
+                    key={p.id}
+                    type="button"
+                    onClick={() =>
+                      toast(`${p.name} is still compiling. check back soon.`)
+                    }
+                    data-testid={`project-card-${p.id}`}
+                    className="modern-card overflow-hidden flex flex-col group text-left"
+                  >
+                    {cardBody}
+                  </button>
+                );
+              }
 
               if (isGated) {
                 return (
