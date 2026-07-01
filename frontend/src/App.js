@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Toaster } from "sonner";
 import "@/App.css";
@@ -17,11 +17,24 @@ import UpdateTransition from "@/components/UpdateTransition";
 const ERAS = ["terminal", "myspace", "modern", "future"];
 
 function App() {
-  const [eraIndex, setEraIndex] = useState(1); // start on 2003 MySpace
+  // Hash-based alt entry points, read once on load. Browsers normalize a bare
+  // trailing "#" to an empty location.hash, so check location.href instead.
+  // "#"  -> skip straight to the professional page (for links shared with
+  //         people who don't need the time-machine intro)
+  // "#~" -> skip straight to the terminal with the trail game already running
+  const initialHash =
+    typeof window !== "undefined"
+      ? window.location.hash || (window.location.href.endsWith("#") ? "#" : "")
+      : "";
+  const [eraIndex, setEraIndex] = useState(() => {
+    if (initialHash === "#~") return 0;
+    if (initialHash === "#") return 2;
+    return 1;
+  });
   // 'era' | 'jump' | 'update' | 'makeover' | 'reverse'
   const [stage, setStage] = useState("era");
   const [pendingEra, setPendingEra] = useState(null);
-  const [autoTrail, setAutoTrail] = useState(false);
+  const [autoTrail] = useState(() => initialHash === "#~");
 
   const isMyspaceModernPair = (a, b) =>
     (a === 1 && b === 2) || (a === 2 && b === 1);
@@ -49,20 +62,6 @@ function App() {
     setPendingEra(null);
     setStage("era");
   };
-
-  const goToTrail = () => {
-    setAutoTrail(true);
-    goToEra(0);
-  };
-
-  // Clear the auto-launch flag only after the terminal has had a chance to
-  // read it as its initial (mount-time) state, so it doesn't re-trigger on
-  // a later, unrelated visit to the terminal era.
-  useEffect(() => {
-    if (stage === "era" && autoTrail) {
-      setAutoTrail(false);
-    }
-  }, [stage, autoTrail]);
 
   const onReverseComplete = () => {
     setEraIndex(pendingEra ?? 1);
@@ -100,6 +99,7 @@ function App() {
             <TerminalEntrance
               onNext={() => goToEra(1)}
               onEnterMakeover={() => goToEra(3)}
+              onEnterProfessional={() => goToEra(2)}
               autoStartTrail={autoTrail}
             />
           </motion.div>
@@ -117,7 +117,6 @@ function App() {
               onEnter={() => goToEra(3)}
               onEraPrev={() => goToEra(0)}
               onEraNext={() => goToEra(2)}
-              onGoToTrail={goToTrail}
             />
           </motion.div>
         )}
@@ -167,7 +166,7 @@ function App() {
           <ReverseTransition
             key="reverse"
             onComplete={onReverseComplete}
-            label={pendingEra === 2 ? "rewinding to the resume version" : "rewinding to 2003"}
+            label={pendingEra === 2 ? "rewinding to the portfolio version" : "rewinding to 2003"}
           />
         )}
       </AnimatePresence>

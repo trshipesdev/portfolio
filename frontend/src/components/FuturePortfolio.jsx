@@ -32,6 +32,7 @@ import {
   EDUCATION,
   MARQUEE_TOKENS,
   HATS_PROOF,
+  CAREER_ARC,
 } from "../data/portfolio";
 import HatCycler from "@/components/HatCycler";
 import {
@@ -62,6 +63,7 @@ const fadeUp = {
 
 const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
   const [gatedProject, setGatedProject] = useState(null); // holds the project when modal is open
+  const [arcTier, setArcTier] = useState("middle");
 
   const handleHireHer = async () => {
     try {
@@ -134,7 +136,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
             Toolkit
           </a>
           <a href="#experience" data-testid="nav-experience" className="hover:text-black transition">
-            Resume
+            Portfolio
           </a>
           <a href="#contact" data-testid="nav-contact" className="hover:text-black transition">
             Contact
@@ -286,10 +288,10 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
                   .getElementById("experience")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              data-testid="hero-jump-to-resume"
+              data-testid="hero-jump-to-portfolio"
               className="glam-glass px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:scale-105 transition"
             >
-              jump to resume <ArrowUpRight size={16} />
+              jump to portfolio <ArrowUpRight size={16} />
             </button>
           </motion.div>
         </div>
@@ -335,30 +337,35 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
             </p>
           </div>
           <div className="md:col-span-6 space-y-6 text-lg text-neutral-700 leading-relaxed">
-            <p data-testid="about-bio">
-              Full stack software and integration engineer. My day-to-day is
-              production code plus customer-facing support, escalation, and
-              integration work, so I can debug your gnarliest production
-              incident and write the release that fixes it. I graduated with
-              a Bachelor&apos;s degree in Applied Computing + Cybersecurity,
-              hold a CompTIA Security+ certification, and continuously teach
-              myself more fun stuff.
-            </p>
-            <div className="flex flex-wrap gap-6 pt-2 text-sm">
+            <p data-testid="about-bio">{PROFILE.professionalSummary}</p>
+
+            <div
+              className="glam-glass rounded-3xl p-6 flex items-start gap-4"
+              data-testid="education-card"
+            >
+              <div className="w-12 h-12 rounded-full bg-white/70 flex items-center justify-center flex-shrink-0">
+                <GraduationCap size={22} className="glam-gold" />
+              </div>
+              <div>
+                <p className="glam-serif text-xl md:text-2xl font-semibold leading-snug">
+                  {EDUCATION.degree}
+                </p>
+                <p className="text-sm text-neutral-600 mt-1">
+                  {EDUCATION.school} &middot; {EDUCATION.years}
+                </p>
+                <span
+                  className="glam-chip inline-flex items-center gap-1 mt-3 text-[11px]"
+                  data-testid="about-secplus"
+                >
+                  <Sparkles size={11} /> {EDUCATION.certs[0]}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-6 pt-1 text-sm">
               <div className="flex items-center gap-2 text-neutral-600">
                 <MapPin size={16} className="glam-gold" />
                 {PROFILE.location}
-              </div>
-              <div className="flex items-center gap-2 text-neutral-600">
-                <GraduationCap size={16} className="glam-gold" />
-                {EDUCATION.school}, {EDUCATION.years}
-              </div>
-              <div
-                className="flex items-center gap-2 text-neutral-600"
-                data-testid="about-secplus"
-              >
-                <Sparkles size={16} className="glam-gold" />
-                {EDUCATION.certs[0]}
               </div>
             </div>
           </div>
@@ -434,12 +441,95 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
         </div>
       </section>
 
+      {/* THE GLOW-UP ARC — same story, extra glitter, jargon toggle */}
+      <section
+        id="glow-up-arc"
+        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-32"
+      >
+        <div className="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div>
+            <p className="glam-chip inline-block mb-4">03.5 / The Glow-Up</p>
+            <h2 className="glam-serif text-5xl md:text-6xl font-medium max-w-3xl">
+              A story that comes{" "}
+              <span className="italic glam-gold">full circle</span>.
+            </h2>
+          </div>
+          <div className="flex gap-2 flex-shrink-0">
+            {["customer", "middle", "technical"].map((t) => (
+              <button
+                key={t}
+                type="button"
+                onClick={() => setArcTier(t)}
+                data-testid={`arc-tier-${t}`}
+                className={`text-xs uppercase tracking-widest px-4 py-2 rounded-full border transition ${
+                  arcTier === t
+                    ? "bg-[#111] text-white border-[#111]"
+                    : "glam-glass text-neutral-600 border-white/60 hover:scale-105"
+                }`}
+              >
+                {t === "customer" ? "✨ Simple" : t === "middle" ? "Standard" : "🤓 Technical"}
+              </button>
+            ))}
+          </div>
+        </div>
+        <p className="text-sm text-neutral-500 italic mb-12">
+          Same glow-up, different lingo. Pick your flavor.
+        </p>
+
+        <div className="relative pl-8 md:pl-12 space-y-8">
+          <div
+            className="absolute left-2 md:left-4 top-2 bottom-2 w-1 rounded-full"
+            style={{
+              background:
+                "linear-gradient(180deg, #ff69b4, #d4af37, #66ffff, #ff69b4)",
+            }}
+          />
+          {CAREER_ARC.map((stage, i) => {
+            const body = stage[arcTier] || stage.middle;
+            return (
+              <motion.div
+                key={stage.id}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-60px" }}
+                variants={fadeUp}
+                custom={i}
+                className="relative"
+                data-testid={`glow-arc-stage-${stage.id}`}
+              >
+                <span
+                  className="absolute -left-[38px] md:-left-[54px] top-1 w-7 h-7 rounded-full flex items-center justify-center text-sm"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #ffffff 0%, #fbe4ec 45%, #f4c2c2 100%)",
+                    boxShadow: "0 0 0 3px #fff, 0 4px 10px rgba(180,140,155,0.4)",
+                  }}
+                >
+                  ✦
+                </span>
+                <div className="glam-glass rounded-3xl p-6 md:p-8">
+                  {stage.date && (
+                    <p className="text-[11px] uppercase tracking-widest glam-gold mb-2">
+                      {stage.date}
+                    </p>
+                  )}
+                  <h3 className="glam-serif text-2xl md:text-3xl font-medium mb-2">
+                    {stage.title}
+                  </h3>
+                  <p className="text-neutral-700 leading-relaxed">{body}</p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
       {/* EXPERIENCE */}
       <section
         id="experience"
         className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-32"
       >
-        <p className="glam-chip inline-block mb-4">04 / Resume</p>
+        <p className="glam-chip inline-block mb-4">04 / Portfolio</p>
         <h2 className="glam-serif text-5xl md:text-6xl font-medium mb-12">
           Where she has <span className="italic glam-gold">shipped</span>.
         </h2>

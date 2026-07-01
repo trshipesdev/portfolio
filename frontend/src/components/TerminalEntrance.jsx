@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { PROFILE, SKILLS, EXPERIENCE, EDUCATION, PROJECTS } from "../data/portfolio";
@@ -15,7 +15,20 @@ const BOOT_LINES = [
   "WELCOME, USER.",
 ];
 
-const ENTER_COMMAND = "./enter-for-makeover-and-portfolio.sh";
+const ENTER_COMMANDS = [
+  {
+    id: "pink",
+    command: "./enter-for-makeover-and-portfolio.sh",
+    hint: "# click for the pink glam portfolio",
+    launchLabel: "the pink glam version",
+  },
+  {
+    id: "professional",
+    command: "./enter-for-professional-portfolio.sh",
+    hint: "# click for the professional portfolio",
+    launchLabel: "the professional version",
+  },
+];
 
 const lineVariants = {
   hidden: { opacity: 0 },
@@ -25,14 +38,43 @@ const lineVariants = {
   }),
 };
 
-const TerminalEntrance = ({ onNext, onEnterMakeover, autoStartTrail }) => {
-  const [showGame, setShowGame] = useState(!!autoStartTrail);
+const TABS = [
+  { id: "whoami", label: "whoami" },
+  { id: "skills", label: "skills" },
+  { id: "experience", label: "experience" },
+  { id: "education", label: "education" },
+  { id: "projects", label: "projects" },
+];
 
-  const handleCommandKeyDown = (e) => {
-    if (e.key === "Enter") {
-      onEnterMakeover?.();
-    }
+const TerminalEntrance = ({ onNext, onEnterMakeover, onEnterProfessional, autoStartTrail }) => {
+  const [showGame, setShowGame] = useState(!!autoStartTrail);
+  const [activeTab, setActiveTab] = useState("whoami");
+  const [expandedExp, setExpandedExp] = useState(null);
+  const [expandedProj, setExpandedProj] = useState(null);
+  const [launching, setLaunching] = useState(null);
+  const [typedLen, setTypedLen] = useState(0);
+
+  const ENTER_HANDLERS = {
+    pink: onEnterMakeover,
+    professional: onEnterProfessional,
   };
+
+  const handleEnterCommand = (entry) => {
+    if (launching) return;
+    setLaunching(entry);
+    setTypedLen(0);
+  };
+
+  useEffect(() => {
+    if (!launching) return;
+    if (typedLen < launching.command.length) {
+      const t = setTimeout(() => setTypedLen((n) => n + 1), 18);
+      return () => clearTimeout(t);
+    }
+    const t = setTimeout(() => ENTER_HANDLERS[launching.id]?.(), 450);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [launching, typedLen]);
 
   const handleProjectClick = (p) => {
     if (p.action === "password-reveal") {
@@ -141,63 +183,119 @@ const TerminalEntrance = ({ onNext, onEnterMakeover, autoStartTrail }) => {
           </div>
         ) : (
           <>
-            <p className="mb-2">
-              $ cat resume.txt
-            </p>
-            <div className="border border-[#33ff66]/40 p-4 mb-6">
-              <p>{PROFILE.name}</p>
-              <p>{PROFILE.title}</p>
-              <p className="mt-2 opacity-80">{PROFILE.tagline}</p>
-
-              <p className="mt-4">$ ls skills/</p>
-              <p className="opacity-90">
-                {SKILLS.map((s) => `[${s.name}]`).join("  ")}
-              </p>
-
-              <p className="mt-4">$ cat experience.log</p>
-              {EXPERIENCE.map((e) => (
-                <div key={e.company} className="mt-2">
-                  <p>
-                    &gt; {e.role} @ {e.company} ({e.period})
-                  </p>
-                  {e.highlights.map((h, hi) => (
-                    <p key={hi} className="opacity-80 pl-4">
-                      - {h}
-                    </p>
-                  ))}
-                </div>
+            <div className="flex flex-wrap gap-1 mb-3 border-b border-[#33ff66]/30 pb-3">
+              {TABS.map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setActiveTab(t.id)}
+                  data-testid={`terminal-tab-${t.id}`}
+                  className={`px-3 py-1 text-xs md:text-sm ${
+                    activeTab === t.id
+                      ? "bg-[#33ff66] text-[#050805] font-bold"
+                      : "terminal-link"
+                  }`}
+                >
+                  $ cat {t.id}.txt
+                </button>
               ))}
+            </div>
 
-              <p className="mt-4">$ cat education.log</p>
-              <p className="opacity-90">
-                &gt; {EDUCATION.degree}, {EDUCATION.school} ({EDUCATION.years})
-              </p>
-              <p className="opacity-90 pl-4">- {EDUCATION.certs[0]}</p>
+            <div className="border border-[#33ff66]/40 p-4 mb-6">
+              {activeTab === "whoami" && (
+                <>
+                  <p>{PROFILE.name}</p>
+                  <p>{PROFILE.title}</p>
+                  <p className="mt-2 opacity-80">{PROFILE.tagline}</p>
+                </>
+              )}
 
-              <p className="mt-4">$ ls projects/</p>
-              {PROJECTS.map((p) =>
-                p.action === "info" ? (
-                  <div key={p.id} className="mt-2">
-                    <p data-testid={`terminal-project-${p.id}`}>
-                      &gt; {p.name}: {p.tag}
-                    </p>
-                    <p className="opacity-80 pl-4">{p.blurb}</p>
-                    <p className="opacity-60 pl-4 text-xs">[{p.stack.join(", ")}]</p>
-                  </div>
-                ) : (
-                  <div key={p.id} className="mt-2">
-                    <button
-                      type="button"
-                      onClick={() => handleProjectClick(p)}
-                      data-testid={`terminal-project-${p.id}`}
-                      className="terminal-link text-left"
-                    >
-                      &gt; {p.name}: {p.tag}
-                    </button>
-                    <p className="opacity-80 pl-4">{p.blurb}</p>
-                    <p className="opacity-60 pl-4 text-xs">[{p.stack.join(", ")}]</p>
-                  </div>
-                )
+              {activeTab === "skills" && (
+                <p className="opacity-90">
+                  {SKILLS.map((s) => `[${s.name}]`).join("  ")}
+                </p>
+              )}
+
+              {activeTab === "experience" && (
+                <div className="space-y-2">
+                  {EXPERIENCE.map((e) => {
+                    const isOpen = expandedExp === e.company;
+                    return (
+                      <div key={e.company}>
+                        <button
+                          type="button"
+                          onClick={() => setExpandedExp(isOpen ? null : e.company)}
+                          data-testid={`terminal-exp-toggle-${e.company}`}
+                          className="terminal-link text-left flex items-start gap-2 w-full"
+                        >
+                          <span>{isOpen ? "[-]" : "[+]"}</span>
+                          <span>
+                            {e.role} @ {e.company} ({e.period})
+                          </span>
+                        </button>
+                        {isOpen && (
+                          <div className="pl-6 mt-1">
+                            {e.highlights.map((h, hi) => (
+                              <p key={hi} className="opacity-80">
+                                - {h}
+                              </p>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
+              {activeTab === "education" && (
+                <>
+                  <p className="opacity-90">
+                    &gt; {EDUCATION.degree}, {EDUCATION.school} ({EDUCATION.years})
+                  </p>
+                  <p className="opacity-90 pl-4">- {EDUCATION.certs[0]}</p>
+                </>
+              )}
+
+              {activeTab === "projects" && (
+                <div className="space-y-2">
+                  {PROJECTS.map((p) => {
+                    const isOpen = expandedProj === p.id;
+                    return (
+                      <div key={p.id}>
+                        <button
+                          type="button"
+                          onClick={() => setExpandedProj(isOpen ? null : p.id)}
+                          data-testid={`terminal-project-${p.id}`}
+                          className="terminal-link text-left flex items-start gap-2 w-full"
+                        >
+                          <span>{isOpen ? "[-]" : "[+]"}</span>
+                          <span>
+                            {p.name}: {p.tag}
+                          </span>
+                        </button>
+                        {isOpen && (
+                          <div className="pl-6 mt-1">
+                            <p className="opacity-80">{p.blurb}</p>
+                            <p className="opacity-60 text-xs mt-1">
+                              [{p.stack.join(", ")}]
+                            </p>
+                            {p.action !== "info" && (
+                              <button
+                                type="button"
+                                onClick={() => handleProjectClick(p)}
+                                data-testid={`terminal-project-open-${p.id}`}
+                                className="terminal-link mt-1"
+                              >
+                                &gt; open
+                              </button>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               )}
             </div>
 
@@ -213,27 +311,47 @@ const TerminalEntrance = ({ onNext, onEnterMakeover, autoStartTrail }) => {
               </span>
             </button>
 
-            <div
-              className="mb-6 flex flex-wrap items-center gap-1 cursor-pointer"
-              onClick={() => onEnterMakeover?.()}
-              data-testid="terminal-enter-line"
-            >
-              <span>$</span>
-              <input
-                type="text"
-                value={ENTER_COMMAND}
-                onKeyDown={handleCommandKeyDown}
-                data-testid="terminal-enter-command"
-                autoFocus
-                readOnly
-                spellCheck={false}
-                className="terminal-input cursor-pointer"
-                style={{ width: `${ENTER_COMMAND.length + 1}ch` }}
-              />
-              <span className="opacity-50 italic">
-                # hit enter for the real portfolio
-              </span>
-              <span className="terminal-cursor-blink">_</span>
+            <div className="mb-6 space-y-2">
+              {ENTER_COMMANDS.map((entry) => {
+                const isLaunching = launching?.id === entry.id;
+                const displayText = isLaunching
+                  ? entry.command.slice(0, typedLen)
+                  : entry.command;
+                return (
+                  <div
+                    key={entry.id}
+                    className="flex flex-wrap items-center gap-1 cursor-pointer"
+                    onClick={() => handleEnterCommand(entry)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") handleEnterCommand(entry);
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    data-testid={`terminal-enter-line-${entry.id}`}
+                  >
+                    <span>$</span>
+                    <input
+                      type="text"
+                      value={displayText}
+                      readOnly
+                      spellCheck={false}
+                      data-testid={`terminal-enter-command-${entry.id}`}
+                      className="terminal-input cursor-pointer"
+                      style={{ width: `${entry.command.length + 1}ch` }}
+                    />
+                    <span className="terminal-cursor-blink">_</span>
+                    {isLaunching ? (
+                      typedLen >= entry.command.length && (
+                        <span className="opacity-80 italic text-yellow-300">
+                          # launching {entry.launchLabel}...
+                        </span>
+                      )
+                    ) : (
+                      <span className="opacity-50 italic">{entry.hint}</span>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </>
         )}

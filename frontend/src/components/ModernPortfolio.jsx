@@ -17,6 +17,12 @@ import {
   ExternalLink,
   Rocket,
   Palette,
+  AlertTriangle,
+  Headset,
+  Check,
+  MessageSquare,
+  ArrowLeft,
+  ChevronDown,
 } from "lucide-react";
 import {
   PROFILE,
@@ -24,7 +30,17 @@ import {
   PROJECTS,
   EXPERIENCE,
   EDUCATION,
+  HATS_PROOF,
+  CLIENT_BRIEF,
+  CAREER_ARC,
+  CAREER_ARC_SUMMARY,
 } from "../data/portfolio";
+
+const MODERN_PROOF_TITLES = ["The Customer-Facing Engineer", "The Escalation Engineer"];
+const MODERN_PROOF_ICONS = {
+  "The Customer-Facing Engineer": Headset,
+  "The Escalation Engineer": AlertTriangle,
+};
 import EraWebring from "@/components/EraWebring";
 
 const initials = PROFILE.name
@@ -34,6 +50,9 @@ const initials = PROFILE.name
 
 const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
   const [gatedProject, setGatedProject] = useState(null);
+  const [demoMode, setDemoMode] = useState(false);
+  const [arcTier, setArcTier] = useState("middle");
+  const [showFullStory, setShowFullStory] = useState(false);
 
   return (
     <div className="modern-body" data-testid="modern-portfolio">
@@ -46,19 +65,20 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
             data-testid="modern-home-button"
             aria-label="Back to 2003"
             title="pssst… take me back to 2003"
-            className="modern-icon-btn group"
+            className="modern-icon-btn group modern-home-radiate"
           >
             <Home size={16} className="group-hover:-translate-x-0.5 transition-transform" />
           </button>
           <span className="font-bold tracking-tight">{PROFILE.name}</span>
         </div>
-        <div className="hidden md:flex gap-8 text-sm font-medium text-gray-600">
-          <a href="#about" className="hover:text-black transition">About</a>
-          <a href="#skills" className="hover:text-black transition">Skills</a>
-          <a href="#work" className="hover:text-black transition">Work</a>
-          <a href="#experience" className="hover:text-black transition">Experience</a>
-          <a href="#contact" className="hover:text-black transition">Contact</a>
-        </div>
+        {!demoMode && (
+          <div className="hidden md:flex gap-8 text-sm font-medium text-gray-600">
+            <a href="#skills" className="hover:text-black transition">Skills</a>
+            <a href="#experience" className="hover:text-black transition">Experience</a>
+            <a href="#work" className="hover:text-black transition">Work</a>
+            <a href="#contact" className="hover:text-black transition">Contact</a>
+          </div>
+        )}
       </nav>
 
       {/* Hero */}
@@ -83,20 +103,23 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
             data-testid="modern-see-me-button"
             className="modern-btn-outline"
           >
-            <Sparkles size={16} /> See the me version
+            <Sparkles size={16} /> See the pink version
           </button>
           <a href="#contact" className="modern-btn-outline">
             Get In Touch
           </a>
+          <button
+            type="button"
+            onClick={() => setDemoMode((v) => !v)}
+            data-testid="modern-demo-toggle"
+            className={`modern-btn ${demoMode ? "" : "modern-demo-glow"}`}
+          >
+            {demoMode ? <ArrowLeft size={16} /> : <MessageSquare size={16} />}
+            {demoMode ? "Back to full portfolio" : "Demo & Brief"}
+          </button>
         </div>
-      </header>
-
-      <main className="max-w-5xl mx-auto px-6 md:px-12">
-        {/* About */}
-        <section id="about" className="py-16 modern-divider">
-          <p className="modern-eyebrow mb-4">About</p>
-          <p className="text-lg leading-relaxed max-w-3xl mb-8">{PROFILE.professionalSummary}</p>
-          <div className="flex flex-wrap gap-6 text-sm text-gray-600">
+        {!demoMode && (
+          <div className="flex flex-wrap gap-6 text-sm text-gray-600 mt-8">
             <div className="flex items-center gap-2">
               <MapPin size={16} /> {PROFILE.location}
             </div>
@@ -106,6 +129,125 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
             <div className="flex items-center gap-2">
               <ShieldCheck size={16} /> {EDUCATION.certs[0]}
             </div>
+          </div>
+        )}
+      </header>
+
+      {demoMode ? (
+        <main
+          className="max-w-3xl mx-auto px-6 md:px-12 pb-24"
+          data-testid="modern-demo-brief"
+        >
+          <section className="py-8 modern-divider">
+            <p className="modern-eyebrow mb-4">What Every Engagement Includes</p>
+            <div className="modern-card p-6 flex items-start gap-4">
+              <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+                <Check size={18} className="text-gray-700" />
+              </div>
+              <p className="text-base text-gray-700 leading-relaxed">
+                {CLIENT_BRIEF.everyEngagement}
+              </p>
+            </div>
+          </section>
+
+          <section className="py-8 modern-divider">
+            <p className="modern-eyebrow mb-4">How I Communicate</p>
+            <div className="modern-card p-6 flex items-start gap-4">
+              <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+                <MessageSquare size={18} className="text-gray-700" />
+              </div>
+              <p className="text-base text-gray-700 leading-relaxed">
+                {CLIENT_BRIEF.communicationStyle}
+              </p>
+            </div>
+          </section>
+
+          <section className="py-8 modern-divider">
+            <div className="flex items-start justify-between gap-3 mb-2 flex-wrap">
+              <p className="modern-eyebrow">A Story That Comes Full Circle</p>
+              <div className="flex gap-1 flex-shrink-0">
+                {["customer", "middle", "technical"].map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() => setArcTier(t)}
+                    data-testid={`arc-tier-${t}`}
+                    className={`text-[10px] uppercase tracking-wide px-2.5 py-1 rounded-full border transition ${
+                      arcTier === t
+                        ? "bg-gray-900 text-white border-gray-900"
+                        : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
+                    }`}
+                  >
+                    {t === "customer" ? "Simple" : t === "middle" ? "Standard" : "Technical"}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <p className="text-xs text-gray-500 mb-6">
+              Same story, different lingo.
+            </p>
+            <div className="relative border-l-2 border-gray-200 ml-3 space-y-8">
+              {CAREER_ARC.map((stage) => {
+                const body = stage[arcTier] || stage.middle;
+                return (
+                  <div key={stage.id} className="relative pl-8" data-testid={`arc-stage-${stage.id}`}>
+                    <span className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-gray-900 border-4 border-white" />
+                    {stage.date && (
+                      <p className="text-xs uppercase tracking-wide text-gray-400 mb-1">
+                        {stage.date}
+                      </p>
+                    )}
+                    <div className="modern-card p-6">
+                      <h3 className="font-bold text-lg mb-3">{stage.title}</h3>
+                      <p className="text-sm text-gray-700 leading-relaxed">{body}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          <section className="py-8 text-center">
+            <p className="modern-eyebrow mb-4">Get In Touch</p>
+            <div className="flex flex-wrap justify-center items-center gap-5">
+              <a href={`mailto:${PROFILE.email}`} className="modern-btn">
+                <Mail size={16} /> {PROFILE.email}
+              </a>
+              <a
+                href={PROFILE.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="modern-link flex items-center gap-2"
+              >
+                <Linkedin size={16} /> LinkedIn
+              </a>
+            </div>
+          </section>
+        </main>
+      ) : (
+      <main className="max-w-5xl mx-auto px-6 md:px-12">
+        {/* Proof */}
+        <section id="proof" className="py-16 modern-divider">
+          <p className="modern-eyebrow mb-6">Good to Talk To</p>
+          <div className="grid md:grid-cols-2 gap-6">
+            {HATS_PROOF.filter((h) => MODERN_PROOF_TITLES.includes(h.title)).map(
+              (h) => {
+                const Icon = MODERN_PROOF_ICONS[h.title];
+                return (
+                  <div
+                    key={h.title}
+                    data-testid={`modern-proof-${h.title.toLowerCase().replace(/\s+/g, "-")}`}
+                    className="modern-card p-6 flex flex-col gap-3"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+                      <Icon size={18} className="text-gray-700" />
+                    </div>
+                    <h3 className="font-bold text-lg">{h.title}</h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">{h.proof}</p>
+                  </div>
+                );
+              }
+            )}
           </div>
         </section>
 
@@ -117,6 +259,70 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
               <span key={s.name} className="modern-tag">
                 {s.name}
               </span>
+            ))}
+          </div>
+        </section>
+
+        {/* Experience */}
+        <section id="experience" className="py-16 modern-divider">
+          <p className="modern-eyebrow mb-6">Experience</p>
+          <div className="space-y-10">
+            {EXPERIENCE.map((e) => (
+              <div key={e.company} className="grid md:grid-cols-12 gap-4">
+                <div className="md:col-span-3">
+                  <p className="text-xs uppercase tracking-wide text-gray-500">{e.period}</p>
+                  <h3 className="font-bold mt-1">{e.company}</h3>
+                  <p className="text-sm text-gray-600">{e.role}</p>
+                  {e.company === "UtilityAPI" && (
+                    <button
+                      type="button"
+                      onClick={() => setDemoMode((v) => !v)}
+                      data-testid="modern-demo-toggle-experience"
+                      className={`modern-btn mt-4 ${demoMode ? "" : "modern-demo-glow"}`}
+                    >
+                      {demoMode ? <ArrowLeft size={16} /> : <MessageSquare size={16} />}
+                      {demoMode ? "Back to full portfolio" : "Demo & Brief"}
+                    </button>
+                  )}
+                </div>
+                <ul className="md:col-span-9 space-y-2 text-sm text-gray-700">
+                  {e.highlights.map((h, hi) => (
+                    <li key={hi} className="flex gap-2">
+                      <span className="text-gray-400">•</span>
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+                {e.company === "UtilityAPI" && (
+                  <div className="md:col-span-12 md:pl-[calc(25%+1rem)]">
+                    <button
+                      type="button"
+                      onClick={() => setShowFullStory((v) => !v)}
+                      data-testid="experience-story-toggle"
+                      className="modern-link flex items-center gap-1 text-sm mt-1"
+                    >
+                      {showFullStory ? "hide the full story" : "see the full story"}
+                      <ChevronDown
+                        size={14}
+                        className={`transition-transform ${showFullStory ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {showFullStory && (
+                        <motion.p
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          data-testid="experience-story-content"
+                          className="text-sm text-gray-700 leading-relaxed mt-3 overflow-hidden"
+                        >
+                          {CAREER_ARC_SUMMARY}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </section>
@@ -245,30 +451,6 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
           </div>
         </section>
 
-        {/* Experience */}
-        <section id="experience" className="py-16 modern-divider">
-          <p className="modern-eyebrow mb-6">Experience</p>
-          <div className="space-y-10">
-            {EXPERIENCE.map((e) => (
-              <div key={e.company} className="grid md:grid-cols-12 gap-4">
-                <div className="md:col-span-3">
-                  <p className="text-xs uppercase tracking-wide text-gray-500">{e.period}</p>
-                  <h3 className="font-bold mt-1">{e.company}</h3>
-                  <p className="text-sm text-gray-600">{e.role}</p>
-                </div>
-                <ul className="md:col-span-9 space-y-2 text-sm text-gray-700">
-                  {e.highlights.map((h, hi) => (
-                    <li key={hi} className="flex gap-2">
-                      <span className="text-gray-400">•</span>
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* Contact */}
         <section id="contact" className="py-16 text-center">
           <p className="modern-eyebrow mb-4">Get In Touch</p>
@@ -296,6 +478,7 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
           </div>
         </section>
       </main>
+      )}
 
       {/* Footer */}
       <footer className="modern-divider text-center py-10">

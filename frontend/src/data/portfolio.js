@@ -5,7 +5,7 @@ export const PROFILE = {
   tagline:
     "I ship production code across the stack. Customer-facing support, escalation, and integration engineering. Plus, I've been told I'm really cool to work with. Pinky promise. :)",
   professionalSummary:
-    "Full stack software and integration engineer with a track record of shipping production code end to end. I specialize in customer-facing support, escalation, and integration engineering, bridging the gap between complex technical problems and reliable, maintainable solutions.",
+    "Full stack engineer who's spent her career at the intersection of support, engineering, and the people in between: sole escalation engineer bridging support and engineering teams, hands-on with production systems carrying real financial and data risk, and equally comfortable being the technical point of contact for enterprise clients and small businesses alike. Backend-heavy in Python, with working experience across several other languages, and has worked on both backend and frontend engineering teams.",
   greetingCardHref:
     "https://www.groupgreeting.com/card/b21844a21543af6/delivered",
   location: "Open to remote positions",
@@ -116,11 +116,90 @@ export const HATS_PROOF = [
   },
 ];
 
+// Client-facing capability brief, shown via the "Demo & Brief" toggle on the
+// professional page. Grounded in facts already established above, not new claims.
+export const CLIENT_BRIEF = {
+  everyEngagement:
+    "I've spent my career being the connective tissue between teams that don't naturally talk to each other: running cross-functional data office hours between engineering, product, and account management, sitting in sprint planning and point planning as the engineering side of a support team, and being the person enterprise customers get routed to when a question is too technical for the standard queue. That's what I bring to every engagement: one person who can sit in the technical conversation and the business conversation without needing a translator.",
+  communicationStyle:
+    "Direct, plain language, and comfortable translating technical tradeoffs into business terms. No jargon walls.",
+};
+
+// The full-circle UtilityAPI scraper story, shown as a vertical timeline in
+// Demo & Brief. Each stage has 3 lingo tiers (customer / middle / technical).
+// Only "middle" is filled in so far; "customer" and "technical" fall back to
+// it until Tara supplies those versions. Do not invent that copy.
+// Condensed version of the CAREER_ARC story, for the inline expander under
+// the Software Engineer role on the normal (non-Demo & Brief) portfolio view.
+// Deliberately reworded rather than reused verbatim.
+export const CAREER_ARC_SUMMARY =
+  "Promoted twice in under 3 years. When the entire support engineering team was cut in a mass layoff, I was the one kept, specifically because I could do both support and engineering. What started as volunteering for holiday coverage turned into stabilizing 14 silently failed scrapers solo and building a triage system leadership adopted company-wide. Moved from the backend team to the frontend team in spring 2025, picking up new stack experience along the way. A year later, I was the one trusted to execute the very deprecation those scrapers had been protecting against, from the audit through SSH'ing into production myself.";
+
+export const CAREER_ARC = [
+  {
+    id: "where-it-started",
+    title: "Where It Started",
+    date: "July 2022",
+    middle:
+      "Started in technical software support for enterprise and non-enterprise customers alike. Came in with a personal engineering and schooling history already, and learned the product, the codebase, and the API from the customer's point of view, alongside them: which scrapers were flaky, which broke on specific utility site layouts, which had regex issues. Mentored along the way.",
+  },
+  {
+    id: "moved-to-application-support",
+    title: "Moved to Application Support Engineering",
+    date: "August 2023",
+    middle:
+      "A team built around the intersection of support and engineering, with me at the center and the reason it existed. Helped interview and held real weight in hiring the rest of the new team.",
+  },
+  {
+    id: "holiday-incident-2023",
+    title: "Holiday Incident 2023",
+    date: "December 2023",
+    middle:
+      "Volunteered for holiday coverage after the entire Application Support Engineering team was let go in a mass layoff. I was the one survivor, kept specifically because I could do both support and engineering. What made it crazy: support was slammed with a backlog of 15+ pages, something that had never happened before in the company's history. We were just so overwhelmed by the loss. Ticket volume was chaos with no clear cause. Traced it back to 17 silently failed scrapers: no errors thrown, they'd just quietly stopped returning data. Stabilized 14 solo, about 150 frontend selector fixes and about 35 parser regex fixes, and staged every PR before everyone came back from the holidays so there was a clean, prioritized list instead of chaos.",
+  },
+  {
+    id: "what-outlasted-the-fix",
+    title: "What Outlasted the Fix",
+    date: "Early 2024",
+    middle:
+      "Built a Jira triage system to organize it: epics per scraper or issue category, sub-tickets for individual fixes, priority ranked by customer impact and complexity. Leadership adopted it company-wide.",
+  },
+  {
+    id: "the-audit",
+    title: "The Audit and the Promotion",
+    date: "August 2024",
+    middle:
+      "Tasked with auditing scraper usage across utilities: which ones weren't pulling their weight anymore. That audit planted the idea of deprecation. Promoted to Software Engineer that same month.",
+  },
+  {
+    id: "the-prep-work",
+    title: "The Prep Work",
+    date: "September 2024",
+    middle:
+      "Tasked with building the Django features and filters on meters and utilities needed to prep for deprecation: added activated_at and deactivated_at fields, ran bulk backfills and migrations, and updated documentation. Also on the frontend team at the time: prepped email templates and support materials, and was the point of contact for Support, Customer Success, and Marketing throughout the transition.",
+  },
+  {
+    id: "backend-to-frontend",
+    title: "Moved to the Frontend Team",
+    date: "Spring 2025",
+    middle:
+      "Moved from the backend team to the frontend team, picking up new stack experience along the way while still owning the utility deprecation work in progress.",
+  },
+  {
+    id: "full-circle",
+    title: "Full Circle",
+    date: "September 2025",
+    middle:
+      "Executed the deprecation myself: SSH'd into production and revoked customer access to third-party credentials across ~40 utilities, about 20,000 authorizations, with zero downtime. Monitored Athena and Sentry throughout to catch anything before it became a customer problem.",
+  },
+];
+
 // Projects ordered: Honest Abe #1, This Portfolio #2, G&G #3, Escalate #4,
 // then tothemoon, Pixelies, Delulu.
 // action: 'open' (external link), 'password-reveal' (modal), 'image-open' (opens image in new tab),
 // 'coming-soon' (no link yet, shows a teaser card)
-export const PROJECTS = [
+// Set `hidden: true` on a project to keep it in this file without rendering it anywhere.
+const ALL_PROJECTS = [
   {
     id: "honest-abe-plumbing",
     name: "Honest Abe Plumbing",
@@ -174,6 +253,7 @@ export const PROJECTS = [
     accent: "#CFE3F7",
     size: "medium",
     action: "coming-soon",
+    hidden: true,
   },
   {
     id: "tothemoon",
@@ -230,6 +310,8 @@ export const PROJECTS = [
   },
 ];
 
+export const PROJECTS = ALL_PROJECTS.filter((p) => !p.hidden);
+
 export const EXPERIENCE = [
   {
     role: "Digital Operations Lead, Freelance Retainer",
@@ -247,7 +329,7 @@ export const EXPERIENCE = [
     period: "July 2022 to November 2025",
     highlights: [
       "Promoted twice in under 3 years, growing from Technical Support Engineer into a full Software Engineer role bridging Support and Engineering.",
-      "Sole escalation engineer partnering directly with the company founder; delivered a Green Button Connect My Data API integration for a major Northeast utility.",
+      "Tasked with fixing Connect My Data integrations that had never worked across multiple utilities. An on-and-off effort spanning months of reaching out and troubleshooting until they did, delivering a working integration for a major Northeast utility.",
       "Executed a large-scale deprecation of ~40 utilities, safely revoking ~20,000 authorizations without downtime.",
       "Co-owned the Duration-Based Pricing system across 12+ billing stipulations.",
       "Absorbed the full application support scope solo through a company-wide layoff, with no handoff or coverage gap.",
@@ -260,6 +342,7 @@ export const EXPERIENCE = [
     period: "2016 to 2024",
     highlights: [
       "Founded and led an anonymous NFT art community during the 2021 to 2022 NFT/Web3 boom, centered on diversity and self-empowerment, releasing multiple hand-drawn collections and hosting community events.",
+      "Sold out multiple collection drops within an hour, and was invited to join Foundation (foundation.app), an invite-only platform reserved for select artists.",
       "Delivered digital design, branding, and photography work, including assets used in a $10k+ Kickstarter campaign.",
     ],
   },

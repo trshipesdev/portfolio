@@ -566,6 +566,38 @@ code {
     color: #111827;
 }
 
+.modern-home-radiate {
+    animation: modern-home-radiate 2.6s ease-in-out infinite;
+}
+@keyframes modern-home-radiate {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 20, 147, 0.55);
+    }
+    25% {
+        box-shadow: 0 0 10px 3px rgba(0, 255, 255, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 10px 3px rgba(191, 255, 0, 0.5);
+    }
+    75% {
+        box-shadow: 0 0 10px 3px rgba(255, 215, 0, 0.5);
+    }
+}
+
+.modern-demo-glow {
+    animation: modern-demo-glow 2.2s ease-in-out infinite;
+}
+@keyframes modern-demo-glow {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(17, 24, 39, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 16px 4px rgba(17, 24, 39, 0.35);
+    }
+}
+
 .modern-card {
     background: #fff;
     border: 1px solid #e5e7eb;
