@@ -396,7 +396,15 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
             </p>
           </div>
           <div className="md:col-span-6 space-y-6 text-lg text-neutral-700 leading-relaxed">
-            <p data-testid="about-bio">{PROFILE.professionalSummary}</p>
+            <div className="glam-glass glam-rainbow-hover relative rounded-3xl p-8 pt-10">
+              <span
+                className="glam-serif absolute -top-3 left-6 text-6xl leading-none select-none glam-rainbow-text"
+                aria-hidden="true"
+              >
+                &ldquo;
+              </span>
+              <p data-testid="about-bio">{PROFILE.professionalSummary}</p>
+            </div>
 
             <div
               className="glam-glass glam-rainbow-hover rounded-3xl p-6 flex items-start gap-4"
