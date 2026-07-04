@@ -620,6 +620,9 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
             {/* dialog */}
             <motion.div
               className="relative glam-glass rounded-3xl p-8 md:p-10 max-w-md w-full text-left"
+              style={{
+                background: `linear-gradient(160deg, ${gatedProject.accent}66 0%, rgba(255,255,255,0.88) 55%)`,
+              }}
               initial={{ scale: 0.9, y: 20, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
