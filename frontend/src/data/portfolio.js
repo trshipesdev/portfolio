@@ -5,7 +5,7 @@ export const PROFILE = {
   tagline:
     "I ship production code across the stack. Customer-facing support, escalation, and integration engineering. Plus, I've been told I'm really cool to work with. Pinky promise. :)",
   professionalSummary:
-    "Full stack engineer who's spent her career at the intersection of support, engineering, and the people in between: sole escalation engineer bridging support and engineering teams, hands-on with production systems carrying real financial and data risk, and equally comfortable being the technical point of contact for enterprise clients and small businesses alike.",
+    "Full stack engineer who's spent her career at the intersection of support, engineering, and the people in between: sole escalation engineer bridging support and engineering teams, hands-on with production systems carrying real financial and data risk, and equally comfortable being the technical point of contact for enterprise clients and small businesses alike. Backend-heavy in Python, with working experience across several other languages, and has worked on both backend and frontend engineering teams.",
   greetingCardHref:
     "https://www.groupgreeting.com/card/b21844a21543af6/delivered",
   location: "Open to remote positions",
@@ -133,7 +133,7 @@ export const CLIENT_BRIEF = {
 // the Software Engineer role on the normal (non-Demo & Brief) portfolio view.
 // Deliberately reworded rather than reused verbatim.
 export const CAREER_ARC_SUMMARY =
-  "Promoted twice in under 3 years. When the entire support engineering team was cut in a mass layoff, I was the one kept, specifically because I could do both support and engineering. What started as volunteering for holiday coverage turned into stabilizing 14 silently failed scrapers solo and building a triage system leadership adopted company-wide. A year later, I was the one trusted to execute the very deprecation those scrapers had been protecting against, from the audit through SSH'ing into production myself.";
+  "Promoted twice in under 3 years. When the entire support engineering team was cut in a mass layoff, I was the one kept, specifically because I could do both support and engineering. What started as volunteering for holiday coverage turned into stabilizing 14 silently failed scrapers solo and building a triage system leadership adopted company-wide. Moved from the backend team to the frontend team in spring 2025, picking up new stack experience along the way. A year later, I was the one trusted to execute the very deprecation those scrapers had been protecting against, from the audit through SSH'ing into production myself.";
 
 export const CAREER_ARC = [
   {
@@ -177,6 +177,13 @@ export const CAREER_ARC = [
     date: "September 2024",
     middle:
       "Tasked with building the Django features and filters on meters and utilities needed to prep for deprecation: added activated_at and deactivated_at fields, ran bulk backfills and migrations, and updated documentation. Also on the frontend team at the time: prepped email templates and support materials, and was the point of contact for Support, Customer Success, and Marketing throughout the transition.",
+  },
+  {
+    id: "backend-to-frontend",
+    title: "Moved to the Frontend Team",
+    date: "Spring 2025",
+    middle:
+      "Moved from the backend team to the frontend team, picking up new stack experience along the way while still owning the utility deprecation work in progress.",
   },
   {
     id: "full-circle",
