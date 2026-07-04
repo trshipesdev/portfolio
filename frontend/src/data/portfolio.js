@@ -100,8 +100,8 @@ export const PROJECTS = [
     name: "Guest & Garnish",
     tag: "Live product · Preview access",
     blurb:
-      "A directory-style product for the culinary world. Live at guestandgarnish.com. Full public access is gated for now to protect the product roadmap, but you can peek behind the curtain with a preview password.",
-    stack: ["React", "Django", "PostgreSQL"],
+      "A Private Chef Business OS and CRM directory for the culinary world. Live at guestandgarnish.com. Full public access is gated for now to protect the product roadmap, but you can peek behind the curtain with a preview password.",
+    stack: ["React Native", "Expo", "TypeScript", "FastAPI", "MongoDB"],
     href: "https://guestandgarnish.com",
     password: "preview-gg-resume",
     image:
@@ -127,7 +127,7 @@ export const PROJECTS = [
     tag: "Web3 · WIP",
     blurb:
       "A trading tool that watches for altcoin rug pulls and exits before the crowd does. It aims for small, steady wins all day long that add up. The repo is public for portfolio purposes but I keep it low key.",
-    stack: ["Solana", "Blockchain", "Oracle", "MongoDB", "Flask"],
+    stack: ["Solana", "Blockchain", "MongoDB", "Flask"],
     href: "https://github.com/trshipesdev/tothemoon-portfolio",
     image:
       "/images/projects/tothemoon-dashboard.jpg",
@@ -140,8 +140,8 @@ export const PROJECTS = [
     name: "Pixelies",
     tag: "Senior capstone · 100/100",
     blurb:
-      "A browser-based game I designed and built end-to-end for my senior capstone, receiving a perfect 100. I self-taught the stack while building, and the full technical write-up, screenshots, and design decisions live in the project docs.",
-    stack: ["JavaScript", "HTML", "CSS", "Game Loop"],
+      "A gamified health and fitness Android app built solo in Kotlin from scratch. Step counter integration, quest system with anti-cheat detection, and original concept art inspired by Neopets, Tamagotchi, and Pokemon Go. Senior capstone. 100/100 across three semesters. Sole designer and developer.",
+    stack: ["Kotlin", "Android", "SharedPreferences", "AlarmManager"],
     href: "https://docs.google.com/document/d/10gsNTW3mDguTyU4b9r00BTzWd6iMe2Jk/edit",
     image:
       "/images/projects/wolf-game.jpg",
@@ -152,10 +152,10 @@ export const PROJECTS = [
   {
     id: "delulu-dossier",
     name: "Delulu Dossier",
-    tag: "Chrome Store · Private beta",
+    tag: "Chrome Store · Private link",
     blurb:
-      "A working prototype live on the Chrome Web Store (private download only). Still in progress: the Store listing copy and screenshots need polish, and the dossier itself needs tightening, but the extension does the job for me whenever I need it.",
-    stack: ["Chrome Extension", "JavaScript", "Anthropic API"],
+      "A Chrome extension that turns a Pinterest mood board into an 18-document AI-generated travel dossier. Zero servers, zero trackers, bring your own API key. Built solo end to end: scraping, vision AI, templating, and print-perfect PDF output, all in the browser.",
+    stack: ["Chrome MV3", "Vanilla JS", "Claude Vision API"],
     href: "https://chromewebstore.google.com/detail/delulu-dossier/ghclnopegofoonhlpgfkimbnlogegibh",
     image:
       "/images/projects/delulu-dossier.jpg",
