@@ -120,7 +120,8 @@ export const HATS_PROOF = [
 // then tothemoon, Pixelies, Delulu.
 // action: 'open' (external link), 'password-reveal' (modal), 'image-open' (opens image in new tab),
 // 'coming-soon' (no link yet, shows a teaser card)
-export const PROJECTS = [
+// Set `hidden: true` on a project to keep it in this file without rendering it anywhere.
+const ALL_PROJECTS = [
   {
     id: "honest-abe-plumbing",
     name: "Honest Abe Plumbing",
@@ -174,6 +175,7 @@ export const PROJECTS = [
     accent: "#CFE3F7",
     size: "medium",
     action: "coming-soon",
+    hidden: true,
   },
   {
     id: "tothemoon",
@@ -230,6 +232,8 @@ export const PROJECTS = [
   },
 ];
 
+export const PROJECTS = ALL_PROJECTS.filter((p) => !p.hidden);
+
 export const EXPERIENCE = [
   {
     role: "Digital Operations Lead, Freelance Retainer",
@@ -247,7 +251,7 @@ export const EXPERIENCE = [
     period: "July 2022 to November 2025",
     highlights: [
       "Promoted twice in under 3 years, growing from Technical Support Engineer into a full Software Engineer role bridging Support and Engineering.",
-      "Sole escalation engineer partnering directly with the company founder; delivered a Green Button Connect My Data API integration for a major Northeast utility.",
+      "Tasked with fixing Connect My Data integrations that had never worked across multiple utilities. An on-and-off effort spanning months of reaching out and troubleshooting until they did, delivering a working integration for a major Northeast utility.",
       "Executed a large-scale deprecation of ~40 utilities, safely revoking ~20,000 authorizations without downtime.",
       "Co-owned the Duration-Based Pricing system across 12+ billing stipulations.",
       "Absorbed the full application support scope solo through a company-wide layoff, with no handoff or coverage gap.",

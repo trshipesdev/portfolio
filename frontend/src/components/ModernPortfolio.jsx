@@ -55,8 +55,8 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
         <div className="hidden md:flex gap-8 text-sm font-medium text-gray-600">
           <a href="#about" className="hover:text-black transition">About</a>
           <a href="#skills" className="hover:text-black transition">Skills</a>
-          <a href="#work" className="hover:text-black transition">Work</a>
           <a href="#experience" className="hover:text-black transition">Experience</a>
+          <a href="#work" className="hover:text-black transition">Work</a>
           <a href="#contact" className="hover:text-black transition">Contact</a>
         </div>
       </nav>
@@ -117,6 +117,30 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
               <span key={s.name} className="modern-tag">
                 {s.name}
               </span>
+            ))}
+          </div>
+        </section>
+
+        {/* Experience */}
+        <section id="experience" className="py-16 modern-divider">
+          <p className="modern-eyebrow mb-6">Experience</p>
+          <div className="space-y-10">
+            {EXPERIENCE.map((e) => (
+              <div key={e.company} className="grid md:grid-cols-12 gap-4">
+                <div className="md:col-span-3">
+                  <p className="text-xs uppercase tracking-wide text-gray-500">{e.period}</p>
+                  <h3 className="font-bold mt-1">{e.company}</h3>
+                  <p className="text-sm text-gray-600">{e.role}</p>
+                </div>
+                <ul className="md:col-span-9 space-y-2 text-sm text-gray-700">
+                  {e.highlights.map((h, hi) => (
+                    <li key={hi} className="flex gap-2">
+                      <span className="text-gray-400">•</span>
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
         </section>
@@ -242,30 +266,6 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
                 </a>
               );
             })}
-          </div>
-        </section>
-
-        {/* Experience */}
-        <section id="experience" className="py-16 modern-divider">
-          <p className="modern-eyebrow mb-6">Experience</p>
-          <div className="space-y-10">
-            {EXPERIENCE.map((e) => (
-              <div key={e.company} className="grid md:grid-cols-12 gap-4">
-                <div className="md:col-span-3">
-                  <p className="text-xs uppercase tracking-wide text-gray-500">{e.period}</p>
-                  <h3 className="font-bold mt-1">{e.company}</h3>
-                  <p className="text-sm text-gray-600">{e.role}</p>
-                </div>
-                <ul className="md:col-span-9 space-y-2 text-sm text-gray-700">
-                  {e.highlights.map((h, hi) => (
-                    <li key={hi} className="flex gap-2">
-                      <span className="text-gray-400">•</span>
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
           </div>
         </section>
 

@@ -339,26 +339,37 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               Full stack software and integration engineer. My day-to-day is
               production code plus customer-facing support, escalation, and
               integration work, so I can debug your gnarliest production
-              incident and write the release that fixes it. I graduated with
-              a Bachelor&apos;s degree in Applied Computing + Cybersecurity,
-              hold a CompTIA Security+ certification, and continuously teach
-              myself more fun stuff.
+              incident and write the release that fixes it. I&apos;m always
+              teaching myself something new.
             </p>
-            <div className="flex flex-wrap gap-6 pt-2 text-sm">
+
+            <div
+              className="glam-glass rounded-3xl p-6 flex items-start gap-4"
+              data-testid="education-card"
+            >
+              <div className="w-12 h-12 rounded-full bg-white/70 flex items-center justify-center flex-shrink-0">
+                <GraduationCap size={22} className="glam-gold" />
+              </div>
+              <div>
+                <p className="glam-serif text-xl md:text-2xl font-semibold leading-snug">
+                  {EDUCATION.degree}
+                </p>
+                <p className="text-sm text-neutral-600 mt-1">
+                  {EDUCATION.school} &middot; {EDUCATION.years}
+                </p>
+                <span
+                  className="glam-chip inline-flex items-center gap-1 mt-3 text-[11px]"
+                  data-testid="about-secplus"
+                >
+                  <Sparkles size={11} /> {EDUCATION.certs[0]}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-6 pt-1 text-sm">
               <div className="flex items-center gap-2 text-neutral-600">
                 <MapPin size={16} className="glam-gold" />
                 {PROFILE.location}
-              </div>
-              <div className="flex items-center gap-2 text-neutral-600">
-                <GraduationCap size={16} className="glam-gold" />
-                {EDUCATION.school}, {EDUCATION.years}
-              </div>
-              <div
-                className="flex items-center gap-2 text-neutral-600"
-                data-testid="about-secplus"
-              >
-                <Sparkles size={16} className="glam-gold" />
-                {EDUCATION.certs[0]}
               </div>
             </div>
           </div>
