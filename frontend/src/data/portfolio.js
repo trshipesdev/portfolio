@@ -84,7 +84,7 @@ export const PROJECTS = [
   {
     id: "portfolio-website",
     name: "This Portfolio",
-    tag: "Meta · Source code",
+    tag: "Meta · Source code · 2026",
     blurb:
       "You're looking at it. A y2k + MySpace joke entrance that does a full sparkle makeover into this glam portfolio, plus a couple of other eras hiding in the time machine. React, Framer Motion, and Tailwind end to end.",
     stack: ["React", "Framer Motion", "Tailwind CSS"],
@@ -98,7 +98,7 @@ export const PROJECTS = [
   {
     id: "guest-and-garnish",
     name: "Guest & Garnish",
-    tag: "Live product · Preview access",
+    tag: "Live product · Preview access · 2026",
     blurb:
       "A Private Chef Business OS and CRM directory for the culinary world. Live at guestandgarnish.com. Full public access is gated for now to protect the product roadmap, but you can peek behind the curtain with a preview password.",
     stack: ["React Native", "Expo", "TypeScript", "FastAPI", "MongoDB"],
@@ -113,7 +113,7 @@ export const PROJECTS = [
   {
     id: "escalate",
     name: "Escalate",
-    tag: "🚧 Coming Soon",
+    tag: "🚧 Coming Soon · 2026",
     blurb:
       "A support and escalation engineering platform built for the real workflow: tickets in, AI-assisted escalation briefs out, humans make every call. Currently in active development.",
     stack: ["Django", "DRF", "PostgreSQL", "React", "TypeScript", "Anthropic API"],
@@ -124,7 +124,7 @@ export const PROJECTS = [
   {
     id: "tothemoon",
     name: "tothemoon",
-    tag: "Web3 · WIP",
+    tag: "Web3 · WIP · 2025",
     blurb:
       "A production-grade multi-chain crypto trading bot across Solana, ETH, Base, BSC, and Polygon. Composable capital management with reserve floors, exposure caps, and drawdown brakes. Rug pull detection with automatic exit logic, cryptographic request signing, Telegram bot interface, and Flask admin dashboard.",
     stack: ["Python", "Solana", "Flask", "MongoDB", "AWS EC2 (early version, retired)"],
@@ -138,7 +138,7 @@ export const PROJECTS = [
   {
     id: "pixelies",
     name: "Pixelies",
-    tag: "Senior capstone · 100/100",
+    tag: "Senior capstone · 100/100 · 2024",
     blurb:
       "A gamified health and fitness Android app built solo in Kotlin from scratch. Step counter integration, quest system with anti-cheat detection, and original concept art inspired by Neopets, Tamagotchi, and Pokemon Go. Senior capstone. 100/100 across three semesters. Sole designer and developer.",
     stack: ["Kotlin", "Android", "SharedPreferences", "AlarmManager"],
@@ -152,7 +152,7 @@ export const PROJECTS = [
   {
     id: "delulu-dossier",
     name: "Delulu Dossier",
-    tag: "Chrome Store · Private link",
+    tag: "Chrome Store · Private link · 2026",
     blurb:
       "A Chrome extension that turns a Pinterest travel board into an 18-document AI-generated dossier: itinerary, booking windows, packing guide, and more. Pinterest ingestion via DOM traversal and Performance API, visual-intent analysis via Claude's vision API, multi-tab preference flow. Zero servers, zero trackers, bring your own key.",
     stack: ["Chrome MV3", "Vanilla JS", "Claude Vision API"],
