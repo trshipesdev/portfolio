@@ -328,7 +328,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               type="button"
               onClick={onGoToProfessional}
               data-testid="hero-view-work"
-              className="glam-glass px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:scale-105 transition"
+              className="glam-glass glam-rainbow-hover px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 transition"
             >
               see the less pink version <ArrowUpRight size={16} />
             </button>
@@ -336,7 +336,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               type="button"
               onClick={handleHireHer}
               data-testid="hero-hire-me"
-              className="bg-[#111] text-white px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-[#f4c2c2] hover:text-black transition glam-rainbow-glow"
+              className="bg-[#111] text-white px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-[#f4c2c2] hover:text-black transition glam-rainbow-glow glam-rainbow-hover"
             >
               Hire her <Mail size={14} />
             </button>
@@ -348,7 +348,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
                   ?.scrollIntoView({ behavior: "smooth" })
               }
               data-testid="hero-jump-to-portfolio"
-              className="glam-glass px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:scale-105 transition"
+              className="glam-glass glam-rainbow-hover px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 transition"
             >
               jump to portfolio <ArrowUpRight size={16} />
             </button>
