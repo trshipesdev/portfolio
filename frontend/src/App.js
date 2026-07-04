@@ -99,6 +99,7 @@ function App() {
             <TerminalEntrance
               onNext={() => goToEra(1)}
               onEnterMakeover={() => goToEra(3)}
+              onEnterProfessional={() => goToEra(2)}
               autoStartTrail={autoTrail}
             />
           </motion.div>

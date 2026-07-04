@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { PROFILE, SKILLS, EXPERIENCE, EDUCATION, PROJECTS } from "../data/portfolio";
@@ -15,7 +15,20 @@ const BOOT_LINES = [
   "WELCOME, USER.",
 ];
 
-const ENTER_COMMAND = "./enter-for-makeover-and-portfolio.sh";
+const ENTER_COMMANDS = [
+  {
+    id: "pink",
+    command: "./enter-for-makeover-and-portfolio.sh",
+    hint: "# hit enter for the pink glam portfolio",
+    launchLabel: "the pink glam version",
+  },
+  {
+    id: "professional",
+    command: "./enter-for-professional-portfolio.sh",
+    hint: "# hit enter for the professional portfolio",
+    launchLabel: "the professional version",
+  },
+];
 
 const lineVariants = {
   hidden: { opacity: 0 },
@@ -33,17 +46,35 @@ const TABS = [
   { id: "projects", label: "projects" },
 ];
 
-const TerminalEntrance = ({ onNext, onEnterMakeover, autoStartTrail }) => {
+const TerminalEntrance = ({ onNext, onEnterMakeover, onEnterProfessional, autoStartTrail }) => {
   const [showGame, setShowGame] = useState(!!autoStartTrail);
   const [activeTab, setActiveTab] = useState("whoami");
   const [expandedExp, setExpandedExp] = useState(null);
   const [expandedProj, setExpandedProj] = useState(null);
+  const [launching, setLaunching] = useState(null);
+  const [typedLen, setTypedLen] = useState(0);
 
-  const handleCommandKeyDown = (e) => {
-    if (e.key === "Enter") {
-      onEnterMakeover?.();
-    }
+  const ENTER_HANDLERS = {
+    pink: onEnterMakeover,
+    professional: onEnterProfessional,
   };
+
+  const handleEnterCommand = (entry) => {
+    if (launching) return;
+    setLaunching(entry);
+    setTypedLen(0);
+  };
+
+  useEffect(() => {
+    if (!launching) return;
+    if (typedLen < launching.command.length) {
+      const t = setTimeout(() => setTypedLen((n) => n + 1), 18);
+      return () => clearTimeout(t);
+    }
+    const t = setTimeout(() => ENTER_HANDLERS[launching.id]?.(), 450);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [launching, typedLen]);
 
   const handleProjectClick = (p) => {
     if (p.action === "password-reveal") {
@@ -280,27 +311,47 @@ const TerminalEntrance = ({ onNext, onEnterMakeover, autoStartTrail }) => {
               </span>
             </button>
 
-            <div
-              className="mb-6 flex flex-wrap items-center gap-1 cursor-pointer"
-              onClick={() => onEnterMakeover?.()}
-              data-testid="terminal-enter-line"
-            >
-              <span>$</span>
-              <input
-                type="text"
-                value={ENTER_COMMAND}
-                onKeyDown={handleCommandKeyDown}
-                data-testid="terminal-enter-command"
-                autoFocus
-                readOnly
-                spellCheck={false}
-                className="terminal-input cursor-pointer"
-                style={{ width: `${ENTER_COMMAND.length + 1}ch` }}
-              />
-              <span className="opacity-50 italic">
-                # hit enter for the real portfolio
-              </span>
-              <span className="terminal-cursor-blink">_</span>
+            <div className="mb-6 space-y-2">
+              {ENTER_COMMANDS.map((entry) => {
+                const isLaunching = launching?.id === entry.id;
+                const displayText = isLaunching
+                  ? entry.command.slice(0, typedLen)
+                  : entry.command;
+                return (
+                  <div
+                    key={entry.id}
+                    className="flex flex-wrap items-center gap-1 cursor-pointer"
+                    onClick={() => handleEnterCommand(entry)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") handleEnterCommand(entry);
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    data-testid={`terminal-enter-line-${entry.id}`}
+                  >
+                    <span>$</span>
+                    <input
+                      type="text"
+                      value={displayText}
+                      readOnly
+                      spellCheck={false}
+                      data-testid={`terminal-enter-command-${entry.id}`}
+                      className="terminal-input cursor-pointer"
+                      style={{ width: `${entry.command.length + 1}ch` }}
+                    />
+                    <span className="terminal-cursor-blink">_</span>
+                    {isLaunching ? (
+                      typedLen >= entry.command.length && (
+                        <span className="opacity-80 italic text-yellow-300">
+                          # launching {entry.launchLabel}...
+                        </span>
+                      )
+                    ) : (
+                      <span className="opacity-50 italic">{entry.hint}</span>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </>
         )}
