@@ -25,8 +25,8 @@ const lineVariants = {
   }),
 };
 
-const TerminalEntrance = ({ onNext, onEnterMakeover }) => {
-  const [showGame, setShowGame] = useState(false);
+const TerminalEntrance = ({ onNext, onEnterMakeover, autoStartTrail }) => {
+  const [showGame, setShowGame] = useState(!!autoStartTrail);
 
   const handleCommandKeyDown = (e) => {
     if (e.key === "Enter") {
