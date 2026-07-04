@@ -19,13 +19,13 @@ const ENTER_COMMANDS = [
   {
     id: "pink",
     command: "./enter-for-makeover-and-portfolio.sh",
-    hint: "# hit enter for the pink glam portfolio",
+    hint: "# click for the pink glam portfolio",
     launchLabel: "the pink glam version",
   },
   {
     id: "professional",
     command: "./enter-for-professional-portfolio.sh",
-    hint: "# hit enter for the professional portfolio",
+    hint: "# click for the professional portfolio",
     launchLabel: "the professional version",
   },
 ];
