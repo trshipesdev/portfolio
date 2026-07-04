@@ -18,6 +18,11 @@ import {
   Gift,
   Rocket,
   Palette,
+  AlertTriangle,
+  Server,
+  Hammer,
+  Headset,
+  Briefcase,
 } from "lucide-react";
 import {
   PROFILE,
@@ -26,6 +31,7 @@ import {
   EXPERIENCE,
   EDUCATION,
   MARQUEE_TOKENS,
+  HATS_PROOF,
 } from "../data/portfolio";
 import HatCycler from "@/components/HatCycler";
 import {
@@ -36,6 +42,14 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+
+const HAT_ICONS = {
+  escalation: AlertTriangle,
+  production: Server,
+  builder: Hammer,
+  customer: Headset,
+  business: Briefcase,
+};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -508,6 +522,44 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* PROOF CARDS — one per hat, evidence not adjectives */}
+      <section
+        id="proof"
+        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-32"
+      >
+        <p className="glam-chip inline-block mb-4">02.5 / Receipts</p>
+        <h2 className="glam-serif text-5xl md:text-6xl font-medium mb-12 max-w-3xl">
+          Every hat, <span className="italic glam-gold">backed up</span>.
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {HATS_PROOF.map((h, i) => {
+            const Icon = HAT_ICONS[h.icon];
+            return (
+              <motion.div
+                key={h.title}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                variants={fadeUp}
+                custom={i}
+                data-testid={`proof-card-${h.title.toLowerCase().replace(/\s+/g, "-")}`}
+                className={`glam-glass rounded-3xl p-8 flex flex-col gap-4 ${
+                  i === HATS_PROOF.length - 1 && HATS_PROOF.length % 2 === 1
+                    ? "md:col-span-2"
+                    : ""
+                }`}
+              >
+                <div className="w-11 h-11 rounded-full bg-white/70 flex items-center justify-center">
+                  <Icon size={20} className="glam-gold" />
+                </div>
+                <h3 className="glam-serif text-2xl font-medium">{h.title}</h3>
+                <p className="text-neutral-700 leading-relaxed">{h.proof}</p>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 

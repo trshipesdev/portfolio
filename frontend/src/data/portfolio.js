@@ -82,6 +82,40 @@ export const HATS = [
   { icon: "🧙‍♀️", label: "witch (in a cute way)" },
 ];
 
+// Proof cards: one per professional "hat", evidence-based rather than a skill list.
+export const HATS_PROOF = [
+  {
+    icon: "escalation",
+    title: "The Escalation Engineer",
+    proof:
+      "Sole escalation engineer bridging Support and Engineering. Absorbed the entire application support queue solo through a company-wide layoff, with zero coverage gap.",
+  },
+  {
+    icon: "production",
+    title: "The Production Owner",
+    proof:
+      "Trusted with direct production access: SSH'd into prod to run scripts and migrations, and built the Django filters and new logic needed to handle stopped meters across a 40-utility deprecation, revoking ~20,000 authorizations with zero downtime. Co-owned a billing engine spanning 12+ stipulations and 24 edge cases, and led cross-functional data meetings across engineering, product, and account management.",
+  },
+  {
+    icon: "builder",
+    title: "The Builder",
+    proof:
+      "Ships feature work embedded in engineering teams, and ships entire products solo end to end: payments, AI, data model, deployment. Comfortable owning a slice of a system, or the whole thing.",
+  },
+  {
+    icon: "customer",
+    title: "The Customer-Facing Engineer",
+    proof:
+      "Supported two very different customer bases: Fortune 500 utilities on one side, independent operators like solar installers on the other. Worked closely with account management and customer success, owning the technical response end to end regardless of company size. Comfortable context-switching across radically different customers to get to the root of what each one actually needs, including hands-on reliability support for customer-facing demos.",
+  },
+  {
+    icon: "business",
+    title: "The Business Operator",
+    proof:
+      "Runs the entire digital operation for a real company. Drove a 200% increase in Google Business Profile interactions for a $1M+ business.",
+  },
+];
+
 // Projects ordered: Honest Abe #1, This Portfolio #2, G&G #3, Escalate #4,
 // then tothemoon, Pixelies, Delulu.
 // action: 'open' (external link), 'password-reveal' (modal), 'image-open' (opens image in new tab),
