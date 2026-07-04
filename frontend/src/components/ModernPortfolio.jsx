@@ -62,7 +62,7 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
             data-testid="modern-home-button"
             aria-label="Back to 2003"
             title="pssst… take me back to 2003"
-            className="modern-icon-btn group"
+            className="modern-icon-btn group modern-home-radiate"
           >
             <Home size={16} className="group-hover:-translate-x-0.5 transition-transform" />
           </button>
@@ -110,7 +110,7 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
             type="button"
             onClick={() => setDemoMode((v) => !v)}
             data-testid="modern-demo-toggle"
-            className="modern-btn"
+            className={`modern-btn ${demoMode ? "" : "modern-demo-glow"}`}
           >
             {demoMode ? <ArrowLeft size={16} /> : <MessageSquare size={16} />}
             {demoMode ? "Back to full resume" : "Demo & Brief"}
