@@ -19,7 +19,7 @@ const FAKE_REACTIONS = [
   { user: "recruiter_bob", color: "text-cyan-300", text: "adding 'has a guestbook that closes deals' to her offer letter" },
 ];
 
-const RetroEntrance = ({ onEnter, onEraPrev, onEraNext, onGoToTrail }) => {
+const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
   const [visitors, setVisitors] = useState(1029847);
   const [now, setNow] = useState(new Date());
   const [guestbookInput, setGuestbookInput] = useState("");
@@ -60,10 +60,15 @@ const RetroEntrance = ({ onEnter, onEraPrev, onEraNext, onGoToTrail }) => {
 
   return (
     <div className="retro-body" data-testid="retro-entrance">
-      {/* Bouncing floppy disk easter egg -> straight to the terminal, trail already loaded */}
+      {/* Bouncing floppy disk easter egg -> straight to the terminal, trail already loaded.
+          Uses a hash + reload so the terminal always mounts fresh with the trail
+          already running, instead of threading a flag through the era transition. */}
       <motion.button
         type="button"
-        onClick={onGoToTrail}
+        onClick={() => {
+          window.location.hash = "#~";
+          window.location.reload();
+        }}
         data-testid="floppy-trail-launcher"
         title="play the escalation trail"
         className="fixed bottom-4 right-4 z-40 flex flex-col items-center gap-1"
