@@ -15,6 +15,7 @@ import {
   X,
   Copy,
   ExternalLink,
+  Rocket,
 } from "lucide-react";
 import {
   PROFILE,
@@ -29,14 +30,6 @@ const initials = PROFILE.name
   .split(" ")
   .map((n) => n[0])
   .join("");
-
-// This page leads with Honest Abe, Guest & Garnish, then this portfolio;
-// the rest follow in their usual order.
-const FEATURED_ORDER = ["honest-abe-plumbing", "guest-and-garnish", "portfolio-website"];
-const MODERN_PROJECTS = [
-  ...FEATURED_ORDER.map((id) => PROJECTS.find((p) => p.id === id)),
-  ...PROJECTS.filter((p) => !FEATURED_ORDER.includes(p.id)),
-];
 
 const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
   const [gatedProject, setGatedProject] = useState(null);
@@ -131,27 +124,48 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
         <section id="work" className="py-16 modern-divider">
           <p className="modern-eyebrow mb-6">Selected Work</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {MODERN_PROJECTS.map((p) => {
+            {PROJECTS.map((p) => {
               const isGated = p.action === "password-reveal";
+              const isComingSoon = p.action === "coming-soon";
               const cardBody = (
                 <>
                   <div className="overflow-hidden relative">
-                    <img
-                      src={p.image}
-                      alt={`${p.name} preview`}
-                      loading="lazy"
-                      className="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+                    {isComingSoon ? (
+                      <div
+                        className="w-full aspect-[16/10] flex items-center justify-center"
+                        style={{
+                          background: `linear-gradient(160deg, ${p.accent} 0%, #f3f4f6 100%)`,
+                        }}
+                      >
+                        <Rocket size={48} className="text-gray-400/70 group-hover:scale-110 transition-transform duration-500" />
+                      </div>
+                    ) : (
+                      <img
+                        src={p.image}
+                        alt={`${p.name} preview`}
+                        loading="lazy"
+                        className="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    )}
                     {isGated && (
                       <span className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
                         <Lock size={13} />
                       </span>
                     )}
+                    {isComingSoon && (
+                      <div className="absolute top-3 -right-9 rotate-45 bg-gray-900 text-white text-[10px] font-bold uppercase tracking-widest px-9 py-1">
+                        Coming Soon
+                      </div>
+                    )}
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
                     <div className="flex items-start justify-between gap-2">
                       <h3 className="font-bold text-lg">{p.name}</h3>
-                      <ArrowUpRight size={16} className="mt-1 text-gray-400 group-hover:text-black transition flex-shrink-0" />
+                      {isComingSoon ? (
+                        <Rocket size={16} className="mt-1 text-gray-400 group-hover:text-black transition flex-shrink-0" />
+                      ) : (
+                        <ArrowUpRight size={16} className="mt-1 text-gray-400 group-hover:text-black transition flex-shrink-0" />
+                      )}
                     </div>
                     <p className="text-xs uppercase tracking-wide text-gray-500 mt-1">{p.tag}</p>
                     <p className="text-sm mt-3 text-gray-600 leading-relaxed">{p.blurb}</p>
@@ -165,6 +179,22 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
                   </div>
                 </>
               );
+
+              if (isComingSoon) {
+                return (
+                  <button
+                    key={p.id}
+                    type="button"
+                    onClick={() =>
+                      toast(`${p.name} is still compiling. check back soon.`)
+                    }
+                    data-testid={`project-card-${p.id}`}
+                    className="modern-card overflow-hidden flex flex-col group text-left"
+                  >
+                    {cardBody}
+                  </button>
+                );
+              }
 
               if (isGated) {
                 return (

@@ -62,8 +62,10 @@ export const HATS = [
   { icon: "🧙‍♀️", label: "witch (in a cute way)" },
 ];
 
-// Projects ordered: Honest Abe #1, tothemoon #2, Pixelies #3, Delulu #4, G&G #5.
-// action: 'open' (external link), 'password-reveal' (modal), 'image-open' (opens image in new tab)
+// Projects ordered: Honest Abe #1, This Portfolio #2, G&G #3, Escalate #4,
+// then tothemoon, Pixelies, Delulu.
+// action: 'open' (external link), 'password-reveal' (modal), 'image-open' (opens image in new tab),
+// 'coming-soon' (no link yet, shows a teaser card)
 export const PROJECTS = [
   {
     id: "honest-abe-plumbing",
@@ -78,6 +80,46 @@ export const PROJECTS = [
     accent: "#F9E4D4",
     size: "hero",
     action: "open",
+  },
+  {
+    id: "portfolio-website",
+    name: "This Portfolio",
+    tag: "Meta · Source code",
+    blurb:
+      "You're looking at it. A y2k + MySpace joke entrance that does a full sparkle makeover into this glam portfolio, plus a couple of other eras hiding in the time machine. React, Framer Motion, and Tailwind end to end.",
+    stack: ["React", "Framer Motion", "Tailwind CSS"],
+    href: "https://github.com/trshipesdev/portfolio",
+    image:
+      "/images/projects/portfolio-website.jpg",
+    accent: "#C2F4E0",
+    size: "medium",
+    action: "open",
+  },
+  {
+    id: "guest-and-garnish",
+    name: "Guest & Garnish",
+    tag: "Live product · Preview access",
+    blurb:
+      "A directory-style product for the culinary world. Live at guestandgarnish.com. Full public access is gated for now to protect the product roadmap, but you can peek behind the curtain with a preview password.",
+    stack: ["React", "Django", "PostgreSQL"],
+    href: "https://guestandgarnish.com",
+    password: "preview-gg-resume",
+    image:
+      "/images/projects/culinary-directory.jpg",
+    accent: "#EAE2F8",
+    size: "medium",
+    action: "password-reveal",
+  },
+  {
+    id: "escalate",
+    name: "Escalate",
+    tag: "🚧 Coming Soon",
+    blurb:
+      "A support and escalation engineering platform built for the real workflow: tickets in, AI-assisted escalation briefs out, humans make every call. Currently in active development.",
+    stack: ["Django", "DRF", "PostgreSQL", "React", "TypeScript", "Anthropic API"],
+    accent: "#CFE3F7",
+    size: "medium",
+    action: "coming-soon",
   },
   {
     id: "tothemoon",
@@ -118,35 +160,6 @@ export const PROJECTS = [
     image:
       "/images/projects/delulu-dossier.jpg",
     accent: "#F4C2C2",
-    size: "medium",
-    action: "open",
-  },
-  {
-    id: "guest-and-garnish",
-    name: "Guest & Garnish",
-    tag: "Live product · Preview access",
-    blurb:
-      "A directory-style product for the culinary world. Live at guestandgarnish.com. Full public access is gated for now to protect the product roadmap, but you can peek behind the curtain with a preview password.",
-    stack: ["React", "Django", "PostgreSQL"],
-    href: "https://guestandgarnish.com",
-    password: "preview-gg-resume",
-    image:
-      "/images/projects/culinary-directory.jpg",
-    accent: "#EAE2F8",
-    size: "medium",
-    action: "password-reveal",
-  },
-  {
-    id: "portfolio-website",
-    name: "This Portfolio",
-    tag: "Meta · Source code",
-    blurb:
-      "You're looking at it. A y2k + MySpace joke entrance that does a full sparkle makeover into this glam portfolio, plus a couple of other eras hiding in the time machine. React, Framer Motion, and Tailwind end to end.",
-    stack: ["React", "Framer Motion", "Tailwind CSS"],
-    href: "https://github.com/trshipesdev/portfolio",
-    image:
-      "/images/projects/portfolio-website.jpg",
-    accent: "#C2F4E0",
     size: "medium",
     action: "open",
   },

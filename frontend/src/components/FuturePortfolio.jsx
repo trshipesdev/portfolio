@@ -16,6 +16,7 @@ import {
   ExternalLink,
   ChevronDown,
   Gift,
+  Rocket,
 } from "lucide-react";
 import {
   PROFILE,
@@ -298,6 +299,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               p.size === "hero" ? "md:col-span-8" : "md:col-span-4";
             const isGated = p.action === "password-reveal";
             const isImageOpen = p.action === "image-open";
+            const isComingSoon = p.action === "coming-soon";
             const commonProps = {
               "data-testid": `project-card-${p.id}`,
               className: `glam-card glam-glass ${span} flex flex-col group overflow-hidden text-left`,
@@ -313,32 +315,52 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
                     p.size === "hero" ? "aspect-[16/10]" : "aspect-[4/3]"
                   }`}
                 >
-                  <img
-                    src={p.image}
-                    alt={`${p.name} preview`}
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[900ms]"
-                  />
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: `linear-gradient(180deg, rgba(0,0,0,0) 40%, ${p.accent}66 100%)`,
-                    }}
-                  />
+                  {isComingSoon ? (
+                    <div
+                      className="absolute inset-0 flex items-center justify-center"
+                      style={{
+                        background: `linear-gradient(160deg, ${p.accent}aa 0%, rgba(255,255,255,0.85) 100%)`,
+                      }}
+                    >
+                      <Rocket size={64} className="glam-gold opacity-60 group-hover:scale-110 transition-transform duration-500" />
+                    </div>
+                  ) : (
+                    <img
+                      src={p.image}
+                      alt={`${p.name} preview`}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[900ms]"
+                    />
+                  )}
+                  {!isComingSoon && (
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background: `linear-gradient(180deg, rgba(0,0,0,0) 40%, ${p.accent}66 100%)`,
+                      }}
+                    />
+                  )}
                   <div className="absolute top-4 left-4 max-w-[calc(100%-4.5rem)]">
                     <span className="glam-chip whitespace-normal leading-tight inline-block">
                       {p.tag}
                     </span>
                   </div>
-                  <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/85 backdrop-blur border border-white flex items-center justify-center group-hover:rotate-45 transition-transform duration-500">
-                    {isGated ? (
-                      <Lock size={14} />
-                    ) : isImageOpen ? (
-                      <ExternalLink size={14} />
-                    ) : (
-                      <ArrowUpRight size={16} />
-                    )}
-                  </div>
+                  {isComingSoon && (
+                    <div className="absolute top-5 -right-9 rotate-45 bg-[#111] text-white text-[10px] font-bold uppercase tracking-widest px-9 py-1">
+                      Coming Soon
+                    </div>
+                  )}
+                  {!isComingSoon && (
+                    <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/85 backdrop-blur border border-white flex items-center justify-center group-hover:rotate-45 transition-transform duration-500">
+                      {isGated ? (
+                        <Lock size={14} />
+                      ) : isImageOpen ? (
+                        <ExternalLink size={14} />
+                      ) : (
+                        <ArrowUpRight size={16} />
+                      )}
+                    </div>
+                  )}
                 </div>
                 {/* Body */}
                 <div className={`p-6 md:p-8 flex-1 flex flex-col`}>
@@ -379,6 +401,22 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               variants: fadeUp,
               custom: i,
             };
+
+            if (isComingSoon) {
+              return (
+                <motion.button
+                  key={p.id}
+                  type="button"
+                  onClick={() =>
+                    toast(`${p.name} is still compiling. check back soon.`)
+                  }
+                  {...motionWrapperProps}
+                  {...commonProps}
+                >
+                  {cardBody}
+                </motion.button>
+              );
+            }
 
             if (isGated) {
               return (

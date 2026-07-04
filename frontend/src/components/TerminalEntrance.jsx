@@ -43,6 +43,10 @@ const TerminalEntrance = ({ onNext, onEnterMakeover, autoStartTrail }) => {
       });
       return;
     }
+    if (p.action === "coming-soon") {
+      toast(`${p.name} is still compiling. check back soon.`);
+      return;
+    }
     window.open(p.href, "_blank", "noopener");
   };
 
