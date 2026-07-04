@@ -46,6 +46,19 @@ const FAKE_REACTIONS = [
   { user: "sk8trboi22", color: "text-lime-400", text: "@futureboss.exe everyone in HR already knows, might as well make it official" },
 ];
 
+// Wherever a reaction tags @futureboss.exe, render it in her own white username color.
+const renderReactionText = (text) => {
+  const parts = text.split("@futureboss.exe");
+  return parts.map((part, i) => (
+    <React.Fragment key={i}>
+      {part}
+      {i < parts.length - 1 && (
+        <span className="text-white font-black">@futureboss.exe</span>
+      )}
+    </React.Fragment>
+  ));
+};
+
 const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
   const [showVersionPopup, setShowVersionPopup] = useState(false);
   const [visitors, setVisitors] = useState(1029847);
@@ -347,7 +360,7 @@ const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
             {guestbookEntries.map((entry, i) => (
               <p key={i}>
                 <span className={`${entry.color} font-bold`}>{entry.user}:</span>{" "}
-                {entry.text}
+                {renderReactionText(entry.text)}
               </p>
             ))}
 

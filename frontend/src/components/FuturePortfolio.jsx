@@ -61,6 +61,31 @@ const fadeUp = {
   }),
 };
 
+const RAINBOW_LETTERS = ["#ff2fd6", "#ffd166", "#66ffff", "#c299fc", "#ff69b4", "#a3e635"];
+
+// Rainbow ripple text: each character bounces in a staggered wave, cycling
+// through the rainbow palette. Used for small playful callouts, not body copy.
+const RippleText = ({ text, className = "" }) => (
+  <span className={`inline-block ${className}`}>
+    {text.split("").map((char, i) => (
+      <motion.span
+        key={i}
+        className="inline-block"
+        style={{ color: RAINBOW_LETTERS[i % RAINBOW_LETTERS.length] }}
+        animate={{ y: [0, -5, 0] }}
+        transition={{
+          duration: 1.1,
+          repeat: Infinity,
+          delay: i * 0.05,
+          ease: "easeInOut",
+        }}
+      >
+        {char === " " ? " " : char}
+      </motion.span>
+    ))}
+  </span>
+);
+
 const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
   const [gatedProject, setGatedProject] = useState(null); // holds the project when modal is open
   const [arcTier, setArcTier] = useState("middle");
@@ -78,6 +103,45 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
 
   return (
     <div className="glam-body glam-cursor relative" data-testid="future-portfolio">
+      {/* Bouncing CD easter egg -> back to the MySpace page, same visual
+          language as the floppy disk on the retro page. */}
+      <motion.button
+        type="button"
+        onClick={onExit}
+        data-testid="cd-myspace-launcher"
+        title="back to 2003"
+        className="fixed bottom-4 right-4 z-40 flex flex-col items-center gap-1"
+        animate={{ y: [0, -16, 0], rotate: [-8, 8, -8] }}
+        transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+        whileHover={{ scale: 1.15 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <span
+          className="relative text-5xl"
+          style={{ filter: "drop-shadow(0 0 10px rgba(255,105,180,0.85))" }}
+        >
+          💿
+          <span className="absolute -top-2 -left-3 text-yellow-300 text-lg animate-ping">
+            ✨
+          </span>
+          <span
+            className="absolute -bottom-1 -right-3 text-pink-300 text-sm animate-ping"
+            style={{ animationDelay: "0.4s" }}
+          >
+            ✨
+          </span>
+          <span
+            className="absolute top-0 -right-4 text-cyan-300 text-base animate-pulse"
+            style={{ animationDelay: "0.8s" }}
+          >
+            ✦
+          </span>
+        </span>
+        <span className="text-pink-600 text-xs font-bold bg-white/80 px-2 py-0.5 rounded-full">
+          CLICK ME!!
+        </span>
+      </motion.button>
+
       {/* Nav */}
       <nav className="glam-glass sticky top-0 z-30 px-6 md:px-12 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -205,15 +269,48 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
       </nav>
 
       {/* Hero */}
-      <header className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pt-8 md:pt-20 pb-24">
+      <header className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pt-8 md:pt-20 pb-24 overflow-hidden">
+        {/* Floating color confetti */}
+        {[
+          { emoji: "✦", top: "6%", left: "2%", color: "#ff2fd6", size: 22, delay: 0 },
+          { emoji: "✧", top: "14%", left: "96%", color: "#66ffff", size: 28, delay: 0.6 },
+          { emoji: "★", top: "42%", left: "97%", color: "#ffd166", size: 18, delay: 1.2 },
+          { emoji: "✦", top: "58%", left: "3%", color: "#c299fc", size: 24, delay: 0.3 },
+          { emoji: "✧", top: "78%", left: "95%", color: "#ff69b4", size: 20, delay: 0.9 },
+          { emoji: "★", top: "2%", left: "78%", color: "#ffd166", size: 16, delay: 1.5 },
+        ].map((s, i) => (
+          <motion.span
+            key={i}
+            aria-hidden="true"
+            className="absolute pointer-events-none select-none hidden md:inline-block"
+            style={{
+              top: s.top,
+              left: s.left,
+              color: s.color,
+              fontSize: s.size,
+              textShadow: `0 0 12px ${s.color}`,
+            }}
+            animate={{ y: [0, -14, 0], rotate: [0, 15, 0], opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 4 + i, repeat: Infinity, delay: s.delay, ease: "easeInOut" }}
+          >
+            {s.emoji}
+          </motion.span>
+        ))}
+
         <motion.p
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="glam-chip inline-block mb-6"
+          className="inline-flex items-center gap-1.5 mb-6 px-4 py-1.5 rounded-full text-sm font-medium"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(255,105,180,0.25), rgba(255,209,102,0.25), rgba(102,255,255,0.25), rgba(194,153,252,0.25))",
+            border: "1px solid rgba(212,175,55,0.4)",
+            color: "#6b5842",
+          }}
           data-testid="hero-chip"
         >
-          <Sparkles size={12} className="inline mr-1 -mt-0.5" />
+          <Sparkles size={12} className="inline -mt-0.5" />
           {PROFILE.heroAvailability}
         </motion.p>
 
@@ -226,7 +323,21 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
           data-testid="hero-name"
         >
           {PROFILE.name.split(" ")[0]}{" "}
-          <span className="italic glam-gold">Shipes</span>
+          <motion.span
+            className="italic"
+            style={{
+              backgroundImage:
+                "linear-gradient(90deg, #ff2fd6, #ffd166, #66ffff, #c299fc, #ff2fd6)",
+              backgroundSize: "300% 100%",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              color: "transparent",
+            }}
+            animate={{ backgroundPosition: ["0% 50%", "300% 50%"] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+          >
+            Shipes
+          </motion.span>
           <span className="glam-serif">.</span>
         </motion.h1>
 
@@ -238,22 +349,42 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
             custom={2}
             className="md:col-span-7 max-w-2xl"
           >
-            <p
-              className="text-lg md:text-xl text-neutral-700 leading-relaxed"
-              data-testid="hero-tagline"
-            >
-              {PROFILE.tagline}
-            </p>
+            <div className="relative pl-5">
+              <span
+                className="absolute left-0 top-0.5 bottom-0.5 w-[3px] rounded-full"
+                style={{
+                  background:
+                    "linear-gradient(180deg, #ff2fd6, #ffd166, #66ffff, #c299fc)",
+                }}
+                aria-hidden="true"
+              />
+              <p
+                className="text-lg md:text-xl text-neutral-800 leading-relaxed"
+                data-testid="hero-tagline"
+              >
+                {PROFILE.tagline.includes("Pinky promise. :)") ? (
+                  <>
+                    {PROFILE.tagline.split("Pinky promise. :)")[0]}
+                    <RippleText text="Pinky promise. :)" className="font-semibold" />
+                    {PROFILE.tagline.split("Pinky promise. :)")[1]}
+                  </>
+                ) : (
+                  PROFILE.tagline
+                )}
+              </p>
+            </div>
             <motion.a
               href={PROFILE.greetingCardHref}
               target="_blank"
               rel="noreferrer"
               data-testid="greeting-card-link"
-              whileHover={{ scale: 1.04 }}
+              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
-              className="glam-glass mt-6 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm md:text-base font-medium hover:text-[#b8952e] transition"
+              className="glam-glass glam-rainbow-hover mt-6 inline-flex items-center gap-3 rounded-2xl px-5 py-4 text-sm md:text-base font-medium hover:text-[#b8952e] transition"
             >
-              <Gift size={18} className="glam-gold flex-shrink-0" />
+              <span className="w-9 h-9 rounded-full bg-white/70 flex items-center justify-center flex-shrink-0">
+                <Gift size={16} className="glam-gold" />
+              </span>
               see what my coworkers say about me for yourself (a card I got
               when I went back and finished my degree 😎💪)
             </motion.a>
@@ -269,7 +400,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               type="button"
               onClick={onGoToProfessional}
               data-testid="hero-view-work"
-              className="glam-glass px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:scale-105 transition"
+              className="glam-glass glam-rainbow-hover px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 transition"
             >
               see the less pink version <ArrowUpRight size={16} />
             </button>
@@ -277,7 +408,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               type="button"
               onClick={handleHireHer}
               data-testid="hero-hire-me"
-              className="bg-[#111] text-white px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-[#f4c2c2] hover:text-black transition"
+              className="bg-[#111] text-white px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 transition glam-rainbow-glow glam-rainbow-scroll-hover"
             >
               Hire her <Mail size={14} />
             </button>
@@ -289,7 +420,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
                   ?.scrollIntoView({ behavior: "smooth" })
               }
               data-testid="hero-jump-to-portfolio"
-              className="glam-glass px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:scale-105 transition"
+              className="glam-glass glam-rainbow-hover px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 transition"
             >
               jump to portfolio <ArrowUpRight size={16} />
             </button>
@@ -307,8 +438,8 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               <React.Fragment key={i}>
                 {MARQUEE_TOKENS.map((t, j) => (
                   <span key={`${i}-${j}`} className="flex items-center gap-10">
-                    <span>{t}</span>
-                    <span className="glam-gold not-italic">✦</span>
+                    <span className="glam-rainbow-text">{t}</span>
+                    <span className="glam-rainbow-text not-italic">✦</span>
                   </span>
                 ))}
               </React.Fragment>
@@ -326,7 +457,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
           <div className="md:col-span-6">
             <p className="glam-chip inline-block mb-4">02 / About</p>
             <h2 className="glam-serif text-5xl md:text-6xl font-medium leading-[1.05]">
-              I wear <span className="italic glam-gold">many</span>{" "}
+              I wear <span className="italic glam-rainbow-text">many</span>{" "}
               <span className="inline-flex items-center align-middle">
                 <HatCycler size={96} />
               </span>{" "}
@@ -337,10 +468,23 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
             </p>
           </div>
           <div className="md:col-span-6 space-y-6 text-lg text-neutral-700 leading-relaxed">
-            <p data-testid="about-bio">{PROFILE.professionalSummary}</p>
+            <div className="glam-glass glam-rainbow-hover relative rounded-3xl p-8 pt-10">
+              <span
+                className="glam-serif absolute -top-3 left-6 text-6xl leading-none select-none glam-rainbow-text"
+                aria-hidden="true"
+              >
+                &ldquo;
+              </span>
+              <p data-testid="about-bio">
+                {PROFILE.professionalSummary}
+                <span className="glam-serif glam-rainbow-text" aria-hidden="true">
+                  &rdquo;
+                </span>
+              </p>
+            </div>
 
             <div
-              className="glam-glass rounded-3xl p-6 flex items-start gap-4"
+              className="glam-glass glam-rainbow-hover rounded-3xl p-6 flex items-start gap-4"
               data-testid="education-card"
             >
               <div className="w-12 h-12 rounded-full bg-white/70 flex items-center justify-center flex-shrink-0">
@@ -379,7 +523,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
       >
         <p className="glam-chip inline-block mb-4">02.5 / Receipts</p>
         <h2 className="glam-serif text-5xl md:text-6xl font-medium mb-12 max-w-3xl">
-          Every hat, <span className="italic glam-gold">backed up</span>.
+          Every hat, <span className="italic glam-rainbow-text">backed up</span>.
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {HATS_PROOF.map((h, i) => {
@@ -393,7 +537,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
                 variants={fadeUp}
                 custom={i}
                 data-testid={`proof-card-${h.title.toLowerCase().replace(/\s+/g, "-")}`}
-                className={`glam-glass rounded-3xl p-8 flex flex-col gap-4 ${
+                className={`glam-glass glam-rainbow-hover rounded-3xl p-8 flex flex-col gap-4 ${
                   i === HATS_PROOF.length - 1 && HATS_PROOF.length % 2 === 1
                     ? "md:col-span-2"
                     : ""
@@ -417,7 +561,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
       >
         <p className="glam-chip inline-block mb-4">03 / Toolkit</p>
         <h2 className="glam-serif text-5xl md:text-6xl font-medium mb-12">
-          The pink <span className="italic glam-gold">Rolodex</span>.
+          The pink <span className="italic glam-rainbow-text">Rolodex</span>.
         </h2>
         <div className="flex flex-wrap gap-3">
           {SKILLS.map((s, i) => (
@@ -429,7 +573,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               variants={fadeUp}
               custom={i}
               data-testid={`skill-${s.name.toLowerCase().replace(/\s+/g, "-")}`}
-              className="glam-glass px-6 py-4 rounded-2xl text-base font-medium flex items-center gap-3 hover:-translate-y-1 transition"
+              className="glam-glass glam-rainbow-hover px-6 py-4 rounded-2xl text-base font-medium flex items-center gap-3 transition"
               style={{
                 background: `linear-gradient(140deg, ${s.tint}70 0%, rgba(255,255,255,0.8) 100%)`,
               }}
@@ -451,7 +595,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
             <p className="glam-chip inline-block mb-4">03.5 / The Glow-Up</p>
             <h2 className="glam-serif text-5xl md:text-6xl font-medium max-w-3xl">
               A story that comes{" "}
-              <span className="italic glam-gold">full circle</span>.
+              <span className="italic glam-rainbow-text">full circle</span>.
             </h2>
           </div>
           <div className="flex gap-2 flex-shrink-0">
@@ -467,7 +611,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
                     : "glam-glass text-neutral-600 border-white/60 hover:scale-105"
                 }`}
               >
-                {t === "customer" ? "✨ Simple" : t === "middle" ? "Standard" : "🤓 Technical"}
+                {t === "customer" ? "✨ Simplified" : t === "middle" ? "Standard" : "🤓 Technical"}
               </button>
             ))}
           </div>
@@ -498,16 +642,15 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
                 data-testid={`glow-arc-stage-${stage.id}`}
               >
                 <span
-                  className="absolute -left-[38px] md:-left-[54px] top-1 w-7 h-7 rounded-full flex items-center justify-center text-sm"
+                  className="absolute -left-[38px] md:-left-[54px] top-1 w-7 h-7 rounded-full flex items-center justify-center text-sm glam-rainbow-glow"
                   style={{
                     background:
                       "linear-gradient(135deg, #ffffff 0%, #fbe4ec 45%, #f4c2c2 100%)",
-                    boxShadow: "0 0 0 3px #fff, 0 4px 10px rgba(180,140,155,0.4)",
                   }}
                 >
                   ✦
                 </span>
-                <div className="glam-glass rounded-3xl p-6 md:p-8">
+                <div className="glam-glass glam-rainbow-hover rounded-3xl p-6 md:p-8">
                   {stage.date && (
                     <p className="text-[11px] uppercase tracking-widest glam-gold mb-2">
                       {stage.date}
@@ -531,7 +674,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
       >
         <p className="glam-chip inline-block mb-4">04 / Portfolio</p>
         <h2 className="glam-serif text-5xl md:text-6xl font-medium mb-12">
-          Where she has <span className="italic glam-gold">shipped</span>.
+          Where she has <span className="italic glam-rainbow-text">shipped</span>.
         </h2>
         <div className="space-y-6">
           {EXPERIENCE.map((e, i) => (
@@ -542,7 +685,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               viewport={{ once: true }}
               variants={fadeUp}
               custom={i}
-              className="glam-glass rounded-3xl p-8 md:p-10 grid md:grid-cols-12 gap-6"
+              className="glam-glass glam-rainbow-hover rounded-3xl p-8 md:p-10 grid md:grid-cols-12 gap-6"
               data-testid={`experience-${e.company.toLowerCase().replace(/\s+/g, "-")}`}
             >
               <div className="md:col-span-4">
@@ -575,7 +718,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
         <div className="mb-10">
           <p className="glam-chip inline-block mb-4">01 / Selected Work</p>
           <h2 className="glam-serif text-5xl md:text-6xl font-medium max-w-3xl">
-            Take a <span className="italic glam-gold">peek</span> at what
+            Take a <span className="italic glam-rainbow-text">peek</span> at what
             I&apos;ve been building.
           </h2>
         </div>
@@ -759,7 +902,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
           <p className="glam-chip inline-block mb-6">05 / Say hi</p>
           <h2 className="glam-serif text-5xl md:text-7xl font-medium leading-tight">
             Let&apos;s build{" "}
-            <span className="italic glam-gold">something fetch</span>.
+            <span className="italic glam-rainbow-text">something fetch</span>.
           </h2>
           <p className="mt-6 text-neutral-600 max-w-2xl mx-auto">
             Open to senior technical support, integration, forward-deployed,
@@ -772,7 +915,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               type="button"
               onClick={handleHireHer}
               data-testid="contact-email"
-              className="bg-[#111] text-white px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-[#f4c2c2] hover:text-black transition"
+              className="bg-[#111] text-white px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 transition glam-rainbow-glow glam-rainbow-scroll-hover"
             >
               <Mail size={14} /> {PROFILE.email}
             </button>

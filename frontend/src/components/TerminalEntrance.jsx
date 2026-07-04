@@ -150,6 +150,45 @@ const TerminalEntrance = ({ onNext, onEnterMakeover, onEnterProfessional, autoSt
 
   return (
     <div className="terminal-body terminal-crt" data-testid="terminal-entrance">
+      {/* Bouncing CD easter egg -> back to the MySpace page, same visual
+          language as the floppy disk on the retro page. */}
+      <motion.button
+        type="button"
+        onClick={onNext}
+        data-testid="cd-myspace-launcher"
+        title="back to 2003"
+        className="fixed bottom-4 right-4 z-40 flex flex-col items-center gap-1"
+        animate={{ y: [0, -16, 0], rotate: [8, -8, 8] }}
+        transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+        whileHover={{ scale: 1.15 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <span
+          className="relative text-5xl"
+          style={{ filter: "drop-shadow(0 0 10px rgba(51,255,102,0.85))" }}
+        >
+          💿
+          <span className="absolute -top-2 -left-3 text-yellow-300 text-lg animate-ping">
+            ✨
+          </span>
+          <span
+            className="absolute -bottom-1 -right-3 text-pink-300 text-sm animate-ping"
+            style={{ animationDelay: "0.4s" }}
+          >
+            ✨
+          </span>
+          <span
+            className="absolute top-0 -right-4 text-cyan-300 text-base animate-pulse"
+            style={{ animationDelay: "0.8s" }}
+          >
+            ✦
+          </span>
+        </span>
+        <span className="terminal-cursor-blink text-[#33ff66] text-xs font-bold bg-black/70 px-2 py-0.5 rounded">
+          CLICK ME!!
+        </span>
+      </motion.button>
+
       <div className="max-w-3xl mx-auto px-4 py-10 text-sm md:text-base leading-relaxed">
         <pre className="mb-6 overflow-x-auto whitespace-pre">
 {String.raw` _____  _    ____      _      ____  _   _ ___ ____  _____ ____

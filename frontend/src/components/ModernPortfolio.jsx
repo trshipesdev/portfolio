@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import {
@@ -53,6 +53,21 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
   const [demoMode, setDemoMode] = useState(false);
   const [arcTier, setArcTier] = useState("middle");
   const [showFullStory, setShowFullStory] = useState(false);
+  // Fun, fake visitor ticker seeded from the MySpace page's hit counter.
+  // Ticks in random clustered bursts instead of a steady interval, purely
+  // for vibes, not real analytics.
+  const [visits, setVisits] = useState(1029847);
+  useEffect(() => {
+    let timeoutId;
+    const tick = () => {
+      const burst =
+        Math.random() < 0.3 ? 2 + Math.floor(Math.random() * 4) : 1;
+      setVisits((v) => v + burst);
+      timeoutId = setTimeout(tick, 2000 + Math.random() * 8000);
+    };
+    timeoutId = setTimeout(tick, 2000 + Math.random() * 8000);
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
     <div className="modern-body" data-testid="modern-portfolio">
@@ -83,9 +98,38 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
 
       {/* Hero */}
       <header className="max-w-5xl mx-auto px-6 md:px-12 pt-20 pb-24">
-        <div className="w-16 h-16 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold text-lg mb-8">
-          {initials}
-        </div>
+        <a
+          href={PROFILE.linkedin}
+          target="_blank"
+          rel="noreferrer"
+          data-testid="hero-avatar-link"
+          aria-label="View LinkedIn profile"
+          className="relative w-16 h-16 mb-8 block"
+          style={{ perspective: 800 }}
+        >
+          <motion.div
+            className="absolute inset-0"
+            style={{ transformStyle: "preserve-3d" }}
+            animate={{ rotateY: 360 }}
+            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+          >
+            <div
+              className="absolute inset-0 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold text-lg"
+              style={{ backfaceVisibility: "hidden" }}
+            >
+              {initials}
+            </div>
+            <img
+              src="/images/tara-avatar.jpg"
+              alt={PROFILE.name}
+              className="absolute inset-0 w-full h-full object-cover rounded-full"
+              style={{
+                backfaceVisibility: "hidden",
+                transform: "rotateY(180deg)",
+              }}
+            />
+          </motion.div>
+        </a>
         <p className="modern-eyebrow mb-4">{PROFILE.title}</p>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-3xl mb-6">
           {PROFILE.name}
@@ -178,7 +222,7 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
                         : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
                     }`}
                   >
-                    {t === "customer" ? "Simple" : t === "middle" ? "Standard" : "Technical"}
+                    {t === "customer" ? "Simplified" : t === "middle" ? "Standard" : "Technical"}
                   </button>
                 ))}
               </div>
@@ -484,6 +528,12 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
       <footer className="modern-divider text-center py-10">
         <p className="text-sm text-gray-500 mb-4">&copy; {new Date().getFullYear()} {PROFILE.name}</p>
         <EraWebring onPrev={onEraPrev} onNext={onEraNext} linkClassName="modern-link" />
+        <p
+          className="modern-tag inline-flex items-center gap-1.5 mt-4 text-xs"
+          data-testid="visitor-ticker"
+        >
+          👀 {visits.toLocaleString()} visits and counting
+        </p>
         <p className="text-xs text-gray-400 mt-4 italic">
           Built with React and unreasonable optimism.
         </p>
