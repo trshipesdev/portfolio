@@ -113,7 +113,7 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
             className={`modern-btn ${demoMode ? "" : "modern-demo-glow"}`}
           >
             {demoMode ? <ArrowLeft size={16} /> : <MessageSquare size={16} />}
-            {demoMode ? "Back to full resume" : "Demo & Brief"}
+            {demoMode ? "Back to full portfolio" : "Demo & Brief"}
           </button>
         </div>
       </header>
@@ -285,7 +285,7 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
                       className={`modern-btn mt-4 ${demoMode ? "" : "modern-demo-glow"}`}
                     >
                       {demoMode ? <ArrowLeft size={16} /> : <MessageSquare size={16} />}
-                      {demoMode ? "Back to full resume" : "Demo & Brief"}
+                      {demoMode ? "Back to full portfolio" : "Demo & Brief"}
                     </button>
                   )}
                 </div>

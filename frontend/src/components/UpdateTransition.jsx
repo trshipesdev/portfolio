@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const STATUS_LINES = [
   "Removing glitter.exe...",
-  "Compiling resume.exe...",
+  "Compiling portfolio.exe...",
   "Installing professional-mode.dll...",
   "Finalizing...",
 ];

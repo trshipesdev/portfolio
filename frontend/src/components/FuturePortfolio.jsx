@@ -134,7 +134,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
             Toolkit
           </a>
           <a href="#experience" data-testid="nav-experience" className="hover:text-black transition">
-            Resume
+            Portfolio
           </a>
           <a href="#contact" data-testid="nav-contact" className="hover:text-black transition">
             Contact
@@ -286,10 +286,10 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
                   .getElementById("experience")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              data-testid="hero-jump-to-resume"
+              data-testid="hero-jump-to-portfolio"
               className="glam-glass px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:scale-105 transition"
             >
-              jump to resume <ArrowUpRight size={16} />
+              jump to portfolio <ArrowUpRight size={16} />
             </button>
           </motion.div>
         </div>
@@ -450,7 +450,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
         id="experience"
         className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-32"
       >
-        <p className="glam-chip inline-block mb-4">04 / Resume</p>
+        <p className="glam-chip inline-block mb-4">04 / Portfolio</p>
         <h2 className="glam-serif text-5xl md:text-6xl font-medium mb-12">
           Where she has <span className="italic glam-gold">shipped</span>.
         </h2>

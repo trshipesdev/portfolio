@@ -166,16 +166,10 @@ export const CAREER_ARC = [
   },
   {
     id: "the-audit",
-    title: "The Audit",
-    date: null,
-    middle:
-      "Tasked with auditing scraper usage across utilities: which ones weren't pulling their weight anymore. That audit planted the idea of deprecation.",
-  },
-  {
-    id: "promoted-to-software-engineer",
-    title: "Promoted to Software Engineer",
+    title: "The Audit and the Promotion",
     date: "August 2024",
-    middle: "Promoted to Software Engineer.",
+    middle:
+      "Tasked with auditing scraper usage across utilities: which ones weren't pulling their weight anymore. That audit planted the idea of deprecation. Promoted to Software Engineer that same month.",
   },
   {
     id: "the-prep-work",
