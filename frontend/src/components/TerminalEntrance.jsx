@@ -25,8 +25,19 @@ const lineVariants = {
   }),
 };
 
+const TABS = [
+  { id: "whoami", label: "whoami" },
+  { id: "skills", label: "skills" },
+  { id: "experience", label: "experience" },
+  { id: "education", label: "education" },
+  { id: "projects", label: "projects" },
+];
+
 const TerminalEntrance = ({ onNext, onEnterMakeover, autoStartTrail }) => {
   const [showGame, setShowGame] = useState(!!autoStartTrail);
+  const [activeTab, setActiveTab] = useState("whoami");
+  const [expandedExp, setExpandedExp] = useState(null);
+  const [expandedProj, setExpandedProj] = useState(null);
 
   const handleCommandKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -141,63 +152,119 @@ const TerminalEntrance = ({ onNext, onEnterMakeover, autoStartTrail }) => {
           </div>
         ) : (
           <>
-            <p className="mb-2">
-              $ cat resume.txt
-            </p>
-            <div className="border border-[#33ff66]/40 p-4 mb-6">
-              <p>{PROFILE.name}</p>
-              <p>{PROFILE.title}</p>
-              <p className="mt-2 opacity-80">{PROFILE.tagline}</p>
-
-              <p className="mt-4">$ ls skills/</p>
-              <p className="opacity-90">
-                {SKILLS.map((s) => `[${s.name}]`).join("  ")}
-              </p>
-
-              <p className="mt-4">$ cat experience.log</p>
-              {EXPERIENCE.map((e) => (
-                <div key={e.company} className="mt-2">
-                  <p>
-                    &gt; {e.role} @ {e.company} ({e.period})
-                  </p>
-                  {e.highlights.map((h, hi) => (
-                    <p key={hi} className="opacity-80 pl-4">
-                      - {h}
-                    </p>
-                  ))}
-                </div>
+            <div className="flex flex-wrap gap-1 mb-3 border-b border-[#33ff66]/30 pb-3">
+              {TABS.map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setActiveTab(t.id)}
+                  data-testid={`terminal-tab-${t.id}`}
+                  className={`px-3 py-1 text-xs md:text-sm ${
+                    activeTab === t.id
+                      ? "bg-[#33ff66] text-[#050805] font-bold"
+                      : "terminal-link"
+                  }`}
+                >
+                  $ cat {t.id}.txt
+                </button>
               ))}
+            </div>
 
-              <p className="mt-4">$ cat education.log</p>
-              <p className="opacity-90">
-                &gt; {EDUCATION.degree}, {EDUCATION.school} ({EDUCATION.years})
-              </p>
-              <p className="opacity-90 pl-4">- {EDUCATION.certs[0]}</p>
+            <div className="border border-[#33ff66]/40 p-4 mb-6">
+              {activeTab === "whoami" && (
+                <>
+                  <p>{PROFILE.name}</p>
+                  <p>{PROFILE.title}</p>
+                  <p className="mt-2 opacity-80">{PROFILE.tagline}</p>
+                </>
+              )}
 
-              <p className="mt-4">$ ls projects/</p>
-              {PROJECTS.map((p) =>
-                p.action === "info" ? (
-                  <div key={p.id} className="mt-2">
-                    <p data-testid={`terminal-project-${p.id}`}>
-                      &gt; {p.name}: {p.tag}
-                    </p>
-                    <p className="opacity-80 pl-4">{p.blurb}</p>
-                    <p className="opacity-60 pl-4 text-xs">[{p.stack.join(", ")}]</p>
-                  </div>
-                ) : (
-                  <div key={p.id} className="mt-2">
-                    <button
-                      type="button"
-                      onClick={() => handleProjectClick(p)}
-                      data-testid={`terminal-project-${p.id}`}
-                      className="terminal-link text-left"
-                    >
-                      &gt; {p.name}: {p.tag}
-                    </button>
-                    <p className="opacity-80 pl-4">{p.blurb}</p>
-                    <p className="opacity-60 pl-4 text-xs">[{p.stack.join(", ")}]</p>
-                  </div>
-                )
+              {activeTab === "skills" && (
+                <p className="opacity-90">
+                  {SKILLS.map((s) => `[${s.name}]`).join("  ")}
+                </p>
+              )}
+
+              {activeTab === "experience" && (
+                <div className="space-y-2">
+                  {EXPERIENCE.map((e) => {
+                    const isOpen = expandedExp === e.company;
+                    return (
+                      <div key={e.company}>
+                        <button
+                          type="button"
+                          onClick={() => setExpandedExp(isOpen ? null : e.company)}
+                          data-testid={`terminal-exp-toggle-${e.company}`}
+                          className="terminal-link text-left flex items-start gap-2 w-full"
+                        >
+                          <span>{isOpen ? "[-]" : "[+]"}</span>
+                          <span>
+                            {e.role} @ {e.company} ({e.period})
+                          </span>
+                        </button>
+                        {isOpen && (
+                          <div className="pl-6 mt-1">
+                            {e.highlights.map((h, hi) => (
+                              <p key={hi} className="opacity-80">
+                                - {h}
+                              </p>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
+              {activeTab === "education" && (
+                <>
+                  <p className="opacity-90">
+                    &gt; {EDUCATION.degree}, {EDUCATION.school} ({EDUCATION.years})
+                  </p>
+                  <p className="opacity-90 pl-4">- {EDUCATION.certs[0]}</p>
+                </>
+              )}
+
+              {activeTab === "projects" && (
+                <div className="space-y-2">
+                  {PROJECTS.map((p) => {
+                    const isOpen = expandedProj === p.id;
+                    return (
+                      <div key={p.id}>
+                        <button
+                          type="button"
+                          onClick={() => setExpandedProj(isOpen ? null : p.id)}
+                          data-testid={`terminal-project-${p.id}`}
+                          className="terminal-link text-left flex items-start gap-2 w-full"
+                        >
+                          <span>{isOpen ? "[-]" : "[+]"}</span>
+                          <span>
+                            {p.name}: {p.tag}
+                          </span>
+                        </button>
+                        {isOpen && (
+                          <div className="pl-6 mt-1">
+                            <p className="opacity-80">{p.blurb}</p>
+                            <p className="opacity-60 text-xs mt-1">
+                              [{p.stack.join(", ")}]
+                            </p>
+                            {p.action !== "info" && (
+                              <button
+                                type="button"
+                                onClick={() => handleProjectClick(p)}
+                                data-testid={`terminal-project-open-${p.id}`}
+                                className="terminal-link mt-1"
+                              >
+                                &gt; open
+                              </button>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               )}
             </div>
 
