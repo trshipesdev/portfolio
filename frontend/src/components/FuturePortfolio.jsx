@@ -17,6 +17,7 @@ import {
   ChevronDown,
   Gift,
   Rocket,
+  Palette,
 } from "lucide-react";
 import {
   PROFILE,
@@ -300,6 +301,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
             const isGated = p.action === "password-reveal";
             const isImageOpen = p.action === "image-open";
             const isComingSoon = p.action === "coming-soon";
+            const isInfo = p.action === "info";
             const commonProps = {
               "data-testid": `project-card-${p.id}`,
               className: `glam-card glam-glass ${span} flex flex-col group overflow-hidden text-left`,
@@ -315,14 +317,18 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
                     p.size === "hero" ? "aspect-[16/10]" : "aspect-[4/3]"
                   }`}
                 >
-                  {isComingSoon ? (
+                  {isComingSoon || isInfo ? (
                     <div
                       className="absolute inset-0 flex items-center justify-center"
                       style={{
                         background: `linear-gradient(160deg, ${p.accent}aa 0%, rgba(255,255,255,0.85) 100%)`,
                       }}
                     >
-                      <Rocket size={64} className="glam-gold opacity-60 group-hover:scale-110 transition-transform duration-500" />
+                      {isComingSoon ? (
+                        <Rocket size={64} className="glam-gold opacity-60 group-hover:scale-110 transition-transform duration-500" />
+                      ) : (
+                        <Palette size={64} className="glam-gold opacity-60" />
+                      )}
                     </div>
                   ) : (
                     <img
@@ -332,7 +338,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[900ms]"
                     />
                   )}
-                  {!isComingSoon && (
+                  {!isComingSoon && !isInfo && (
                     <div
                       className="absolute inset-0"
                       style={{
@@ -350,7 +356,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
                       Coming Soon
                     </div>
                   )}
-                  {!isComingSoon && (
+                  {!isComingSoon && !isInfo && (
                     <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/85 backdrop-blur border border-white flex items-center justify-center group-hover:rotate-45 transition-transform duration-500">
                       {isGated ? (
                         <Lock size={14} />
@@ -401,6 +407,14 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               variants: fadeUp,
               custom: i,
             };
+
+            if (isInfo) {
+              return (
+                <motion.div key={p.id} {...motionWrapperProps} {...commonProps}>
+                  {cardBody}
+                </motion.div>
+              );
+            }
 
             if (isComingSoon) {
               return (

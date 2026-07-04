@@ -16,6 +16,7 @@ import {
   Copy,
   ExternalLink,
   Rocket,
+  Palette,
 } from "lucide-react";
 import {
   PROFILE,
@@ -127,17 +128,22 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
             {PROJECTS.map((p) => {
               const isGated = p.action === "password-reveal";
               const isComingSoon = p.action === "coming-soon";
+              const isInfo = p.action === "info";
               const cardBody = (
                 <>
                   <div className="overflow-hidden relative">
-                    {isComingSoon ? (
+                    {isComingSoon || isInfo ? (
                       <div
                         className="w-full aspect-[16/10] flex items-center justify-center"
                         style={{
                           background: `linear-gradient(160deg, ${p.accent} 0%, #f3f4f6 100%)`,
                         }}
                       >
-                        <Rocket size={48} className="text-gray-400/70 group-hover:scale-110 transition-transform duration-500" />
+                        {isComingSoon ? (
+                          <Rocket size={48} className="text-gray-400/70 group-hover:scale-110 transition-transform duration-500" />
+                        ) : (
+                          <Palette size={48} className="text-gray-400/70" />
+                        )}
                       </div>
                     ) : (
                       <img
@@ -162,7 +168,9 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
                     <div className="flex items-start justify-between gap-2">
                       <h3 className="font-bold text-lg">{p.name}</h3>
                       {isComingSoon ? (
-                        <Rocket size={16} className="mt-1 text-gray-400 group-hover:text-black transition flex-shrink-0" />
+                        <Rocket size={16} className="mt-1 text-gray-400 flex-shrink-0" />
+                      ) : isInfo ? (
+                        <Palette size={16} className="mt-1 text-gray-400 flex-shrink-0" />
                       ) : (
                         <ArrowUpRight size={16} className="mt-1 text-gray-400 group-hover:text-black transition flex-shrink-0" />
                       )}
@@ -179,6 +187,18 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
                   </div>
                 </>
               );
+
+              if (isInfo) {
+                return (
+                  <div
+                    key={p.id}
+                    data-testid={`project-card-${p.id}`}
+                    className="modern-card overflow-hidden flex flex-col text-left"
+                  >
+                    {cardBody}
+                  </div>
+                );
+              }
 
               if (isComingSoon) {
                 return (

@@ -175,20 +175,30 @@ const TerminalEntrance = ({ onNext, onEnterMakeover, autoStartTrail }) => {
               <p className="opacity-90 pl-4">- {EDUCATION.certs[0]}</p>
 
               <p className="mt-4">$ ls projects/</p>
-              {PROJECTS.map((p) => (
-                <div key={p.id} className="mt-2">
-                  <button
-                    type="button"
-                    onClick={() => handleProjectClick(p)}
-                    data-testid={`terminal-project-${p.id}`}
-                    className="terminal-link text-left"
-                  >
-                    &gt; {p.name}: {p.tag}
-                  </button>
-                  <p className="opacity-80 pl-4">{p.blurb}</p>
-                  <p className="opacity-60 pl-4 text-xs">[{p.stack.join(", ")}]</p>
-                </div>
-              ))}
+              {PROJECTS.map((p) =>
+                p.action === "info" ? (
+                  <div key={p.id} className="mt-2">
+                    <p data-testid={`terminal-project-${p.id}`}>
+                      &gt; {p.name}: {p.tag}
+                    </p>
+                    <p className="opacity-80 pl-4">{p.blurb}</p>
+                    <p className="opacity-60 pl-4 text-xs">[{p.stack.join(", ")}]</p>
+                  </div>
+                ) : (
+                  <div key={p.id} className="mt-2">
+                    <button
+                      type="button"
+                      onClick={() => handleProjectClick(p)}
+                      data-testid={`terminal-project-${p.id}`}
+                      className="terminal-link text-left"
+                    >
+                      &gt; {p.name}: {p.tag}
+                    </button>
+                    <p className="opacity-80 pl-4">{p.blurb}</p>
+                    <p className="opacity-60 pl-4 text-xs">[{p.stack.join(", ")}]</p>
+                  </div>
+                )
+              )}
             </div>
 
             <button
