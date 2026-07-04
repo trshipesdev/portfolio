@@ -341,6 +341,7 @@ export const EXPERIENCE = [
     period: "2016 to 2024",
     highlights: [
       "Founded and led an anonymous NFT art community during the 2021 to 2022 NFT/Web3 boom, centered on diversity and self-empowerment, releasing multiple hand-drawn collections and hosting community events.",
+      "Sold out multiple collection drops within an hour, and was invited to join Foundation (foundation.app), an invite-only platform reserved for select artists.",
       "Delivered digital design, branding, and photography work, including assets used in a $10k+ Kickstarter campaign.",
     ],
   },
