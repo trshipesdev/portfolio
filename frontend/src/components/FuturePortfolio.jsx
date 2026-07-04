@@ -122,7 +122,15 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
           <a href="#about" data-testid="nav-about" className="hover:text-black transition">
             About
           </a>
-          <a href="#skills" data-testid="nav-skills" className="hover:text-black transition">
+          <a
+            href="#skills"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            data-testid="nav-skills"
+            className="hover:text-black transition"
+          >
             Toolkit
           </a>
           <a href="#experience" data-testid="nav-experience" className="hover:text-black transition">
@@ -271,6 +279,18 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
             >
               Hire her <Mail size={14} />
             </button>
+            <button
+              type="button"
+              onClick={() =>
+                document
+                  .getElementById("experience")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              data-testid="hero-jump-to-resume"
+              className="glam-glass px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:scale-105 transition"
+            >
+              jump to resume <ArrowUpRight size={16} />
+            </button>
           </motion.div>
         </div>
 
@@ -294,6 +314,168 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
           </motion.div>
         </div>
       </header>
+
+      {/* ABOUT — I wear many hats */}
+      <section
+        id="about"
+        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-32"
+      >
+        <div className="grid md:grid-cols-12 gap-10 items-center">
+          <div className="md:col-span-6">
+            <p className="glam-chip inline-block mb-4">02 / About</p>
+            <h2 className="glam-serif text-5xl md:text-6xl font-medium leading-[1.05]">
+              I wear <span className="italic glam-gold">many</span>{" "}
+              <span className="inline-flex items-center align-middle">
+                <HatCycler size={96} />
+              </span>{" "}
+              hats.
+            </h2>
+            <p className="mt-4 text-sm text-neutral-500 italic">
+              (Yes, that hat is clickable. Give it a spin.)
+            </p>
+          </div>
+          <div className="md:col-span-6 space-y-6 text-lg text-neutral-700 leading-relaxed">
+            <p data-testid="about-bio">
+              Full stack software and integration engineer. My day-to-day is
+              production code plus customer-facing support, escalation, and
+              integration work, so I can debug your gnarliest production
+              incident and write the release that fixes it. I graduated with
+              a Bachelor&apos;s degree in Applied Computing + Cybersecurity,
+              hold a CompTIA Security+ certification, and continuously teach
+              myself more fun stuff.
+            </p>
+            <div className="flex flex-wrap gap-6 pt-2 text-sm">
+              <div className="flex items-center gap-2 text-neutral-600">
+                <MapPin size={16} className="glam-gold" />
+                {PROFILE.location}
+              </div>
+              <div className="flex items-center gap-2 text-neutral-600">
+                <GraduationCap size={16} className="glam-gold" />
+                {EDUCATION.school}, {EDUCATION.years}
+              </div>
+              <div
+                className="flex items-center gap-2 text-neutral-600"
+                data-testid="about-secplus"
+              >
+                <Sparkles size={16} className="glam-gold" />
+                {EDUCATION.certs[0]}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PROOF CARDS — one per hat, evidence not adjectives */}
+      <section
+        id="proof"
+        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-32"
+      >
+        <p className="glam-chip inline-block mb-4">02.5 / Receipts</p>
+        <h2 className="glam-serif text-5xl md:text-6xl font-medium mb-12 max-w-3xl">
+          Every hat, <span className="italic glam-gold">backed up</span>.
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {HATS_PROOF.map((h, i) => {
+            const Icon = HAT_ICONS[h.icon];
+            return (
+              <motion.div
+                key={h.title}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                variants={fadeUp}
+                custom={i}
+                data-testid={`proof-card-${h.title.toLowerCase().replace(/\s+/g, "-")}`}
+                className={`glam-glass rounded-3xl p-8 flex flex-col gap-4 ${
+                  i === HATS_PROOF.length - 1 && HATS_PROOF.length % 2 === 1
+                    ? "md:col-span-2"
+                    : ""
+                }`}
+              >
+                <div className="w-11 h-11 rounded-full bg-white/70 flex items-center justify-center">
+                  <Icon size={20} className="glam-gold" />
+                </div>
+                <h3 className="glam-serif text-2xl font-medium">{h.title}</h3>
+                <p className="text-neutral-700 leading-relaxed">{h.proof}</p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* SKILLS */}
+      <section
+        id="skills"
+        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-32"
+      >
+        <p className="glam-chip inline-block mb-4">03 / Toolkit</p>
+        <h2 className="glam-serif text-5xl md:text-6xl font-medium mb-12">
+          The pink <span className="italic glam-gold">Rolodex</span>.
+        </h2>
+        <div className="flex flex-wrap gap-3">
+          {SKILLS.map((s, i) => (
+            <motion.div
+              key={s.name}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              custom={i}
+              data-testid={`skill-${s.name.toLowerCase().replace(/\s+/g, "-")}`}
+              className="glam-glass px-6 py-4 rounded-2xl text-base font-medium flex items-center gap-3 hover:-translate-y-1 transition"
+              style={{
+                background: `linear-gradient(140deg, ${s.tint}70 0%, rgba(255,255,255,0.8) 100%)`,
+              }}
+            >
+              <Sparkles size={14} className="glam-gold" />
+              {s.name}
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* EXPERIENCE */}
+      <section
+        id="experience"
+        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-32"
+      >
+        <p className="glam-chip inline-block mb-4">04 / Resume</p>
+        <h2 className="glam-serif text-5xl md:text-6xl font-medium mb-12">
+          Where she has <span className="italic glam-gold">shipped</span>.
+        </h2>
+        <div className="space-y-6">
+          {EXPERIENCE.map((e, i) => (
+            <motion.div
+              key={e.company}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              custom={i}
+              className="glam-glass rounded-3xl p-8 md:p-10 grid md:grid-cols-12 gap-6"
+              data-testid={`experience-${e.company.toLowerCase().replace(/\s+/g, "-")}`}
+            >
+              <div className="md:col-span-4">
+                <p className="text-xs uppercase tracking-widest text-neutral-500">
+                  {e.period}
+                </p>
+                <h3 className="glam-serif text-3xl md:text-4xl mt-2 leading-tight">
+                  {e.company}
+                </h3>
+                <p className="text-sm text-neutral-600 mt-1">{e.role}</p>
+              </div>
+              <ul className="md:col-span-8 space-y-3">
+                {e.highlights.map((h, hi) => (
+                  <li key={hi} className="flex gap-3 text-neutral-700">
+                    <span className="glam-gold mt-1">✦</span>
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
       {/* WORK — Bento grid with real screenshots */}
       <section
@@ -472,168 +654,6 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               </motion.a>
             );
           })}
-        </div>
-      </section>
-
-      {/* ABOUT — I wear many hats */}
-      <section
-        id="about"
-        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-32"
-      >
-        <div className="grid md:grid-cols-12 gap-10 items-center">
-          <div className="md:col-span-6">
-            <p className="glam-chip inline-block mb-4">02 / About</p>
-            <h2 className="glam-serif text-5xl md:text-6xl font-medium leading-[1.05]">
-              I wear <span className="italic glam-gold">many</span>{" "}
-              <span className="inline-flex items-center align-middle">
-                <HatCycler size={96} />
-              </span>{" "}
-              hats.
-            </h2>
-            <p className="mt-4 text-sm text-neutral-500 italic">
-              (Yes, that hat is clickable. Give it a spin.)
-            </p>
-          </div>
-          <div className="md:col-span-6 space-y-6 text-lg text-neutral-700 leading-relaxed">
-            <p data-testid="about-bio">
-              Full stack software and integration engineer. My day-to-day is
-              production code plus customer-facing support, escalation, and
-              integration work, so I can debug your gnarliest production
-              incident and write the release that fixes it. I graduated with
-              a Bachelor&apos;s degree in Applied Computing + Cybersecurity,
-              hold a CompTIA Security+ certification, and continuously teach
-              myself more fun stuff.
-            </p>
-            <div className="flex flex-wrap gap-6 pt-2 text-sm">
-              <div className="flex items-center gap-2 text-neutral-600">
-                <MapPin size={16} className="glam-gold" />
-                {PROFILE.location}
-              </div>
-              <div className="flex items-center gap-2 text-neutral-600">
-                <GraduationCap size={16} className="glam-gold" />
-                {EDUCATION.school}, {EDUCATION.years}
-              </div>
-              <div
-                className="flex items-center gap-2 text-neutral-600"
-                data-testid="about-secplus"
-              >
-                <Sparkles size={16} className="glam-gold" />
-                {EDUCATION.certs[0]}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* PROOF CARDS — one per hat, evidence not adjectives */}
-      <section
-        id="proof"
-        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-32"
-      >
-        <p className="glam-chip inline-block mb-4">02.5 / Receipts</p>
-        <h2 className="glam-serif text-5xl md:text-6xl font-medium mb-12 max-w-3xl">
-          Every hat, <span className="italic glam-gold">backed up</span>.
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {HATS_PROOF.map((h, i) => {
-            const Icon = HAT_ICONS[h.icon];
-            return (
-              <motion.div
-                key={h.title}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-80px" }}
-                variants={fadeUp}
-                custom={i}
-                data-testid={`proof-card-${h.title.toLowerCase().replace(/\s+/g, "-")}`}
-                className={`glam-glass rounded-3xl p-8 flex flex-col gap-4 ${
-                  i === HATS_PROOF.length - 1 && HATS_PROOF.length % 2 === 1
-                    ? "md:col-span-2"
-                    : ""
-                }`}
-              >
-                <div className="w-11 h-11 rounded-full bg-white/70 flex items-center justify-center">
-                  <Icon size={20} className="glam-gold" />
-                </div>
-                <h3 className="glam-serif text-2xl font-medium">{h.title}</h3>
-                <p className="text-neutral-700 leading-relaxed">{h.proof}</p>
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* SKILLS */}
-      <section
-        id="skills"
-        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-32"
-      >
-        <p className="glam-chip inline-block mb-4">03 / Toolkit</p>
-        <h2 className="glam-serif text-5xl md:text-6xl font-medium mb-12">
-          The pink <span className="italic glam-gold">Rolodex</span>.
-        </h2>
-        <div className="flex flex-wrap gap-3">
-          {SKILLS.map((s, i) => (
-            <motion.div
-              key={s.name}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              custom={i}
-              data-testid={`skill-${s.name.toLowerCase().replace(/\s+/g, "-")}`}
-              className="glam-glass px-6 py-4 rounded-2xl text-base font-medium flex items-center gap-3 hover:-translate-y-1 transition"
-              style={{
-                background: `linear-gradient(140deg, ${s.tint}70 0%, rgba(255,255,255,0.8) 100%)`,
-              }}
-            >
-              <Sparkles size={14} className="glam-gold" />
-              {s.name}
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* EXPERIENCE */}
-      <section
-        id="experience"
-        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-32"
-      >
-        <p className="glam-chip inline-block mb-4">04 / Resume</p>
-        <h2 className="glam-serif text-5xl md:text-6xl font-medium mb-12">
-          Where she has <span className="italic glam-gold">shipped</span>.
-        </h2>
-        <div className="space-y-6">
-          {EXPERIENCE.map((e, i) => (
-            <motion.div
-              key={e.company}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              custom={i}
-              className="glam-glass rounded-3xl p-8 md:p-10 grid md:grid-cols-12 gap-6"
-              data-testid={`experience-${e.company.toLowerCase().replace(/\s+/g, "-")}`}
-            >
-              <div className="md:col-span-4">
-                <p className="text-xs uppercase tracking-widest text-neutral-500">
-                  {e.period}
-                </p>
-                <h3 className="glam-serif text-3xl md:text-4xl mt-2 leading-tight">
-                  {e.company}
-                </h3>
-                <p className="text-sm text-neutral-600 mt-1">{e.role}</p>
-              </div>
-              <ul className="md:col-span-8 space-y-3">
-                {e.highlights.map((h, hi) => (
-                  <li key={hi} className="flex gap-3 text-neutral-700">
-                    <span className="glam-gold mt-1">✦</span>
-                    <span>{h}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
         </div>
       </section>
 
