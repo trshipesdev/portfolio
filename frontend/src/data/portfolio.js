@@ -88,7 +88,7 @@ export const HATS_PROOF = [
     icon: "escalation",
     title: "The Escalation Engineer",
     proof:
-      "Sole escalation engineer bridging Support and Engineering. Absorbed the entire application support queue solo through a company-wide layoff, with zero coverage gap.",
+      "Sole escalation engineer bridging Support and Engineering: sprint planning, point-planning sessions, and kanban on one side, the technical escalation queue and offering Level 1 through 3 support on the other. Absorbed the entire application support queue solo through a company-wide layoff, with zero coverage gap.",
   },
   {
     icon: "production",
