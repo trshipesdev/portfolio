@@ -39,6 +39,7 @@ const TerminalEntrance = ({ onNext, onEnterMakeover }) => {
       toast.custom((id) => <TerminalPasswordToast id={id} project={p} />, {
         id: `terminal-password-${p.id}`,
         duration: Infinity,
+        unstyled: true,
       });
       return;
     }
@@ -49,6 +50,7 @@ const TerminalEntrance = ({ onNext, onEnterMakeover }) => {
     toast.custom((id) => <MagicEightBallToast id={id} />, {
       id: "magic-8-ball",
       duration: Infinity,
+      unstyled: true,
     });
   };
 
@@ -95,7 +97,7 @@ const TerminalEntrance = ({ onNext, onEnterMakeover }) => {
           </button>
         </div>
       ),
-      { id: "break-everything", duration: Infinity }
+      { id: "break-everything", duration: Infinity, unstyled: true }
     );
     onNext?.();
   };
