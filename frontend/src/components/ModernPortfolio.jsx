@@ -17,6 +17,8 @@ import {
   ExternalLink,
   Rocket,
   Palette,
+  AlertTriangle,
+  Headset,
 } from "lucide-react";
 import {
   PROFILE,
@@ -24,7 +26,14 @@ import {
   PROJECTS,
   EXPERIENCE,
   EDUCATION,
+  HATS_PROOF,
 } from "../data/portfolio";
+
+const MODERN_PROOF_TITLES = ["The Customer-Facing Engineer", "The Escalation Engineer"];
+const MODERN_PROOF_ICONS = {
+  "The Customer-Facing Engineer": Headset,
+  "The Escalation Engineer": AlertTriangle,
+};
 import EraWebring from "@/components/EraWebring";
 
 const initials = PROFILE.name
@@ -106,6 +115,31 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
             <div className="flex items-center gap-2">
               <ShieldCheck size={16} /> {EDUCATION.certs[0]}
             </div>
+          </div>
+        </section>
+
+        {/* Proof */}
+        <section id="proof" className="py-16 modern-divider">
+          <p className="modern-eyebrow mb-6">Good to Talk To</p>
+          <div className="grid md:grid-cols-2 gap-6">
+            {HATS_PROOF.filter((h) => MODERN_PROOF_TITLES.includes(h.title)).map(
+              (h) => {
+                const Icon = MODERN_PROOF_ICONS[h.title];
+                return (
+                  <div
+                    key={h.title}
+                    data-testid={`modern-proof-${h.title.toLowerCase().replace(/\s+/g, "-")}`}
+                    className="modern-card p-6 flex flex-col gap-3"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+                      <Icon size={18} className="text-gray-700" />
+                    </div>
+                    <h3 className="font-bold text-lg">{h.title}</h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">{h.proof}</p>
+                  </div>
+                );
+              }
+            )}
           </div>
         </section>
 
