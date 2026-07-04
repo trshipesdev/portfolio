@@ -21,7 +21,6 @@ import {
   Headset,
   Check,
   MessageSquare,
-  BarChart3,
   ArrowLeft,
 } from "lucide-react";
 import {
@@ -32,6 +31,7 @@ import {
   EDUCATION,
   HATS_PROOF,
   CLIENT_BRIEF,
+  CAREER_ARC,
 } from "../data/portfolio";
 
 const MODERN_PROOF_TITLES = ["The Customer-Facing Engineer", "The Escalation Engineer"];
@@ -49,6 +49,7 @@ const initials = PROFILE.name
 const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
   const [gatedProject, setGatedProject] = useState(null);
   const [demoMode, setDemoMode] = useState(false);
+  const [arcTier, setArcTier] = useState({});
 
   return (
     <div className="modern-body" data-testid="modern-portfolio">
@@ -149,15 +150,40 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
           </section>
 
           <section className="py-8 modern-divider">
-            <p className="modern-eyebrow mb-6">The Numbers</p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {CLIENT_BRIEF.metrics.map((m) => (
-                <div key={m.label} className="modern-card p-6 text-center">
-                  <BarChart3 size={18} className="text-gray-400 mx-auto mb-3" />
-                  <p className="text-2xl font-bold">{m.value}</p>
-                  <p className="text-xs text-gray-500 mt-1">{m.label}</p>
-                </div>
-              ))}
+            <p className="modern-eyebrow mb-2">A Story That Comes Full Circle</p>
+            <p className="text-xs text-gray-500 mb-6">
+              Same story, different lingo. Pick the level per card.
+            </p>
+            <div className="space-y-4">
+              {CAREER_ARC.map((stage) => {
+                const tier = arcTier[stage.id] || "middle";
+                const body = stage[tier] || stage.middle;
+                return (
+                  <div key={stage.id} className="modern-card p-6">
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                      <h3 className="font-bold text-lg">{stage.title}</h3>
+                      <div className="flex gap-1 flex-shrink-0">
+                        {["customer", "middle", "technical"].map((t) => (
+                          <button
+                            key={t}
+                            type="button"
+                            onClick={() => setArcTier((prev) => ({ ...prev, [stage.id]: t }))}
+                            data-testid={`arc-tier-${stage.id}-${t}`}
+                            className={`text-[10px] uppercase tracking-wide px-2.5 py-1 rounded-full border transition ${
+                              tier === t
+                                ? "bg-gray-900 text-white border-gray-900"
+                                : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
+                            }`}
+                          >
+                            {t === "customer" ? "Simple" : t === "middle" ? "Standard" : "Technical"}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <p className="text-sm text-gray-700 leading-relaxed">{body}</p>
+                  </div>
+                );
+              })}
             </div>
           </section>
 
