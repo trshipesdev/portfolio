@@ -208,12 +208,12 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
       <header className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pt-8 md:pt-20 pb-24 overflow-hidden">
         {/* Floating color confetti */}
         {[
-          { emoji: "✦", top: "6%", left: "8%", color: "#ff2fd6", size: 22, delay: 0 },
-          { emoji: "✧", top: "14%", left: "88%", color: "#66ffff", size: 28, delay: 0.6 },
-          { emoji: "★", top: "42%", left: "3%", color: "#ffd166", size: 18, delay: 1.2 },
-          { emoji: "✦", top: "58%", left: "92%", color: "#c299fc", size: 24, delay: 0.3 },
-          { emoji: "✧", top: "78%", left: "12%", color: "#ff69b4", size: 20, delay: 0.9 },
-          { emoji: "★", top: "2%", left: "62%", color: "#ffd166", size: 16, delay: 1.5 },
+          { emoji: "✦", top: "6%", left: "2%", color: "#ff2fd6", size: 22, delay: 0 },
+          { emoji: "✧", top: "14%", left: "96%", color: "#66ffff", size: 28, delay: 0.6 },
+          { emoji: "★", top: "42%", left: "97%", color: "#ffd166", size: 18, delay: 1.2 },
+          { emoji: "✦", top: "58%", left: "3%", color: "#c299fc", size: 24, delay: 0.3 },
+          { emoji: "✧", top: "78%", left: "95%", color: "#ff69b4", size: 20, delay: 0.9 },
+          { emoji: "★", top: "2%", left: "78%", color: "#ffd166", size: 16, delay: 1.5 },
         ].map((s, i) => (
           <motion.span
             key={i}
@@ -285,22 +285,34 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
             custom={2}
             className="md:col-span-7 max-w-2xl"
           >
-            <p
-              className="text-lg md:text-xl text-neutral-700 leading-relaxed"
-              data-testid="hero-tagline"
-            >
-              {PROFILE.tagline}
-            </p>
+            <div className="relative pl-5">
+              <span
+                className="absolute left-0 top-0.5 bottom-0.5 w-[3px] rounded-full"
+                style={{
+                  background:
+                    "linear-gradient(180deg, #ff2fd6, #ffd166, #66ffff, #c299fc)",
+                }}
+                aria-hidden="true"
+              />
+              <p
+                className="text-lg md:text-xl text-neutral-800 leading-relaxed"
+                data-testid="hero-tagline"
+              >
+                {PROFILE.tagline}
+              </p>
+            </div>
             <motion.a
               href={PROFILE.greetingCardHref}
               target="_blank"
               rel="noreferrer"
               data-testid="greeting-card-link"
-              whileHover={{ scale: 1.04 }}
+              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
-              className="glam-glass mt-6 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm md:text-base font-medium hover:text-[#b8952e] transition"
+              className="glam-glass glam-rainbow-hover mt-6 inline-flex items-center gap-3 rounded-2xl px-5 py-4 text-sm md:text-base font-medium hover:text-[#b8952e] transition"
             >
-              <Gift size={18} className="glam-gold flex-shrink-0" />
+              <span className="w-9 h-9 rounded-full bg-white/70 flex items-center justify-center flex-shrink-0">
+                <Gift size={16} className="glam-gold" />
+              </span>
               see what my coworkers say about me for yourself (a card I got
               when I went back and finished my degree 😎💪)
             </motion.a>
