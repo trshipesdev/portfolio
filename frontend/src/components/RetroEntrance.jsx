@@ -172,6 +172,18 @@ const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
             <h3 className="text-pink-400 text-2xl font-black text-center mb-2">
               ★ about me ★
             </h3>
+
+            <div
+              className="flex items-center justify-center gap-2 mb-1"
+              data-testid="aim-status"
+            >
+              <span className="w-2.5 h-2.5 rounded-full bg-lime-400 inline-block animate-pulse" />
+              <span className="italic text-lime-300 text-xs">online now</span>
+            </div>
+            <p className="text-center text-cyan-300 italic text-[11px] mb-3">
+              away message: "afk bc 2 cool 4 u"
+            </p>
+
             <ul className="text-lime-300 text-sm space-y-1">
               <li className="retro-heart">name: Tara ♡</li>
               <li className="retro-heart">a/s/l: 30-something / F / Remote</li>
@@ -282,6 +294,9 @@ const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
             <div className="text-center">
               <p className="text-pink-400 font-black">✿ WEB RINGS ✿</p>
               <EraWebring onPrev={onEraPrev} onNext={onEraNext} linkClassName="retro-link" />
+              <p className="retro-blink text-yellow-300 text-xs font-bold mt-2">
+                &lt;&lt;&lt; don't forget to click me too! &gt;&gt;&gt;
+              </p>
             </div>
           </div>
         </div>
