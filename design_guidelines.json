@@ -1,0 +1,75 @@
+{
+  "project_name": "Tara Shipes Portfolio",
+  "theme_archetype": "Dual Experience: 90s MySpace Joke & Archetype 5 (Luxury) + 3 (Pastel & Soft) Future Glam",
+  "modes": {
+    "entrance": "retro90s",
+    "portfolio": "futureGlam"
+  },
+  "color_palette": {
+    "retro90s": {
+      "background": "#000000",
+      "text": "#00FF00",
+      "primary": "#FF69B4",
+      "secondary": "#00FFFF",
+      "accent": "#FFFF00",
+      "border": "#808080"
+    },
+    "futureGlam": {
+      "background": "#FAFAFA",
+      "text": "#111111",
+      "primary": "#F4C2C2",
+      "secondary": "#EAEAEA",
+      "accent": "#D4AF37",
+      "glass_bg": "rgba(255, 255, 255, 0.4)",
+      "glass_border": "rgba(255, 255, 255, 0.5)",
+      "holographic_tint": "rgba(180, 198, 231, 0.2)"
+    }
+  },
+  "typography": {
+    "retro90s": {
+      "heading": "\"Comic Sans MS\", \"Chalkboard SE\", cursive",
+      "body": "\"Times New Roman\", Times, serif"
+    },
+    "futureGlam": {
+      "heading": "\"Playfair Display\", serif",
+      "body": "\"DM Sans\", sans-serif"
+    }
+  },
+  "layout_spacing": {
+    "retro90s": {
+      "container": "max-w-[800px] mx-auto text-center border-4 border-ridge border-gray-500 p-4 bg-black text-lime-400"
+    },
+    "futureGlam": {
+      "container": "max-w-7xl mx-auto px-6 md:px-12",
+      "grid": "grid-cols-1 md:grid-cols-12 gap-8",
+      "bento_ratios": "col-span-12 md:col-span-8 for primary project, col-span-12 md:col-span-4 for secondary"
+    }
+  },
+  "components": {
+    "RetroButton": "bg-[#FF69B4] text-white border-[6px] border-outset border-pink-400 p-4 text-2xl font-bold cursor-pointer hover:bg-[#FF1493] rounded-none",
+    "FutureGlassCard": "backdrop-blur-2xl bg-white/40 border border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.04)] rounded-3xl p-8 hover:-translate-y-1 transition-transform duration-500",
+    "MarqueeRetro": "Text scrolling horizontally with HTML marquee tag style using framer-motion or CSS."
+  },
+  "media": {
+    "future_holographic_bg": "https://images.unsplash.com/photo-1659776026027-6b0f66d92675?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MTN8MHwxfHNlYXJjaHwyfHxob2xvZ3JhcGhpYyUyMGNocm9tZSUyMGFic3RyYWN0fGVufDB8fHx8MTc4MzExOTIyOHww&ixlib=rb-4.1.0&q=85",
+    "future_chrome_bg": "https://images.unsplash.com/photo-1773982594046-2e4faae9f65c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MTN8MHwxfHNlYXJjaHwzfHxob2xvZ3JhcGhpYyUyMGNocm9tZSUyMGFic3RyYWN0fGVufDB8fHx8MTc4MzExOTIyOHww&ixlib=rb-4.1.0&q=85",
+    "tara_portrait": "https://images.unsplash.com/photo-1770627000564-3feb36aecbcd?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB3b21hbiUyMHBpbmslMjBibGF6ZXIlMjBwb3J0cmFpdHxlbnwwfHx8fDE3ODMxMTkyMjh8MA&ixlib=rb-4.1.0&q=85",
+    "project_mockup_1": "https://images.unsplash.com/photo-1627542557169-5ed71c66ed85?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwxfHxhcHAlMjBVSSUyMG1vYmlsZSUyMG1vY2t1cHxlbnwwfHx8fDE3ODMxMTkyMjh8MA&ixlib=rb-4.1.0&q=85",
+    "project_mockup_2": "https://images.unsplash.com/photo-1623824204241-f851d3bcfaf5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwyfHxhcHAlMjBVSSUyMG1vYmlsZSUyMG1vY2t1cHxlbnwwfHx8fDE3ODMxMTkyMjh8MA&ixlib=rb-4.1.0&q=85"
+  },
+  "content_strategy": {
+    "projects": ["Delulu Dossier", "Guest & Garnish", "Pixelies", "Honest Abe Plumbing", "tothemoon"],
+    "skills": ["Python", "Django", "React", "AWS", "TypeScript"],
+    "sections": ["Hero", "About", "Skills", "Projects grid", "Experience", "Contact (Links Only)"]
+  },
+  "instructions_to_main_agent": [
+    "1. STATE MANAGEMENT: Create a boolean state `isFuture` (default false). When false, render Retro90s component. When true, render FutureGlam component.",
+    "2. ENTRANCE SCREEN (Retro90s): Build an intentionally chaotic 90s MySpace theme. Use raw CSS styles: hot pinks, lime green text on black background, Comic Sans, tiled starry backgrounds (can be CSS radial gradients), mocked hit counters, and a massive 'Click here to enter' button.",
+    "3. TRANSITION: On clicking the button, trigger a dramatic framer-motion animation (sparkle explosion, full screen flash, scale up) before setting `isFuture` to true.",
+    "4. FUTURE PORTFOLIO (FutureGlam): This is the serious, gorgeous, C-Suite luxury feminine side. Light theme. Use Playfair Display for editorial serif headings (tight tracking) and DM Sans for clean body text.",
+    "5. GLASSMORPHISM & CHROME: Use the provided holographic images as extremely subtle, blurred backgrounds. The main containers must be high-end Glassmorphism (backdrop-blur-2xl, bg-white/40, delicate inner white borders).",
+    "6. GRID: Display the 5 projects in a Bento grid layout (e.g., one large hero project, others in smaller grid cells). Each project is its own 'futureGlassCard'.",
+    "7. TESTING: Add data-testid attributes to ALL interactive elements (e.g., 'enter-portfolio-button', 'project-card-delulu', 'github-link').",
+    "8. TOGGLE: Add a tiny easter-egg button in the FutureGlam footer to toggle `isFuture` back to false."
+  ]
+}
