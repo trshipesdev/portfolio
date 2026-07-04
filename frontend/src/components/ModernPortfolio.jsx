@@ -49,7 +49,7 @@ const initials = PROFILE.name
 const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
   const [gatedProject, setGatedProject] = useState(null);
   const [demoMode, setDemoMode] = useState(false);
-  const [arcTier, setArcTier] = useState({});
+  const [arcTier, setArcTier] = useState("middle");
 
   return (
     <div className="modern-body" data-testid="modern-portfolio">
@@ -150,36 +150,35 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
           </section>
 
           <section className="py-8 modern-divider">
-            <p className="modern-eyebrow mb-2">A Story That Comes Full Circle</p>
+            <div className="flex items-start justify-between gap-3 mb-2 flex-wrap">
+              <p className="modern-eyebrow">A Story That Comes Full Circle</p>
+              <div className="flex gap-1 flex-shrink-0">
+                {["customer", "middle", "technical"].map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() => setArcTier(t)}
+                    data-testid={`arc-tier-${t}`}
+                    className={`text-[10px] uppercase tracking-wide px-2.5 py-1 rounded-full border transition ${
+                      arcTier === t
+                        ? "bg-gray-900 text-white border-gray-900"
+                        : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
+                    }`}
+                  >
+                    {t === "customer" ? "Simple" : t === "middle" ? "Standard" : "Technical"}
+                  </button>
+                ))}
+              </div>
+            </div>
             <p className="text-xs text-gray-500 mb-6">
-              Same story, different lingo. Pick the level per card.
+              Same story, different lingo.
             </p>
             <div className="space-y-4">
               {CAREER_ARC.map((stage) => {
-                const tier = arcTier[stage.id] || "middle";
-                const body = stage[tier] || stage.middle;
+                const body = stage[arcTier] || stage.middle;
                 return (
                   <div key={stage.id} className="modern-card p-6">
-                    <div className="flex items-start justify-between gap-3 mb-3">
-                      <h3 className="font-bold text-lg">{stage.title}</h3>
-                      <div className="flex gap-1 flex-shrink-0">
-                        {["customer", "middle", "technical"].map((t) => (
-                          <button
-                            key={t}
-                            type="button"
-                            onClick={() => setArcTier((prev) => ({ ...prev, [stage.id]: t }))}
-                            data-testid={`arc-tier-${stage.id}-${t}`}
-                            className={`text-[10px] uppercase tracking-wide px-2.5 py-1 rounded-full border transition ${
-                              tier === t
-                                ? "bg-gray-900 text-white border-gray-900"
-                                : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
-                            }`}
-                          >
-                            {t === "customer" ? "Simple" : t === "middle" ? "Standard" : "Technical"}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
+                    <h3 className="font-bold text-lg mb-3">{stage.title}</h3>
                     <p className="text-sm text-gray-700 leading-relaxed">{body}</p>
                   </div>
                 );
