@@ -458,6 +458,8 @@ code {
 .terminal-link:hover {
     background: #33ff66;
     color: #050805;
+    position: relative;
+    z-index: 2;
 }
 
 .terminal-input {
