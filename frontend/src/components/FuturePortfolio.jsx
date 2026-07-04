@@ -60,7 +60,8 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
   return (
     <div className="glam-body glam-cursor relative" data-testid="future-portfolio">
       {/* Nav */}
-      <nav className="relative z-10 max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-6">
+      <nav className="glam-glass sticky top-0 z-30 px-6 md:px-12 py-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -173,6 +174,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+        </div>
       </nav>
 
       {/* Hero */}
