@@ -5,7 +5,7 @@ export const PROFILE = {
   tagline:
     "I ship production code across the stack. Customer-facing support, escalation, and integration engineering. Plus, I've been told I'm really cool to work with. Pinky promise. :)",
   professionalSummary:
-    "Full stack software and integration engineer with a track record of shipping production code end to end. I specialize in customer-facing support, escalation, and integration engineering, bridging the gap between complex technical problems and reliable, maintainable solutions.",
+    "Full stack engineer who's spent her career at the intersection of support, engineering, and the people in between: sole escalation engineer bridging support and engineering teams, hands-on with production systems carrying real financial and data risk, and equally comfortable being the technical point of contact for enterprise clients and small businesses alike.",
   greetingCardHref:
     "https://www.groupgreeting.com/card/b21844a21543af6/delivered",
   location: "Open to remote positions",
@@ -119,14 +119,8 @@ export const HATS_PROOF = [
 // Client-facing capability brief, shown via the "Demo & Brief" toggle on the
 // professional page. Grounded in facts already established above, not new claims.
 export const CLIENT_BRIEF = {
-  everyEngagement: [
-    "A scoping conversation before any code gets written, not after.",
-    "One direct technical point of contact for the life of the engagement, no bouncing between people.",
-    "Regular, plain-language status updates. No jargon dumps.",
-    "Bugs get caught and fixed before the client ever sees them, not after they report them.",
-    "Documentation and a clean handoff, every time.",
-    "I stay reachable after launch. Retainer or not, I don't disappear once the invoice clears.",
-  ],
+  everyEngagement:
+    "I've spent my career being the connective tissue between teams that don't naturally talk to each other: running cross-functional data office hours between engineering, product, and account management, sitting in sprint planning and point planning as the engineering side of a support team, and being the person enterprise customers get routed to when a question is too technical for the standard queue. That's what I bring to every engagement: one person who can sit in the technical conversation and the business conversation without needing a translator.",
   communicationStyle:
     "Direct, plain language, and comfortable translating technical tradeoffs into business terms. No jargon walls.",
 };
@@ -135,6 +129,12 @@ export const CLIENT_BRIEF = {
 // Demo & Brief. Each stage has 3 lingo tiers (customer / middle / technical).
 // Only "middle" is filled in so far; "customer" and "technical" fall back to
 // it until Tara supplies those versions. Do not invent that copy.
+// Condensed version of the CAREER_ARC story, for the inline expander under
+// the Software Engineer role on the normal (non-Demo & Brief) portfolio view.
+// Deliberately reworded rather than reused verbatim.
+export const CAREER_ARC_SUMMARY =
+  "Promoted twice in under 3 years. When the entire support engineering team was cut in a mass layoff, I was the one kept, specifically because I could do both support and engineering. What started as volunteering for holiday coverage turned into stabilizing 14 silently failed scrapers solo and building a triage system leadership adopted company-wide. A year later, I was the one trusted to execute the very deprecation those scrapers had been protecting against, from the audit through SSH'ing into production myself.";
+
 export const CAREER_ARC = [
   {
     id: "where-it-started",

@@ -22,6 +22,7 @@ import {
   Check,
   MessageSquare,
   ArrowLeft,
+  ChevronDown,
 } from "lucide-react";
 import {
   PROFILE,
@@ -32,6 +33,7 @@ import {
   HATS_PROOF,
   CLIENT_BRIEF,
   CAREER_ARC,
+  CAREER_ARC_SUMMARY,
 } from "../data/portfolio";
 
 const MODERN_PROOF_TITLES = ["The Customer-Facing Engineer", "The Escalation Engineer"];
@@ -50,6 +52,7 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
   const [gatedProject, setGatedProject] = useState(null);
   const [demoMode, setDemoMode] = useState(false);
   const [arcTier, setArcTier] = useState("middle");
+  const [showFullStory, setShowFullStory] = useState(false);
 
   return (
     <div className="modern-body" data-testid="modern-portfolio">
@@ -125,16 +128,14 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
         >
           <section className="py-8 modern-divider">
             <p className="modern-eyebrow mb-4">What Every Engagement Includes</p>
-            <ul className="space-y-3">
-              {CLIENT_BRIEF.everyEngagement.map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Check size={13} className="text-gray-700" />
-                  </span>
-                  <span className="text-base text-gray-700 leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="modern-card p-6 flex items-start gap-4">
+              <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+                <Check size={18} className="text-gray-700" />
+              </div>
+              <p className="text-base text-gray-700 leading-relaxed">
+                {CLIENT_BRIEF.everyEngagement}
+              </p>
+            </div>
           </section>
 
           <section className="py-8 modern-divider">
@@ -297,6 +298,35 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
                     </li>
                   ))}
                 </ul>
+                {e.company === "UtilityAPI" && (
+                  <div className="md:col-span-12 md:pl-[calc(25%+1rem)]">
+                    <button
+                      type="button"
+                      onClick={() => setShowFullStory((v) => !v)}
+                      data-testid="experience-story-toggle"
+                      className="modern-link flex items-center gap-1 text-sm mt-1"
+                    >
+                      {showFullStory ? "hide the full story" : "see the full story"}
+                      <ChevronDown
+                        size={14}
+                        className={`transition-transform ${showFullStory ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {showFullStory && (
+                        <motion.p
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          data-testid="experience-story-content"
+                          className="text-sm text-gray-700 leading-relaxed mt-3 overflow-hidden"
+                        >
+                          {CAREER_ARC_SUMMARY}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                )}
               </div>
             ))}
           </div>
