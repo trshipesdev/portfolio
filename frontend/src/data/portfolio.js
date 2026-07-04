@@ -116,6 +116,26 @@ export const HATS_PROOF = [
   },
 ];
 
+// Client-facing capability brief, shown via the "Demo & Brief" toggle on the
+// professional page. Grounded in facts already established above, not new claims.
+export const CLIENT_BRIEF = {
+  everyEngagement: [
+    "A scoping conversation before any code gets written, not after.",
+    "One direct technical point of contact for the life of the engagement, no bouncing between people.",
+    "Regular, plain-language status updates. No jargon dumps.",
+    "Bugs get caught and fixed before the client ever sees them, not after they report them.",
+    "Documentation and a clean handoff, every time.",
+    "I stay reachable after launch. Retainer or not, I don't disappear once the invoice clears.",
+  ],
+  communicationStyle:
+    "Direct, plain language, and comfortable translating technical tradeoffs into business terms. No jargon walls.",
+  metrics: [
+    { label: "GBP interaction increase", value: "200%" },
+    { label: "Authorizations safely revoked", value: "~20,000" },
+    { label: "Downtime during 40-utility deprecation", value: "Zero" },
+  ],
+};
+
 // Projects ordered: Honest Abe #1, This Portfolio #2, G&G #3, Escalate #4,
 // then tothemoon, Pixelies, Delulu.
 // action: 'open' (external link), 'password-reveal' (modal), 'image-open' (opens image in new tab),

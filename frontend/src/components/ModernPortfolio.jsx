@@ -19,6 +19,10 @@ import {
   Palette,
   AlertTriangle,
   Headset,
+  Check,
+  MessageSquare,
+  BarChart3,
+  ArrowLeft,
 } from "lucide-react";
 import {
   PROFILE,
@@ -27,6 +31,7 @@ import {
   EXPERIENCE,
   EDUCATION,
   HATS_PROOF,
+  CLIENT_BRIEF,
 } from "../data/portfolio";
 
 const MODERN_PROOF_TITLES = ["The Customer-Facing Engineer", "The Escalation Engineer"];
@@ -43,6 +48,7 @@ const initials = PROFILE.name
 
 const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
   const [gatedProject, setGatedProject] = useState(null);
+  const [demoMode, setDemoMode] = useState(false);
 
   return (
     <div className="modern-body" data-testid="modern-portfolio">
@@ -61,13 +67,15 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
           </button>
           <span className="font-bold tracking-tight">{PROFILE.name}</span>
         </div>
-        <div className="hidden md:flex gap-8 text-sm font-medium text-gray-600">
-          <a href="#about" className="hover:text-black transition">About</a>
-          <a href="#skills" className="hover:text-black transition">Skills</a>
-          <a href="#experience" className="hover:text-black transition">Experience</a>
-          <a href="#work" className="hover:text-black transition">Work</a>
-          <a href="#contact" className="hover:text-black transition">Contact</a>
-        </div>
+        {!demoMode && (
+          <div className="hidden md:flex gap-8 text-sm font-medium text-gray-600">
+            <a href="#about" className="hover:text-black transition">About</a>
+            <a href="#skills" className="hover:text-black transition">Skills</a>
+            <a href="#experience" className="hover:text-black transition">Experience</a>
+            <a href="#work" className="hover:text-black transition">Work</a>
+            <a href="#contact" className="hover:text-black transition">Contact</a>
+          </div>
+        )}
       </nav>
 
       {/* Hero */}
@@ -97,9 +105,80 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
           <a href="#contact" className="modern-btn-outline">
             Get In Touch
           </a>
+          <button
+            type="button"
+            onClick={() => setDemoMode((v) => !v)}
+            data-testid="modern-demo-toggle"
+            className="modern-btn"
+          >
+            {demoMode ? <ArrowLeft size={16} /> : <MessageSquare size={16} />}
+            {demoMode ? "Back to full resume" : "Demo & Brief"}
+          </button>
         </div>
       </header>
 
+      {demoMode ? (
+        <main
+          className="max-w-3xl mx-auto px-6 md:px-12 pb-24"
+          data-testid="modern-demo-brief"
+        >
+          <section className="py-8 modern-divider">
+            <p className="modern-eyebrow mb-4">What Every Engagement Includes</p>
+            <ul className="space-y-3">
+              {CLIENT_BRIEF.everyEngagement.map((item, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Check size={13} className="text-gray-700" />
+                  </span>
+                  <span className="text-base text-gray-700 leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="py-8 modern-divider">
+            <p className="modern-eyebrow mb-4">How I Communicate</p>
+            <div className="modern-card p-6 flex items-start gap-4">
+              <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+                <MessageSquare size={18} className="text-gray-700" />
+              </div>
+              <p className="text-base text-gray-700 leading-relaxed">
+                {CLIENT_BRIEF.communicationStyle}
+              </p>
+            </div>
+          </section>
+
+          <section className="py-8 modern-divider">
+            <p className="modern-eyebrow mb-6">The Numbers</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {CLIENT_BRIEF.metrics.map((m) => (
+                <div key={m.label} className="modern-card p-6 text-center">
+                  <BarChart3 size={18} className="text-gray-400 mx-auto mb-3" />
+                  <p className="text-2xl font-bold">{m.value}</p>
+                  <p className="text-xs text-gray-500 mt-1">{m.label}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="py-8 text-center">
+            <p className="modern-eyebrow mb-4">Get In Touch</p>
+            <div className="flex flex-wrap justify-center items-center gap-5">
+              <a href={`mailto:${PROFILE.email}`} className="modern-btn">
+                <Mail size={16} /> {PROFILE.email}
+              </a>
+              <a
+                href={PROFILE.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="modern-link flex items-center gap-2"
+              >
+                <Linkedin size={16} /> LinkedIn
+              </a>
+            </div>
+          </section>
+        </main>
+      ) : (
       <main className="max-w-5xl mx-auto px-6 md:px-12">
         {/* About */}
         <section id="about" className="py-16 modern-divider">
@@ -330,6 +409,7 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
           </div>
         </section>
       </main>
+      )}
 
       {/* Footer */}
       <footer className="modern-divider text-center py-10">

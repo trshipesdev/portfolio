@@ -17,7 +17,11 @@ import UpdateTransition from "@/components/UpdateTransition";
 const ERAS = ["terminal", "myspace", "modern", "future"];
 
 function App() {
-  const [eraIndex, setEraIndex] = useState(1); // start on 2003 MySpace
+  // "~" is an alt entry point that skips straight to the professional page,
+  // for links shared with people who don't need the time-machine intro.
+  const [eraIndex, setEraIndex] = useState(() =>
+    typeof window !== "undefined" && window.location.hash === "#~" ? 2 : 1
+  );
   // 'era' | 'jump' | 'update' | 'makeover' | 'reverse'
   const [stage, setStage] = useState("era");
   const [pendingEra, setPendingEra] = useState(null);
