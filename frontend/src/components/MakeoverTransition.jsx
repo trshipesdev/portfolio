@@ -1,6 +1,9 @@
 import React, { useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 
+// Future page's rainbow blended with MySpace's lime/yellow.
+const SPARKLE_PALETTE = ["#ffffff", "#ffd166", "#ff2fd6", "#66ffff", "#c299fc", "#a3e635"];
+
 /**
  * MakeoverTransition — girly-spy makeover with binary rain behind
  * a glossy "bend & snap." reveal. ~2.2s total.
@@ -9,7 +12,16 @@ const BinaryRain = () => {
   const rows = useMemo(() => {
     const h = typeof window !== "undefined" ? window.innerHeight : 900;
     const count = Math.ceil(h / 92); // sparser — one row every ~92px
-    const palette = ["#ff2fd6", "#66ffff", "#ffffff", "#ff69b4"];
+    // Future page's rainbow (pink/gold/cyan/purple) blended with MySpace's
+    // signature lime + yellow, so the transition bridges both eras' palettes.
+    const palette = [
+      "#ff2fd6",
+      "#ffd166",
+      "#66ffff",
+      "#c299fc",
+      "#a3e635",
+      "#fde047",
+    ];
     return Array.from({ length: count }).map((_, i) => ({
       y: i * 92 + 24,
       delay: Math.random() * 1.4,
@@ -87,12 +99,13 @@ const MakeoverTransition = ({ onComplete }) => {
       transition={{ duration: 0.2 }}
       data-testid="makeover-transition"
     >
-      {/* Flash background — cyberpunk-Legally-Blonde palette (deeper for binary contrast) */}
+      {/* Flash background — Future page's rainbow blended toward MySpace's
+          lime/yellow at the outer edge, deep for binary contrast */}
       <motion.div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(circle, #ffffff 0%, #ffb3d9 22%, #ff2fd6 50%, #4a0033 85%, #0a0018 100%)",
+            "radial-gradient(circle, #ffffff 0%, #ffd166 18%, #ff2fd6 38%, #c299fc 58%, #a3e635 78%, #0a0018 100%)",
         }}
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: [0, 1.6, 3], opacity: [0, 1, 0.55] }}
@@ -120,7 +133,7 @@ const MakeoverTransition = ({ onComplete }) => {
             left: `${s.left}%`,
             top: `${s.top}%`,
             fontSize: s.size,
-            color: i % 3 === 0 ? "#fff" : i % 3 === 1 ? "#ffd700" : "#f4c2c2",
+            color: SPARKLE_PALETTE[i % SPARKLE_PALETTE.length],
             textShadow: "0 0 12px rgba(255,255,255,0.9)",
           }}
           initial={{ scale: 0, rotate: 0, opacity: 0 }}
