@@ -277,6 +277,17 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
                   <p className="text-xs uppercase tracking-wide text-gray-500">{e.period}</p>
                   <h3 className="font-bold mt-1">{e.company}</h3>
                   <p className="text-sm text-gray-600">{e.role}</p>
+                  {e.company === "UtilityAPI" && (
+                    <button
+                      type="button"
+                      onClick={() => setDemoMode((v) => !v)}
+                      data-testid="modern-demo-toggle-experience"
+                      className={`modern-btn mt-4 ${demoMode ? "" : "modern-demo-glow"}`}
+                    >
+                      {demoMode ? <ArrowLeft size={16} /> : <MessageSquare size={16} />}
+                      {demoMode ? "Back to full resume" : "Demo & Brief"}
+                    </button>
+                  )}
                 </div>
                 <ul className="md:col-span-9 space-y-2 text-sm text-gray-700">
                   {e.highlights.map((h, hi) => (
@@ -289,15 +300,6 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
               </div>
             ))}
           </div>
-          <button
-            type="button"
-            onClick={() => setDemoMode((v) => !v)}
-            data-testid="modern-demo-toggle-experience"
-            className={`modern-btn mt-8 ${demoMode ? "" : "modern-demo-glow"}`}
-          >
-            {demoMode ? <ArrowLeft size={16} /> : <MessageSquare size={16} />}
-            {demoMode ? "Back to full resume" : "Demo & Brief"}
-          </button>
         </section>
 
         {/* Work */}
