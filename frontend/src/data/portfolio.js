@@ -181,7 +181,7 @@ export const CAREER_ARC = [
   {
     id: "full-circle",
     title: "Full Circle",
-    date: "September 2024",
+    date: "September 2025",
     middle:
       "Executed the deprecation myself: SSH'd into production and revoked customer access to third-party credentials across ~40 utilities, about 20,000 authorizations, with zero downtime. Monitored Athena and Sentry throughout to catch anything before it became a customer problem.",
   },
