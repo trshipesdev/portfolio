@@ -311,6 +311,10 @@ const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
             <div className="mt-2">
               <p className="text-cyan-300 italic">
                 would you like to say something?
+                <span className="retro-blink">_</span>{" "}
+                <span className="text-yellow-300 not-italic font-bold">
+                  go ahead! its interactive!
+                </span>
               </p>
               <form
                 onSubmit={handleGuestbookSubmit}

@@ -173,13 +173,21 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
             <p className="text-xs text-gray-500 mb-6">
               Same story, different lingo.
             </p>
-            <div className="space-y-4">
+            <div className="relative border-l-2 border-gray-200 ml-3 space-y-8">
               {CAREER_ARC.map((stage) => {
                 const body = stage[arcTier] || stage.middle;
                 return (
-                  <div key={stage.id} className="modern-card p-6">
-                    <h3 className="font-bold text-lg mb-3">{stage.title}</h3>
-                    <p className="text-sm text-gray-700 leading-relaxed">{body}</p>
+                  <div key={stage.id} className="relative pl-8" data-testid={`arc-stage-${stage.id}`}>
+                    <span className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-gray-900 border-4 border-white" />
+                    {stage.date && (
+                      <p className="text-xs uppercase tracking-wide text-gray-400 mb-1">
+                        {stage.date}
+                      </p>
+                    )}
+                    <div className="modern-card p-6">
+                      <h3 className="font-bold text-lg mb-3">{stage.title}</h3>
+                      <p className="text-sm text-gray-700 leading-relaxed">{body}</p>
+                    </div>
                   </div>
                 );
               })}

@@ -131,44 +131,63 @@ export const CLIENT_BRIEF = {
     "Direct, plain language, and comfortable translating technical tradeoffs into business terms. No jargon walls.",
 };
 
-// The full-circle UtilityAPI scraper story, shown in Demo & Brief. Each stage
-// has 3 lingo tiers (customer / middle / technical). Only "middle" is filled
-// in so far; "customer" and "technical" fall back to it until Tara supplies
-// those versions — do not invent that copy.
+// The full-circle UtilityAPI scraper story, shown as a vertical timeline in
+// Demo & Brief. Each stage has 3 lingo tiers (customer / middle / technical).
+// Only "middle" is filled in so far; "customer" and "technical" fall back to
+// it until Tara supplies those versions. Do not invent that copy.
 export const CAREER_ARC = [
   {
     id: "where-it-started",
     title: "Where It Started",
+    date: "July 2022",
     middle:
-      "Technical support, debugging utility data scrapers every day. Learned every single one intimately: which were flaky, which broke on specific utility site layouts, which had regex issues.",
+      "Started in technical software support for enterprise and non-enterprise customers alike. Came in with a personal engineering and schooling history already, and learned the product, the codebase, and the API from the customer's point of view, alongside them: which scrapers were flaky, which broke on specific utility site layouts, which had regex issues. Mentored along the way.",
   },
   {
-    id: "christmas-2023",
-    title: "Christmas 2023",
+    id: "moved-to-application-support",
+    title: "Moved to Application Support Engineering",
+    date: "August 2023",
     middle:
-      "Volunteered for holiday coverage post-layoff, nobody else around. Ticket volume was chaos and nobody knew why. Traced it back to 17 silently failed scrapers: no errors thrown, they'd just quietly stopped returning data. Fixed 14 solo, about 150 frontend selector fixes and about 35 parser regex fixes, and staged every PR before the team came back so they had a clean prioritized list instead of chaos.",
+      "A team built around the intersection of support and engineering, with me at the center and the reason it existed. Helped interview and held real weight in hiring the rest of the new team.",
+  },
+  {
+    id: "holiday-incident-2023",
+    title: "Holiday Incident 2023",
+    date: "December 2023",
+    middle:
+      "Volunteered for holiday coverage after the entire Application Support Engineering team was let go in a mass layoff. I was the one survivor, kept specifically because I could do both support and engineering. What made it crazy: support was slammed with a backlog of 15+ pages, something that had never happened before in the company's history. We were just so overwhelmed by the loss. Ticket volume was chaos with no clear cause. Traced it back to 17 silently failed scrapers: no errors thrown, they'd just quietly stopped returning data. Stabilized 14 solo, about 150 frontend selector fixes and about 35 parser regex fixes, and staged every PR before everyone came back from the holidays so there was a clean, prioritized list instead of chaos.",
   },
   {
     id: "what-outlasted-the-fix",
     title: "What Outlasted the Fix",
+    date: "Early 2024",
     middle:
       "Built a Jira triage system to organize it: epics per scraper or issue category, sub-tickets for individual fixes, priority ranked by customer impact and complexity. Leadership adopted it company-wide.",
   },
   {
     id: "the-audit",
     title: "The Audit",
+    date: null,
     middle:
       "Tasked with auditing scraper usage across utilities: which ones weren't pulling their weight anymore. That audit planted the idea of deprecation.",
   },
   {
+    id: "promoted-to-software-engineer",
+    title: "Promoted to Software Engineer",
+    date: "August 2024",
+    middle: "Promoted to Software Engineer.",
+  },
+  {
     id: "the-prep-work",
     title: "The Prep Work",
+    date: "September 2024",
     middle:
-      "Tasked with building the Django features and filters on meters and utilities needed to prep for deprecation. Also on the frontend team at the time: prepped email templates and support materials, and was the point of contact for Support, Customer Success, and Marketing throughout the transition.",
+      "Tasked with building the Django features and filters on meters and utilities needed to prep for deprecation: added activated_at and deactivated_at fields, ran bulk backfills and migrations, and updated documentation. Also on the frontend team at the time: prepped email templates and support materials, and was the point of contact for Support, Customer Success, and Marketing throughout the transition.",
   },
   {
     id: "full-circle",
     title: "Full Circle",
+    date: "September 2024",
     middle:
       "Executed the deprecation myself: SSH'd into production and revoked customer access to third-party credentials across ~40 utilities, about 20,000 authorizations, with zero downtime. Monitored Athena and Sentry throughout to catch anything before it became a customer problem.",
   },
