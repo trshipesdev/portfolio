@@ -250,7 +250,7 @@ const RetroEntrance = ({ onEnter, onEraPrev, onEraNext, onGoToTrail }) => {
                   },
                 }}
               >
-                ♡ CLICK FOR MAKEOVER AND PORTFOLIO ♡
+                ♡ CLICK FOR MAKEOVER AND REAL PORTFOLIO ♡
               </motion.button>
               <p className="text-yellow-300 text-xs retro-blink font-bold">
                 &lt;&lt;&lt; PRESS HERE!!! &gt;&gt;&gt;
@@ -292,8 +292,8 @@ const RetroEntrance = ({ onEnter, onEraPrev, onEraNext, onGoToTrail }) => {
             </p>
             <p>
               <span className="text-lime-400 font-bold">tara:</span> i dare
-              you @anonymous_hater to say something else. i triple dog dare
-              you.
+              you <span className="text-pink-400 font-bold">@anonymous_hater</span> to
+              say something else. i triple dog dare you.
             </p>
 
             {guestbookEntries.map((entry, i) => (

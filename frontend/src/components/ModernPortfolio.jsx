@@ -30,6 +30,14 @@ const initials = PROFILE.name
   .map((n) => n[0])
   .join("");
 
+// This page leads with Honest Abe, Guest & Garnish, then this portfolio;
+// the rest follow in their usual order.
+const FEATURED_ORDER = ["honest-abe-plumbing", "guest-and-garnish", "portfolio-website"];
+const MODERN_PROJECTS = [
+  ...FEATURED_ORDER.map((id) => PROJECTS.find((p) => p.id === id)),
+  ...PROJECTS.filter((p) => !FEATURED_ORDER.includes(p.id)),
+];
+
 const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
   const [gatedProject, setGatedProject] = useState(null);
 
@@ -123,7 +131,7 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
         <section id="work" className="py-16 modern-divider">
           <p className="modern-eyebrow mb-6">Selected Work</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {PROJECTS.map((p) => {
+            {MODERN_PROJECTS.map((p) => {
               const isGated = p.action === "password-reveal";
               const cardBody = (
                 <>

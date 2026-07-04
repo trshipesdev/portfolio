@@ -15,6 +15,7 @@ import {
   Copy,
   ExternalLink,
   ChevronDown,
+  Gift,
 } from "lucide-react";
 import {
   PROFILE,
@@ -217,18 +218,19 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
             >
               {PROFILE.tagline}
             </p>
-            <p className="mt-4 text-sm text-neutral-600">
-              <a
-                href={PROFILE.greetingCardHref}
-                target="_blank"
-                rel="noreferrer"
-                data-testid="greeting-card-link"
-                className="underline decoration-dotted underline-offset-4 hover:text-black italic"
-              >
-                see what my coworkers say about me for yourself (a card I got
-                when I went back and finished my degree 😎💪)
-              </a>
-            </p>
+            <motion.a
+              href={PROFILE.greetingCardHref}
+              target="_blank"
+              rel="noreferrer"
+              data-testid="greeting-card-link"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="glam-glass mt-6 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm md:text-base font-medium hover:text-[#b8952e] transition"
+            >
+              <Gift size={18} className="glam-gold flex-shrink-0" />
+              see what my coworkers say about me for yourself (a card I got
+              when I went back and finished my degree 😎💪)
+            </motion.a>
           </motion.div>
           <motion.div
             initial="hidden"
