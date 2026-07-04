@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import EraWebring from "@/components/EraWebring";
 
 const FAKE_REACTIONS = [
@@ -32,9 +32,22 @@ const FAKE_REACTIONS = [
   { user: "dial_up_dana", color: "text-orange-300", text: "forwarding to my own recruiter as a 'see, THIS is what I mean'" },
   { user: "webmaster_wes", color: "text-purple-300", text: "requesting the source code as a formal act of respect" },
   { user: "recruiter_bob", color: "text-cyan-300", text: "@futureboss.exe you know what to do" },
+  { user: "xoxo_becky", color: "text-yellow-300", text: "@futureboss.exe we can SEE you typing and not sending. we're waiting." },
+  { user: "sk8trboi22", color: "text-lime-400", text: "tagging @futureboss.exe again just in case the first 4 pings didn't load" },
+  { user: "anonymous_hater", color: "text-pink-400", text: "@futureboss.exe it's giving 'left on read', not a good look publicly" },
+  { user: "recruiter_bob", color: "text-cyan-300", text: "screenshotting @futureboss.exe's read receipt for the group chat" },
+  { user: "xoxo_becky", color: "text-yellow-300", text: "putting this in my story and tagging @futureboss.exe so everyone can see who's stalling" },
+  { user: "sk8trboi22", color: "text-lime-400", text: "@futureboss.exe the whole guestbook is watching this play out in real time" },
+  { user: "dial_up_dana", color: "text-orange-300", text: "@futureboss.exe imagine being the villain arc in someone's portfolio, couldn't be me" },
+  { user: "anonymous_hater", color: "text-pink-400", text: "sent this to 3 group chats and tagged @futureboss.exe in all of them, sorry not sorry" },
+  { user: "webmaster_wes", color: "text-purple-300", text: "@futureboss.exe the pressure is the point, that's how guestbooks work" },
+  { user: "recruiter_bob", color: "text-cyan-300", text: "@futureboss.exe your silence has been noted and archived" },
+  { user: "xoxo_becky", color: "text-yellow-300", text: "we did NOT build this whole recruiting funnel for @futureboss.exe to go quiet now" },
+  { user: "sk8trboi22", color: "text-lime-400", text: "@futureboss.exe everyone in HR already knows, might as well make it official" },
 ];
 
 const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
+  const [showVersionPopup, setShowVersionPopup] = useState(false);
   const [visitors, setVisitors] = useState(1029847);
   const [now, setNow] = useState(new Date());
   const [guestbookInput, setGuestbookInput] = useState("");
@@ -263,7 +276,7 @@ const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
 
             <div className="flex flex-col items-center gap-4 py-4">
               <motion.button
-                onClick={onEnter}
+                onClick={() => setShowVersionPopup(true)}
                 data-testid="enter-portfolio-button"
                 className="retro-btn"
                 whileHover={{ scale: 1.05 }}
@@ -380,6 +393,91 @@ const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
         </p>
       </div>
 
+      {/* Fake 90s spam popup asking which version to view */}
+      <AnimatePresence>
+        {showVersionPopup && (
+          <motion.div
+            className="fixed inset-0 z-[500] flex items-center justify-center p-4 bg-black/60"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            data-testid="version-popup-backdrop"
+          >
+            <motion.div
+              className="relative max-w-sm w-full bg-[#c0c0c0] p-1"
+              style={{
+                border: "4px outset #ffffff",
+                boxShadow: "0 0 0 2px #000, 6px 6px 0 rgba(0,0,0,0.4)",
+              }}
+              initial={{ scale: 0.7, rotate: -3 }}
+              animate={{ scale: 1, rotate: 0 }}
+              exit={{ scale: 0.7, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 18 }}
+              data-testid="version-popup"
+            >
+              <div
+                className="flex items-center justify-between px-2 py-1 mb-2"
+                style={{
+                  background: "linear-gradient(90deg, #000080, #1084d0)",
+                }}
+              >
+                <span className="text-white text-xs font-bold retro-blink">
+                  ⚠ SYSTEM ALERT ⚠
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setShowVersionPopup(false)}
+                  data-testid="version-popup-close"
+                  aria-label="Close"
+                  className="bg-[#c0c0c0] text-black text-xs font-black w-5 h-5 flex items-center justify-center"
+                  style={{ border: "2px outset #fff" }}
+                >
+                  X
+                </button>
+              </div>
+
+              <div className="px-3 pb-3 text-center bg-black">
+                <p className="text-yellow-300 font-black text-lg retro-blink">
+                  🎉 CONGRATULATIONS VISITOR!!! 🎉
+                </p>
+                <p className="text-lime-300 text-sm mt-2">
+                  you have been selected to view an{" "}
+                  <span className="text-pink-400 font-black">EXCLUSIVE</span>{" "}
+                  portfolio!!! choose your version now:
+                </p>
+
+                <div className="flex flex-col gap-3 mt-4">
+                  <button
+                    type="button"
+                    onClick={onEnter}
+                    data-testid="version-popup-pink"
+                    className="retro-btn text-sm"
+                  >
+                    💗 PINK GLAM VERSION 💗
+                  </button>
+                  <button
+                    type="button"
+                    onClick={onEraNext}
+                    data-testid="version-popup-professional"
+                    className="retro-btn text-sm"
+                  >
+                    💼 PROFESSIONAL VERSION 💼
+                  </button>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setShowVersionPopup(false)}
+                  data-testid="version-popup-dismiss"
+                  className="text-cyan-300 text-[10px] underline mt-4 opacity-70"
+                >
+                  no thanks, close this ad
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

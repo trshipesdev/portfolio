@@ -289,6 +289,15 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
               </div>
             ))}
           </div>
+          <button
+            type="button"
+            onClick={() => setDemoMode((v) => !v)}
+            data-testid="modern-demo-toggle-experience"
+            className={`modern-btn mt-8 ${demoMode ? "" : "modern-demo-glow"}`}
+          >
+            {demoMode ? <ArrowLeft size={16} /> : <MessageSquare size={16} />}
+            {demoMode ? "Back to full resume" : "Demo & Brief"}
+          </button>
         </section>
 
         {/* Work */}
