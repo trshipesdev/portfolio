@@ -126,8 +126,8 @@ export const PROJECTS = [
     name: "tothemoon",
     tag: "Web3 · WIP",
     blurb:
-      "A trading tool that watches for altcoin rug pulls and exits before the crowd does. It aims for small, steady wins all day long that add up. The repo is public for portfolio purposes but I keep it low key.",
-    stack: ["Solana", "Blockchain", "MongoDB", "Flask"],
+      "A production-grade multi-chain crypto trading bot across Solana, ETH, Base, BSC, and Polygon. Composable capital management with reserve floors, exposure caps, and drawdown brakes. Rug pull detection with automatic exit logic, cryptographic request signing, Telegram bot interface, and Flask admin dashboard.",
+    stack: ["Python", "Solana", "Flask", "MongoDB", "AWS EC2 (early version, retired)"],
     href: "https://github.com/trshipesdev/tothemoon-portfolio",
     image:
       "/images/projects/tothemoon-dashboard.jpg",
