@@ -73,7 +73,6 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
         </div>
         {!demoMode && (
           <div className="hidden md:flex gap-8 text-sm font-medium text-gray-600">
-            <a href="#about" className="hover:text-black transition">About</a>
             <a href="#skills" className="hover:text-black transition">Skills</a>
             <a href="#experience" className="hover:text-black transition">Experience</a>
             <a href="#work" className="hover:text-black transition">Work</a>
@@ -119,6 +118,19 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
             {demoMode ? "Back to full portfolio" : "Demo & Brief"}
           </button>
         </div>
+        {!demoMode && (
+          <div className="flex flex-wrap gap-6 text-sm text-gray-600 mt-8">
+            <div className="flex items-center gap-2">
+              <MapPin size={16} /> {PROFILE.location}
+            </div>
+            <div className="flex items-center gap-2">
+              <GraduationCap size={16} /> {EDUCATION.degree}, {EDUCATION.school} ({EDUCATION.years})
+            </div>
+            <div className="flex items-center gap-2">
+              <ShieldCheck size={16} /> {EDUCATION.certs[0]}
+            </div>
+          </div>
+        )}
       </header>
 
       {demoMode ? (
@@ -214,23 +226,6 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
         </main>
       ) : (
       <main className="max-w-5xl mx-auto px-6 md:px-12">
-        {/* About */}
-        <section id="about" className="py-16 modern-divider">
-          <p className="modern-eyebrow mb-4">About</p>
-          <p className="text-lg leading-relaxed max-w-3xl mb-8">{PROFILE.professionalSummary}</p>
-          <div className="flex flex-wrap gap-6 text-sm text-gray-600">
-            <div className="flex items-center gap-2">
-              <MapPin size={16} /> {PROFILE.location}
-            </div>
-            <div className="flex items-center gap-2">
-              <GraduationCap size={16} /> {EDUCATION.degree}, {EDUCATION.school} ({EDUCATION.years})
-            </div>
-            <div className="flex items-center gap-2">
-              <ShieldCheck size={16} /> {EDUCATION.certs[0]}
-            </div>
-          </div>
-        </section>
-
         {/* Proof */}
         <section id="proof" className="py-16 modern-divider">
           <p className="modern-eyebrow mb-6">Good to Talk To</p>
