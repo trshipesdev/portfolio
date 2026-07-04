@@ -154,7 +154,7 @@ export const PROJECTS = [
     name: "Delulu Dossier",
     tag: "Chrome Store · Private link",
     blurb:
-      "A Chrome extension that turns a Pinterest mood board into an 18-document AI-generated travel dossier. Zero servers, zero trackers, bring your own API key. Built solo end to end: scraping, vision AI, templating, and print-perfect PDF output, all in the browser.",
+      "A Chrome extension that turns a Pinterest travel board into an 18-document AI-generated dossier: itinerary, booking windows, packing guide, and more. Pinterest ingestion via DOM traversal and Performance API, visual-intent analysis via Claude's vision API, multi-tab preference flow. Zero servers, zero trackers, bring your own key.",
     stack: ["Chrome MV3", "Vanilla JS", "Claude Vision API"],
     href: "https://chromewebstore.google.com/detail/delulu-dossier/ghclnopegofoonhlpgfkimbnlogegibh",
     image:
