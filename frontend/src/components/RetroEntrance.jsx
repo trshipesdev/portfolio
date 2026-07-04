@@ -17,6 +17,21 @@ const FAKE_REACTIONS = [
   { user: "xoxo_becky", color: "text-yellow-300", text: "@futureboss.exe say less, we're rooting for you two" },
   { user: "anonymous_hater", color: "text-pink-400", text: "wait this might be the greatest recruiting funnel ever built" },
   { user: "recruiter_bob", color: "text-cyan-300", text: "adding 'has a guestbook that closes deals' to her offer letter" },
+  { user: "xoxo_becky", color: "text-yellow-300", text: "brb crying, this is so much better than my linkedin feed" },
+  { user: "sk8trboi22", color: "text-lime-400", text: "the wifi at the coffee shop just froze but I HAD to see this" },
+  { user: "anonymous_hater", color: "text-pink-400", text: "ok I'm removing myself from the hater list officially" },
+  { user: "recruiter_bob", color: "text-cyan-300", text: "putting this url directly in the Slack channel, no context, just vibes" },
+  { user: "dial_up_dana", color: "text-orange-300", text: "56k modem screaming rn but worth it" },
+  { user: "xoxo_becky", color: "text-yellow-300", text: "@futureboss.exe blink twice if the offer's already drafted" },
+  { user: "sk8trboi22", color: "text-lime-400", text: "SOMEONE GIVE HER THE SIGN ON BONUS ALREADY" },
+  { user: "webmaster_wes", color: "text-purple-300", text: "as a fellow webmaster I respect the css this deeply" },
+  { user: "recruiter_bob", color: "text-cyan-300", text: "quietly closing 6 other browser tabs to focus on this one" },
+  { user: "anonymous_hater", color: "text-pink-400", text: "not me bookmarking this, no further comment" },
+  { user: "xoxo_becky", color: "text-yellow-300", text: "the hit counter went up and so did my respect for her" },
+  { user: "sk8trboi22", color: "text-lime-400", text: "she really said 'time machine' and MEANT it" },
+  { user: "dial_up_dana", color: "text-orange-300", text: "forwarding to my own recruiter as a 'see, THIS is what I mean'" },
+  { user: "webmaster_wes", color: "text-purple-300", text: "requesting the source code as a formal act of respect" },
+  { user: "recruiter_bob", color: "text-cyan-300", text: "@futureboss.exe you know what to do" },
 ];
 
 const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
