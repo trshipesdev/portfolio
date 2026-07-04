@@ -216,7 +216,7 @@ export const EXPERIENCE = [
       "Sole escalation engineer partnering directly with the company founder; delivered a Green Button Connect My Data API integration for a major Northeast utility.",
       "Executed a large-scale deprecation of ~40 utilities, safely revoking ~20,000 authorizations without downtime.",
       "Co-owned the Duration-Based Pricing system across 12+ billing stipulations.",
-      "Absorbed full support and engineering scope solo through a company-wide layoff, with no handoff or coverage gap.",
+      "Absorbed the full application support scope solo through a company-wide layoff, with no handoff or coverage gap.",
       "Mentored 1:1 by the CTO; participated in interviewing and onboarding junior engineers.",
     ],
   },
