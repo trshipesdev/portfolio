@@ -101,7 +101,7 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
             data-testid="modern-see-me-button"
             className="modern-btn-outline"
           >
-            <Sparkles size={16} /> See the me version
+            <Sparkles size={16} /> See the pink version
           </button>
           <a href="#contact" className="modern-btn-outline">
             Get In Touch
