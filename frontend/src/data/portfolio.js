@@ -1,7 +1,7 @@
 // Portfolio content for Tara Shipes
 export const PROFILE = {
   name: "Tara Shipes",
-  title: "Full Stack Software & Integration Engineer",
+  title: "Full Stack Software & Customer Integration Engineer",
   tagline:
     "I ship production code across the stack. Customer-facing support, escalation, and integration engineering. Plus, I've been told I'm really cool to work with. Pinky promise. :)",
   professionalSummary:

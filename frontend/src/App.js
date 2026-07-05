@@ -34,11 +34,13 @@ function App() {
   // 'era' | 'jump' | 'update' | 'makeover' | 'reverse'
   const [stage, setStage] = useState("era");
   const [pendingEra, setPendingEra] = useState(null);
-  const [autoTrail] = useState(() => initialHash === "#~");
+  const [autoTrail, setAutoTrail] = useState(() => initialHash === "#~");
 
   // Clear the hash immediately after reading it so it doesn't linger in the
   // URL bar and silently re-trigger the same alt entry point on a later,
-  // unrelated reload of the tab.
+  // unrelated reload of the tab. Also consume autoTrail right after the
+  // initial mount so it only fires once per floppy-disk/CD click, instead
+  // of re-launching the trail every time Terminal is revisited this session.
   useEffect(() => {
     if (initialHash === "#" || initialHash === "#~") {
       window.history.replaceState(
@@ -47,6 +49,7 @@ function App() {
         window.location.pathname + window.location.search
       );
     }
+    setAutoTrail(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

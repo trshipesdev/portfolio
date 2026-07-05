@@ -475,7 +475,12 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               >
                 &ldquo;
               </span>
-              <p data-testid="about-bio">{PROFILE.professionalSummary}</p>
+              <p data-testid="about-bio">
+                {PROFILE.professionalSummary}
+                <span className="glam-serif glam-rainbow-text" aria-hidden="true">
+                  &rdquo;
+                </span>
+              </p>
             </div>
 
             <div
