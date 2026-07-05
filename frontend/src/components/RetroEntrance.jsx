@@ -275,7 +275,9 @@ const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
               &amp; now i build{" "}
               <span className="text-yellow-300">real software</span> for a
               living but shhh dont tell anyone bc it doesnt fit the vibe on this
-              page.
+              page. and hey, what could b better than starting back @ the{" "}
+              <span className="text-pink-400 font-black">root</span> of where i
+              learned 2 code, for me and my friendzzzz ♡
             </p>
             <p className="text-cyan-300 text-sm mt-4 text-center italic">
               click the big pink button below 4 a{" "}
