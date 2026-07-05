@@ -414,6 +414,33 @@ code {
     }
 }
 
+/* Fast-scrolling rainbow fill on hover, like a winning slot machine. */
+.glam-rainbow-scroll-hover {
+    transition: color 0.15s ease;
+}
+.glam-rainbow-scroll-hover:hover {
+    background-image: linear-gradient(
+        90deg,
+        #ff2fd6,
+        #ffd166,
+        #66ffff,
+        #c299fc,
+        #ff69b4,
+        #ff2fd6
+    );
+    background-size: 400% 100%;
+    animation: glam-rainbow-scroll 0.7s linear infinite;
+    color: #111;
+}
+@keyframes glam-rainbow-scroll {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 400% 50%;
+    }
+}
+
 .glam-card {
     position: relative;
     overflow: hidden;

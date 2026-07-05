@@ -61,6 +61,31 @@ const fadeUp = {
   }),
 };
 
+const RAINBOW_LETTERS = ["#ff2fd6", "#ffd166", "#66ffff", "#c299fc", "#ff69b4", "#a3e635"];
+
+// Rainbow ripple text: each character bounces in a staggered wave, cycling
+// through the rainbow palette. Used for small playful callouts, not body copy.
+const RippleText = ({ text, className = "" }) => (
+  <span className={`inline-block ${className}`}>
+    {text.split("").map((char, i) => (
+      <motion.span
+        key={i}
+        className="inline-block"
+        style={{ color: RAINBOW_LETTERS[i % RAINBOW_LETTERS.length] }}
+        animate={{ y: [0, -5, 0] }}
+        transition={{
+          duration: 1.1,
+          repeat: Infinity,
+          delay: i * 0.05,
+          ease: "easeInOut",
+        }}
+      >
+        {char === " " ? " " : char}
+      </motion.span>
+    ))}
+  </span>
+);
+
 const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
   const [gatedProject, setGatedProject] = useState(null); // holds the project when modal is open
   const [arcTier, setArcTier] = useState("middle");
@@ -78,6 +103,45 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
 
   return (
     <div className="glam-body glam-cursor relative" data-testid="future-portfolio">
+      {/* Bouncing CD easter egg -> back to the MySpace page, same visual
+          language as the floppy disk on the retro page. */}
+      <motion.button
+        type="button"
+        onClick={onExit}
+        data-testid="cd-myspace-launcher"
+        title="back to 2003"
+        className="fixed bottom-4 right-4 z-40 flex flex-col items-center gap-1"
+        animate={{ y: [0, -16, 0], rotate: [-8, 8, -8] }}
+        transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+        whileHover={{ scale: 1.15 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <span
+          className="relative text-5xl"
+          style={{ filter: "drop-shadow(0 0 10px rgba(255,105,180,0.85))" }}
+        >
+          💿
+          <span className="absolute -top-2 -left-3 text-yellow-300 text-lg animate-ping">
+            ✨
+          </span>
+          <span
+            className="absolute -bottom-1 -right-3 text-pink-300 text-sm animate-ping"
+            style={{ animationDelay: "0.4s" }}
+          >
+            ✨
+          </span>
+          <span
+            className="absolute top-0 -right-4 text-cyan-300 text-base animate-pulse"
+            style={{ animationDelay: "0.8s" }}
+          >
+            ✦
+          </span>
+        </span>
+        <span className="text-pink-600 text-xs font-bold bg-white/80 px-2 py-0.5 rounded-full">
+          CLICK ME!!
+        </span>
+      </motion.button>
+
       {/* Nav */}
       <nav className="glam-glass sticky top-0 z-30 px-6 md:px-12 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -298,7 +362,15 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
                 className="text-lg md:text-xl text-neutral-800 leading-relaxed"
                 data-testid="hero-tagline"
               >
-                {PROFILE.tagline}
+                {PROFILE.tagline.includes("Pinky promise. :)") ? (
+                  <>
+                    {PROFILE.tagline.split("Pinky promise. :)")[0]}
+                    <RippleText text="Pinky promise. :)" className="font-semibold" />
+                    {PROFILE.tagline.split("Pinky promise. :)")[1]}
+                  </>
+                ) : (
+                  PROFILE.tagline
+                )}
               </p>
             </div>
             <motion.a
@@ -336,7 +408,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               type="button"
               onClick={handleHireHer}
               data-testid="hero-hire-me"
-              className="bg-[#111] text-white px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-[#f4c2c2] hover:text-black transition glam-rainbow-glow glam-rainbow-hover"
+              className="bg-[#111] text-white px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 transition glam-rainbow-glow glam-rainbow-scroll-hover"
             >
               Hire her <Mail size={14} />
             </button>
@@ -838,7 +910,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               type="button"
               onClick={handleHireHer}
               data-testid="contact-email"
-              className="bg-[#111] text-white px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-[#f4c2c2] hover:text-black transition glam-rainbow-glow"
+              className="bg-[#111] text-white px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2 transition glam-rainbow-glow glam-rainbow-scroll-hover"
             >
               <Mail size={14} /> {PROFILE.email}
             </button>

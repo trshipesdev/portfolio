@@ -112,34 +112,32 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
           data-testid="hero-avatar-link"
           aria-label="View LinkedIn profile"
           className="relative w-16 h-16 mb-8 block"
-          style={{ perspective: 800 }}
         >
-          <motion.div
-            className="relative w-full h-full"
-            animate={{ rotateY: showPhoto ? 180 : 0 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            style={{ transformStyle: "preserve-3d" }}
-          >
-            <div
-              className="absolute inset-0 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold text-lg"
-              style={{ backfaceVisibility: "hidden" }}
-            >
-              {initials}
-            </div>
-            <div
-              className="absolute inset-0 rounded-full overflow-hidden"
-              style={{
-                backfaceVisibility: "hidden",
-                transform: "rotateY(180deg)",
-              }}
-            >
-              <img
+          <AnimatePresence mode="wait">
+            {showPhoto ? (
+              <motion.img
+                key="photo"
                 src="/images/tara-avatar.jpg"
                 alt={PROFILE.name}
-                className="w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover rounded-full"
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.85 }}
+                transition={{ duration: 0.4 }}
               />
-            </div>
-          </motion.div>
+            ) : (
+              <motion.div
+                key="initials"
+                className="absolute inset-0 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold text-lg"
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.85 }}
+                transition={{ duration: 0.4 }}
+              >
+                {initials}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </a>
         <p className="modern-eyebrow mb-4">{PROFILE.title}</p>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-3xl mb-6">
