@@ -127,7 +127,7 @@ export const CLIENT_BRIEF = {
 
 // The full-circle UtilityAPI scraper story, shown as a vertical timeline in
 // Demo & Brief. Each stage has 3 lingo tiers:
-//   customer   = Simple: CEOs, enterprise clients, non-technical customers
+//   customer   = Simplified: CEOs, enterprise clients, non-technical customers
 //   middle     = Standard: matches actual resume phrasing, general audience
 //   technical  = Technical: VP Eng / EM / peer-review level detail
 // Condensed version of the CAREER_ARC story, for the inline expander under

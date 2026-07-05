@@ -606,7 +606,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
                     : "glam-glass text-neutral-600 border-white/60 hover:scale-105"
                 }`}
               >
-                {t === "customer" ? "✨ Simple" : t === "middle" ? "Standard" : "🤓 Technical"}
+                {t === "customer" ? "✨ Simplified" : t === "middle" ? "Standard" : "🤓 Technical"}
               </button>
             ))}
           </div>

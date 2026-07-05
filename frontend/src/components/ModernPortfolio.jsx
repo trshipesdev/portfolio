@@ -57,13 +57,6 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
   // Ticks in random clustered bursts instead of a steady interval, purely
   // for vibes, not real analytics.
   const [visits, setVisits] = useState(1029847);
-  const [showPhoto, setShowPhoto] = useState(false);
-
-  useEffect(() => {
-    const interval = setInterval(() => setShowPhoto((v) => !v), 3500);
-    return () => clearInterval(interval);
-  }, []);
-
   useEffect(() => {
     let timeoutId;
     const tick = () => {
@@ -112,32 +105,30 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
           data-testid="hero-avatar-link"
           aria-label="View LinkedIn profile"
           className="relative w-16 h-16 mb-8 block"
+          style={{ perspective: 800 }}
         >
-          <AnimatePresence mode="wait">
-            {showPhoto ? (
-              <motion.img
-                key="photo"
-                src="/images/tara-avatar.jpg"
-                alt={PROFILE.name}
-                className="absolute inset-0 w-full h-full object-cover rounded-full"
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.85 }}
-                transition={{ duration: 0.4 }}
-              />
-            ) : (
-              <motion.div
-                key="initials"
-                className="absolute inset-0 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold text-lg"
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.85 }}
-                transition={{ duration: 0.4 }}
-              >
-                {initials}
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <motion.div
+            className="absolute inset-0"
+            style={{ transformStyle: "preserve-3d" }}
+            animate={{ rotateY: 360 }}
+            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+          >
+            <div
+              className="absolute inset-0 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold text-lg"
+              style={{ backfaceVisibility: "hidden" }}
+            >
+              {initials}
+            </div>
+            <img
+              src="/images/tara-avatar.jpg"
+              alt={PROFILE.name}
+              className="absolute inset-0 w-full h-full object-cover rounded-full"
+              style={{
+                backfaceVisibility: "hidden",
+                transform: "rotateY(180deg)",
+              }}
+            />
+          </motion.div>
         </a>
         <p className="modern-eyebrow mb-4">{PROFILE.title}</p>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-3xl mb-6">
@@ -231,7 +222,7 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
                         : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
                     }`}
                   >
-                    {t === "customer" ? "Simple" : t === "middle" ? "Standard" : "Technical"}
+                    {t === "customer" ? "Simplified" : t === "middle" ? "Standard" : "Technical"}
                   </button>
                 ))}
               </div>
