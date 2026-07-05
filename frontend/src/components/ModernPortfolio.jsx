@@ -57,6 +57,12 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
   // Ticks in random clustered bursts instead of a steady interval, purely
   // for vibes, not real analytics.
   const [visits, setVisits] = useState(1029847);
+  const [showPhoto, setShowPhoto] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => setShowPhoto((v) => !v), 3500);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     let timeoutId;
@@ -99,9 +105,42 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
 
       {/* Hero */}
       <header className="max-w-5xl mx-auto px-6 md:px-12 pt-20 pb-24">
-        <div className="w-16 h-16 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold text-lg mb-8">
-          {initials}
-        </div>
+        <a
+          href={PROFILE.linkedin}
+          target="_blank"
+          rel="noreferrer"
+          data-testid="hero-avatar-link"
+          aria-label="View LinkedIn profile"
+          className="relative w-16 h-16 mb-8 block"
+          style={{ perspective: 800 }}
+        >
+          <motion.div
+            className="relative w-full h-full"
+            animate={{ rotateY: showPhoto ? 180 : 0 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            <div
+              className="absolute inset-0 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold text-lg"
+              style={{ backfaceVisibility: "hidden" }}
+            >
+              {initials}
+            </div>
+            <div
+              className="absolute inset-0 rounded-full overflow-hidden"
+              style={{
+                backfaceVisibility: "hidden",
+                transform: "rotateY(180deg)",
+              }}
+            >
+              <img
+                src="/images/tara-avatar.jpg"
+                alt={PROFILE.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </motion.div>
+        </a>
         <p className="modern-eyebrow mb-4">{PROFILE.title}</p>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-3xl mb-6">
           {PROFILE.name}
