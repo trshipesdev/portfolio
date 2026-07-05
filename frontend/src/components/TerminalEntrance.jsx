@@ -18,7 +18,7 @@ const BOOT_LINES = [
 const ENTER_COMMANDS = [
   {
     id: "pink",
-    command: "./enter-for-makeover-and-portfolio.sh",
+    command: "./enter-pink-glam-version.sh",
     hint: "# click for the pink glam portfolio",
     launchLabel: "the pink glam version",
   },
@@ -29,6 +29,34 @@ const ENTER_COMMANDS = [
     launchLabel: "the professional version",
   },
 ];
+
+// Types out a short string one character at a time, with a blinking cursor
+// while it's still going. Used for the "Pinky promise. :)" aside so it reads
+// like she's typing it live rather than it just appearing with the rest.
+const TypedText = ({ text }) => {
+  const [typedLen, setTypedLen] = useState(0);
+
+  useEffect(() => {
+    setTypedLen(0);
+    const interval = setInterval(() => {
+      setTypedLen((len) => {
+        if (len >= text.length) {
+          clearInterval(interval);
+          return len;
+        }
+        return len + 1;
+      });
+    }, 60);
+    return () => clearInterval(interval);
+  }, [text]);
+
+  return (
+    <>
+      {text.slice(0, typedLen)}
+      {typedLen < text.length && <span className="terminal-cursor-blink">_</span>}
+    </>
+  );
+};
 
 const lineVariants = {
   hidden: { opacity: 0 },
@@ -245,7 +273,17 @@ const TerminalEntrance = ({ onNext, onEnterMakeover, onEnterProfessional, autoSt
                 <>
                   <p>{PROFILE.name}</p>
                   <p>{PROFILE.title}</p>
-                  <p className="mt-2 opacity-80">{PROFILE.tagline}</p>
+                  <p className="mt-2 opacity-80">
+                    {PROFILE.tagline.includes("Pinky promise. :)") ? (
+                      <>
+                        {PROFILE.tagline.split("Pinky promise. :)")[0]}
+                        <TypedText text="Pinky promise. :)" />
+                        {PROFILE.tagline.split("Pinky promise. :)")[1]}
+                      </>
+                    ) : (
+                      PROFILE.tagline
+                    )}
+                  </p>
                 </>
               )}
 
