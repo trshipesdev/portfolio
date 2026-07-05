@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import {
@@ -53,6 +53,22 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
   const [demoMode, setDemoMode] = useState(false);
   const [arcTier, setArcTier] = useState("middle");
   const [showFullStory, setShowFullStory] = useState(false);
+  // Fun, fake visitor ticker seeded from the MySpace page's hit counter.
+  // Ticks in random clustered bursts instead of a steady interval, purely
+  // for vibes, not real analytics.
+  const [visits, setVisits] = useState(1029847);
+
+  useEffect(() => {
+    let timeoutId;
+    const tick = () => {
+      const burst =
+        Math.random() < 0.3 ? 2 + Math.floor(Math.random() * 4) : 1;
+      setVisits((v) => v + burst);
+      timeoutId = setTimeout(tick, 2000 + Math.random() * 8000);
+    };
+    timeoutId = setTimeout(tick, 2000 + Math.random() * 8000);
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
     <div className="modern-body" data-testid="modern-portfolio">
@@ -484,6 +500,12 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
       <footer className="modern-divider text-center py-10">
         <p className="text-sm text-gray-500 mb-4">&copy; {new Date().getFullYear()} {PROFILE.name}</p>
         <EraWebring onPrev={onEraPrev} onNext={onEraNext} linkClassName="modern-link" />
+        <p
+          className="modern-tag inline-flex items-center gap-1.5 mt-4 text-xs"
+          data-testid="visitor-ticker"
+        >
+          👀 {visits.toLocaleString()} visits and counting
+        </p>
         <p className="text-xs text-gray-400 mt-4 italic">
           Built with React and unreasonable optimism.
         </p>
