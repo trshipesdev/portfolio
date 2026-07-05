@@ -30,30 +30,55 @@ const ENTER_COMMANDS = [
   },
 ];
 
-// Types out a short string one character at a time, with a blinking cursor
-// while it's still going. Used for the "Pinky promise. :)" aside so it reads
-// like she's typing it live rather than it just appearing with the rest.
+// Types out a short string one character at a time, holds for a beat, then
+// erases and retypes on a loop. Used for the "Pinky promise. :)" aside so it
+// reads like she's typing it live rather than it just appearing with the
+// rest, and keeps catching your eye instead of typing once and going still.
 const TypedText = ({ text }) => {
   const [typedLen, setTypedLen] = useState(0);
 
   useEffect(() => {
+    let timeoutId;
+    let mode = "typing";
+
+    const step = () => {
+      if (mode === "typing") {
+        setTypedLen((len) => {
+          const next = len + 1;
+          if (next >= text.length) {
+            mode = "holding";
+            timeoutId = setTimeout(step, 2200);
+          } else {
+            timeoutId = setTimeout(step, 60);
+          }
+          return next;
+        });
+      } else if (mode === "holding") {
+        mode = "erasing";
+        timeoutId = setTimeout(step, 30);
+      } else {
+        setTypedLen((len) => {
+          const next = len - 1;
+          if (next <= 0) {
+            mode = "typing";
+            timeoutId = setTimeout(step, 500);
+          } else {
+            timeoutId = setTimeout(step, 30);
+          }
+          return next;
+        });
+      }
+    };
+
     setTypedLen(0);
-    const interval = setInterval(() => {
-      setTypedLen((len) => {
-        if (len >= text.length) {
-          clearInterval(interval);
-          return len;
-        }
-        return len + 1;
-      });
-    }, 60);
-    return () => clearInterval(interval);
+    timeoutId = setTimeout(step, 60);
+    return () => clearTimeout(timeoutId);
   }, [text]);
 
   return (
     <>
       {text.slice(0, typedLen)}
-      {typedLen < text.length && <span className="terminal-cursor-blink">_</span>}
+      <span className="terminal-cursor-blink">_</span>
     </>
   );
 };
