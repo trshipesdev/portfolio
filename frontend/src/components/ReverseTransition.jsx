@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 /**
  * ReverseTransition — aging in reverse: futuristic gloss degrades into a
  * chunky CRT power-off / VHS rewind, then pops back to the retro entrance.
- * Girly-spy joke on top: "UNDOING THE PINK COLLAR ✧ REWINDING TO 2003"
+ * Girly-spy joke on top: "UNDOING THE PINK COLLAR ✧ REWINDING TO 2007"
  * ~2.4s total.
  */
-const ReverseTransition = ({ onComplete, label = "rewinding to 2003" }) => {
+const ReverseTransition = ({ onComplete, label = "rewinding to 2007" }) => {
   useEffect(() => {
     const timer = setTimeout(onComplete, 2400);
     return () => clearTimeout(timer);

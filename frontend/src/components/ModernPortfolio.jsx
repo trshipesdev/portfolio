@@ -78,8 +78,8 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
             type="button"
             onClick={onEraPrev}
             data-testid="modern-home-button"
-            aria-label="Back to 2003"
-            title="pssst… take me back to 2003"
+            aria-label="Back to 2007"
+            title="pssst… take me back to 2007"
             className="modern-icon-btn group modern-home-radiate"
           >
             <Home size={16} className="group-hover:-translate-x-0.5 transition-transform" />

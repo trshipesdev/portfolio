@@ -170,7 +170,7 @@ const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
         </p>
         <p className="text-pink-300 text-sm mt-1">
           last updated:{" "}
-          <span className="text-yellow-300">05/17/2003 by taragotchi94</span>
+          <span className="text-yellow-300">05/17/2007 by taragotchi94</span>
         </p>
 
         <hr className="retro-hr" />
@@ -401,7 +401,7 @@ const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
         <hr className="retro-hr" />
 
         <p className="text-xs text-gray-400 mt-4">
-          © 2003 Tara. best viewed in Internet Explorer 6.0 at 800x600 ♡ made with notepad.exe &amp; luv
+          © 2007 Tara. best viewed in Internet Explorer 6.0 at 800x600 ♡ made with notepad.exe &amp; luv
         </p>
         <p className="text-xs text-gray-500 mt-1 italic">
           fueled by glitter, iced coffee, and javascript.

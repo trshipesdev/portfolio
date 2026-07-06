@@ -183,7 +183,7 @@ function App() {
           <ReverseTransition
             key="reverse"
             onComplete={onReverseComplete}
-            label={pendingEra === 2 ? "rewinding to the portfolio version" : "rewinding to 2003"}
+            label={pendingEra === 2 ? "rewinding to the portfolio version" : "rewinding to 2007"}
           />
         )}
       </AnimatePresence>
