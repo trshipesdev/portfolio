@@ -109,7 +109,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
         type="button"
         onClick={onExit}
         data-testid="cd-myspace-launcher"
-        title="back to 2003"
+        title="back to 2007"
         className="fixed bottom-4 right-4 z-40 flex flex-col items-center gap-1"
         animate={{ y: [0, -16, 0], rotate: [-8, 8, -8] }}
         transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
@@ -151,7 +151,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
             onClick={onExit}
             data-testid="star-back-button"
             aria-label="Go back to the 2000s"
-            title="pssst… take me back to 2003"
+            title="pssst… take me back to 2007"
             className="group relative w-11 h-11 rounded-full flex items-center justify-center hover:scale-110 active:scale-95 transition-transform"
             style={{
               background:
@@ -174,7 +174,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               style={{ filter: "drop-shadow(0 1px 1px rgba(122,0,74,0.15))" }}
             />
             <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] uppercase tracking-widest text-neutral-500 opacity-0 group-hover:opacity-100 transition">
-              back to 2003
+              back to 2007
             </span>
           </button>
           <span className="glam-serif text-2xl font-semibold tracking-tight">
@@ -953,7 +953,7 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
           data-testid="back-to-90s-button"
           className="underline decoration-dotted underline-offset-4 hover:text-[#ff1493] transition italic"
         >
-          psst… take me back to 2003 ↺
+          psst… take me back to 2007 ↺
         </button>
       </footer>
 

@@ -170,7 +170,7 @@ const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
         </p>
         <p className="text-pink-300 text-sm mt-1">
           last updated:{" "}
-          <span className="text-yellow-300">05/17/2003 by taragotchi94</span>
+          <span className="text-yellow-300">05/17/2007 by taragotchi94</span>
         </p>
 
         <hr className="retro-hr" />
@@ -275,7 +275,9 @@ const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
               &amp; now i build{" "}
               <span className="text-yellow-300">real software</span> for a
               living but shhh dont tell anyone bc it doesnt fit the vibe on this
-              page.
+              page. and hey, what could b better than starting back @ the{" "}
+              <span className="text-pink-400 font-black">root</span> of where i
+              learned 2 code, for me and my friendzzzz ♡
             </p>
             <p className="text-cyan-300 text-sm mt-4 text-center italic">
               click the big pink button below 4 a{" "}
@@ -399,7 +401,7 @@ const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
         <hr className="retro-hr" />
 
         <p className="text-xs text-gray-400 mt-4">
-          © 2003 Tara. best viewed in Internet Explorer 6.0 at 800x600 ♡ made with notepad.exe &amp; luv
+          © 2007 Tara. best viewed in Internet Explorer 6.0 at 800x600 ♡ made with notepad.exe &amp; luv
         </p>
         <p className="text-xs text-gray-500 mt-1 italic">
           fueled by glitter, iced coffee, and javascript.

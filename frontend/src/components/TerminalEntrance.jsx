@@ -18,7 +18,7 @@ const BOOT_LINES = [
 const ENTER_COMMANDS = [
   {
     id: "pink",
-    command: "./enter-for-makeover-and-portfolio.sh",
+    command: "./enter-pink-glam-version.sh",
     hint: "# click for the pink glam portfolio",
     launchLabel: "the pink glam version",
   },
@@ -29,6 +29,59 @@ const ENTER_COMMANDS = [
     launchLabel: "the professional version",
   },
 ];
+
+// Types out a short string one character at a time, holds for a beat, then
+// erases and retypes on a loop. Used for the "Pinky promise. :)" aside so it
+// reads like she's typing it live rather than it just appearing with the
+// rest, and keeps catching your eye instead of typing once and going still.
+const TypedText = ({ text }) => {
+  const [typedLen, setTypedLen] = useState(0);
+
+  useEffect(() => {
+    let timeoutId;
+    let mode = "typing";
+
+    const step = () => {
+      if (mode === "typing") {
+        setTypedLen((len) => {
+          const next = len + 1;
+          if (next >= text.length) {
+            mode = "holding";
+            timeoutId = setTimeout(step, 2200);
+          } else {
+            timeoutId = setTimeout(step, 60);
+          }
+          return next;
+        });
+      } else if (mode === "holding") {
+        mode = "erasing";
+        timeoutId = setTimeout(step, 30);
+      } else {
+        setTypedLen((len) => {
+          const next = len - 1;
+          if (next <= 0) {
+            mode = "typing";
+            timeoutId = setTimeout(step, 500);
+          } else {
+            timeoutId = setTimeout(step, 30);
+          }
+          return next;
+        });
+      }
+    };
+
+    setTypedLen(0);
+    timeoutId = setTimeout(step, 60);
+    return () => clearTimeout(timeoutId);
+  }, [text]);
+
+  return (
+    <>
+      {text.slice(0, typedLen)}
+      <span className="terminal-cursor-blink">_</span>
+    </>
+  );
+};
 
 const lineVariants = {
   hidden: { opacity: 0 },
@@ -156,7 +209,7 @@ const TerminalEntrance = ({ onNext, onEnterMakeover, onEnterProfessional, autoSt
         type="button"
         onClick={onNext}
         data-testid="cd-myspace-launcher"
-        title="back to 2003"
+        title="back to 2007"
         className="fixed bottom-4 right-4 z-40 flex flex-col items-center gap-1"
         animate={{ y: [0, -16, 0], rotate: [8, -8, 8] }}
         transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
@@ -245,7 +298,17 @@ const TerminalEntrance = ({ onNext, onEnterMakeover, onEnterProfessional, autoSt
                 <>
                   <p>{PROFILE.name}</p>
                   <p>{PROFILE.title}</p>
-                  <p className="mt-2 opacity-80">{PROFILE.tagline}</p>
+                  <p className="mt-2 opacity-80">
+                    {PROFILE.tagline.includes("Pinky promise. :)") ? (
+                      <>
+                        {PROFILE.tagline.split("Pinky promise. :)")[0]}
+                        <TypedText text="Pinky promise. :)" />
+                        {PROFILE.tagline.split("Pinky promise. :)")[1]}
+                      </>
+                    ) : (
+                      PROFILE.tagline
+                    )}
+                  </p>
                 </>
               )}
 
