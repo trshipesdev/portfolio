@@ -253,11 +253,7 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
           </section>
 
           <section className="py-8 modern-divider">
-            <p className="modern-eyebrow mb-2">Same Instinct, My Own House</p>
-            <p className="text-xs text-gray-500 mb-6">
-              The career story above is the demo & brief of my work. This is the
-              demo & brief of what I build on my own time.
-            </p>
+            <p className="modern-eyebrow mb-6">A Personal Project</p>
             {(() => {
               const hvacProject = PROJECTS.find((p) => p.id === "hvac-analyzer");
               if (!hvacProject) return null;

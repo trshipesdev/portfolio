@@ -266,9 +266,9 @@ const ALL_PROJECTS = [
     name: "HVAC Efficiency Analyzer",
     tag: "Personal project · Source code · 2026",
     blurb:
-      "Two AC units at my own house and a suspiciously high bill. I built a tool that fuses my real utility bills, thermostat runtime, and real weather data to prove which unit actually costs more, and why, instead of guessing.",
+      "My upstairs AC unit is newer than the one downstairs and somehow costs more to run. Instead of guessing why, I built a tool that pulls my real bills, thermostat data, and weather to settle it.",
     brief:
-      "The real problem: a 2018 unit upstairs, a 1990s unit downstairs, and bills that felt wrong. I wanted proof, not a guess.\n\nWhat it does: parses my real utility bills and monthly thermostat runtime reports with Claude, splits real Green Button usage across units by runtime share, and cross-references it against real hourly weather for my exact address. It flags anomalies like extended runtime without reaching setpoint or overnight compressor draw, each one labeled by how much to trust it: measured, estimated, or placeholder.\n\nStack: FastAPI + Motor (async MongoDB) + APScheduler on the backend, Claude Haiku 4.5 for document parsing, Open-Meteo for weather, React 19 + Recharts + Tailwind on the frontend.\n\nWhat it demonstrates: a real multi-source data pipeline, AI-assisted document parsing, and the same instinct I bring to client work: get real data, be honest about what's measured versus inferred, and answer the actual question instead of shipping a dashboard for its own sake.",
+      "Two units, one 2018 and one from the 90s, and a power bill that never added up. I wanted proof, not a guess.\n\nSo I built something that parses my real utility bills and monthly thermostat runtime reports with Claude, splits my actual usage across both units by runtime share, and checks all of it against real hourly weather for my address. It flags the stuff that actually matters, like a unit running long without hitting setpoint, and it's upfront everywhere about what's measured versus estimated versus placeholder.\n\nBuilt on FastAPI, MongoDB, and React, with Claude Haiku doing the document parsing and Open-Meteo for weather.",
     stack: ["FastAPI", "MongoDB", "React", "Claude Haiku 4.5", "Open-Meteo"],
     href: "https://github.com/trshipesdev/hvac",
     image:
