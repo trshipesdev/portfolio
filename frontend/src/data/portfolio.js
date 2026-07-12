@@ -262,6 +262,22 @@ const ALL_PROJECTS = [
     action: "open",
   },
   {
+    id: "hvac-analyzer",
+    name: "HVAC Efficiency Analyzer",
+    tag: "Personal project · Source code · 2026",
+    blurb:
+      "My upstairs AC unit is newer than the one downstairs and somehow costs more to run. Instead of guessing why, I built a tool that pulls my real bills, thermostat data, and weather to settle it.",
+    brief:
+      "Two units, one 2018 and one from the 90s, and a power bill that never added up. I wanted proof, not a guess.\n\nSo I built something that parses my real utility bills and monthly thermostat runtime reports with Claude, splits my actual usage across both units by runtime share, and checks all of it against real hourly weather for my address. It flags the stuff that actually matters, like a unit running long without hitting setpoint, and it's upfront everywhere about what's measured versus estimated versus placeholder.\n\nBuilt on FastAPI, MongoDB, and React, with Claude Haiku doing the document parsing and Open-Meteo for weather.",
+    stack: ["FastAPI", "MongoDB", "React", "Claude Haiku 4.5", "Open-Meteo"],
+    href: "https://github.com/trshipesdev/hvac",
+    image:
+      "/images/projects/hvac-analyzer-demo.gif",
+    accent: "#F6DFAE",
+    size: "medium",
+    action: "open",
+  },
+  {
     id: "guest-and-garnish",
     name: "Guest & Garnish",
     tag: "Live product · Preview access · 2026",

@@ -88,6 +88,7 @@ const RippleText = ({ text, className = "" }) => (
 
 const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
   const [gatedProject, setGatedProject] = useState(null); // holds the project when modal is open
+  const [expandedBriefs, setExpandedBriefs] = useState({});
   const [arcTier, setArcTier] = useState("middle");
 
   const handleHireHer = async () => {
@@ -872,6 +873,60 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
                 >
                   {cardBody}
                 </motion.button>
+              );
+            }
+            if (p.brief) {
+              const isExpanded = !!expandedBriefs[p.id];
+              return (
+                <motion.div key={p.id} {...motionWrapperProps} {...commonProps}>
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex flex-col flex-1 group"
+                  >
+                    {cardBody}
+                  </a>
+                  <div className="px-6 md:px-8 pb-6 md:pb-8 -mt-4">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setExpandedBriefs((prev) => ({
+                          ...prev,
+                          [p.id]: !prev[p.id],
+                        }))
+                      }
+                      data-testid={`project-brief-toggle-${p.id}`}
+                      className="text-sm text-neutral-700 hover:text-black flex items-center gap-1 transition"
+                    >
+                      {isExpanded ? "hide the brief" : "see the brief"}
+                      <ChevronDown
+                        size={14}
+                        className={`transition-transform ${isExpanded ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {isExpanded && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          data-testid={`project-brief-content-${p.id}`}
+                          className="overflow-hidden"
+                        >
+                          {p.brief.split("\n\n").map((para, i) => (
+                            <p
+                              key={i}
+                              className="text-sm text-neutral-700 leading-relaxed mt-3"
+                            >
+                              {para}
+                            </p>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </motion.div>
               );
             }
             return (
