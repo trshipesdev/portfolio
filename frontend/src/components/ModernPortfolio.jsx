@@ -53,6 +53,7 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
   const [demoMode, setDemoMode] = useState(false);
   const [arcTier, setArcTier] = useState("middle");
   const [showFullStory, setShowFullStory] = useState(false);
+  const [expandedBriefs, setExpandedBriefs] = useState({});
   // Fun, fake visitor ticker seeded from the MySpace page's hit counter.
   // Ticks in random clustered bursts instead of a steady interval, purely
   // for vibes, not real analytics.
@@ -249,6 +250,56 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
                 );
               })}
             </div>
+          </section>
+
+          <section className="py-8 modern-divider">
+            <p className="modern-eyebrow mb-2">Same Instinct, My Own House</p>
+            <p className="text-xs text-gray-500 mb-6">
+              The career story above is the demo & brief of my work. This is the
+              demo & brief of what I build on my own time.
+            </p>
+            {(() => {
+              const hvacProject = PROJECTS.find((p) => p.id === "hvac-analyzer");
+              if (!hvacProject) return null;
+              return (
+                <div className="modern-card overflow-hidden">
+                  <img
+                    src={hvacProject.image}
+                    alt={`${hvacProject.name} preview`}
+                    className="w-full aspect-[16/10] object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="font-bold text-lg">{hvacProject.name}</h3>
+                    <p className="text-xs uppercase tracking-wide text-gray-500 mt-1">
+                      {hvacProject.tag}
+                    </p>
+                    {hvacProject.brief.split("\n\n").map((para, i) => (
+                      <p
+                        key={i}
+                        className="text-sm text-gray-700 leading-relaxed mt-3"
+                      >
+                        {para}
+                      </p>
+                    ))}
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {hvacProject.stack.map((s) => (
+                        <span key={s} className="modern-tag text-xs py-1">
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                    <a
+                      href={hvacProject.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="modern-btn mt-5"
+                    >
+                      <Github size={16} /> View source on GitHub
+                    </a>
+                  </div>
+                </div>
+              );
+            })()}
           </section>
 
           <section className="py-8 text-center">
@@ -477,6 +528,64 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
                   >
                     {cardBody}
                   </button>
+                );
+              }
+              if (p.brief) {
+                const isExpanded = !!expandedBriefs[p.id];
+                return (
+                  <div
+                    key={p.id}
+                    data-testid={`project-card-${p.id}`}
+                    className="modern-card overflow-hidden flex flex-col"
+                  >
+                    <a
+                      href={p.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex flex-col group"
+                    >
+                      {cardBody}
+                    </a>
+                    <div className="px-6 pb-6 -mt-2">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setExpandedBriefs((prev) => ({
+                            ...prev,
+                            [p.id]: !prev[p.id],
+                          }))
+                        }
+                        data-testid={`project-brief-toggle-${p.id}`}
+                        className="modern-link flex items-center gap-1 text-sm"
+                      >
+                        {isExpanded ? "hide the brief" : "see the brief"}
+                        <ChevronDown
+                          size={14}
+                          className={`transition-transform ${isExpanded ? "rotate-180" : ""}`}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            data-testid={`project-brief-content-${p.id}`}
+                            className="overflow-hidden"
+                          >
+                            {p.brief.split("\n\n").map((para, i) => (
+                              <p
+                                key={i}
+                                className="text-sm text-gray-700 leading-relaxed mt-3"
+                              >
+                                {para}
+                              </p>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </div>
                 );
               }
               return (
