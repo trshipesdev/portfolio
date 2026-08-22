@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { PROFILE, SKILLS, EXPERIENCE, EDUCATION, PROJECTS } from "../data/portfolio";
+import { PROFILE, SKILLS, EXPERIENCE, EDUCATION, CERTS, PROJECTS } from "../data/portfolio";
 import EraWebring from "@/components/EraWebring";
 import MagicEightBallToast from "@/components/MagicEightBallToast";
 import CareerTrailGame from "@/components/CareerTrailGame";
@@ -352,10 +352,12 @@ const TerminalEntrance = ({ onNext, onEnterMakeover, onEnterProfessional, autoSt
 
               {activeTab === "education" && (
                 <>
-                  <p className="opacity-90">
-                    &gt; {EDUCATION.degree}, {EDUCATION.school} ({EDUCATION.years})
-                  </p>
-                  <p className="opacity-90 pl-4">- {EDUCATION.certs[0]}</p>
+                  {EDUCATION.map((ed) => (
+                    <p key={ed.school} className="opacity-90">
+                      &gt; {ed.degree}, {ed.school} ({ed.years})
+                    </p>
+                  ))}
+                  <p className="opacity-90 pl-4">- {CERTS[0]}</p>
                 </>
               )}
 

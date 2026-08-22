@@ -30,6 +30,7 @@ import {
   PROJECTS,
   EXPERIENCE,
   EDUCATION,
+  CERTS,
   HATS_PROOF,
   CLIENT_BRIEF,
   CAREER_ARC,
@@ -168,11 +169,13 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
             <div className="flex items-center gap-2">
               <MapPin size={16} /> {PROFILE.location}
             </div>
+            {EDUCATION.map((ed) => (
+              <div key={ed.school} className="flex items-center gap-2">
+                <GraduationCap size={16} /> {ed.degree}, {ed.school} ({ed.years})
+              </div>
+            ))}
             <div className="flex items-center gap-2">
-              <GraduationCap size={16} /> {EDUCATION.degree}, {EDUCATION.school} ({EDUCATION.years})
-            </div>
-            <div className="flex items-center gap-2">
-              <ShieldCheck size={16} /> {EDUCATION.certs[0]}
+              <ShieldCheck size={16} /> {CERTS[0]}
             </div>
           </div>
         )}
@@ -510,6 +513,64 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
                   >
                     {cardBody}
                   </button>
+                );
+              }
+
+              if (isGated && p.brief) {
+                const isExpanded = !!expandedBriefs[p.id];
+                return (
+                  <div
+                    key={p.id}
+                    data-testid={`project-card-${p.id}`}
+                    className="modern-card overflow-hidden flex flex-col"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setGatedProject(p)}
+                      className="flex flex-col group text-left"
+                    >
+                      {cardBody}
+                    </button>
+                    <div className="px-6 pb-6 -mt-2">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setExpandedBriefs((prev) => ({
+                            ...prev,
+                            [p.id]: !prev[p.id],
+                          }))
+                        }
+                        data-testid={`project-brief-toggle-${p.id}`}
+                        className="modern-link flex items-center gap-1 text-sm"
+                      >
+                        {isExpanded ? "hide the brief" : "see the brief"}
+                        <ChevronDown
+                          size={14}
+                          className={`transition-transform ${isExpanded ? "rotate-180" : ""}`}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            data-testid={`project-brief-content-${p.id}`}
+                            className="overflow-hidden"
+                          >
+                            {p.brief.split("\n\n").map((para, i) => (
+                              <p
+                                key={i}
+                                className="text-sm text-gray-700 leading-relaxed mt-3"
+                              >
+                                {para}
+                              </p>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </div>
                 );
               }
 

@@ -19,39 +19,69 @@ export const PROFILE = {
 
 export const SKILLS = [
   { name: "Python", tint: "#F4C2C2" },
+  { name: "Node.js", tint: "#EFD9CE" },
   { name: "Django", tint: "#EFD9CE" },
   { name: "React", tint: "#F2D7EE" },
+  { name: "React Native", tint: "#F2D7EE" },
+  { name: "Expo", tint: "#F9E4D4" },
   { name: "TypeScript", tint: "#E8D5F2" },
   { name: "JavaScript", tint: "#F9E4D4" },
   { name: "Kotlin", tint: "#F2D7EE" },
   { name: "Go", tint: "#EFD9CE" },
   { name: "C++", tint: "#EAE2F8" },
+  { name: "SQL", tint: "#F4C2C2" },
   { name: "Bash", tint: "#F9E4D4" },
   { name: "HTML", tint: "#F4C2C2" },
   { name: "CSS", tint: "#EAE2F8" },
+  { name: "Tailwind", tint: "#E8D5F2" },
+  { name: "Recharts", tint: "#EFD9CE" },
+  { name: "Mobile Development", tint: "#F2D7EE" },
   { name: "Celery", tint: "#F2D7EE" },
   { name: "pytest", tint: "#EFD9CE" },
+  { name: "TDD", tint: "#F9E4D4" },
+  { name: "Unit Testing", tint: "#EAE2F8" },
+  { name: "Code Review", tint: "#F4C2C2" },
+  { name: "Agile", tint: "#EFD9CE" },
+  { name: "Scrum", tint: "#F2D7EE" },
   { name: "AWS", tint: "#F9E4D4" },
   { name: "CloudWatch", tint: "#F4C2C2" },
   { name: "IAM", tint: "#EAE2F8" },
   { name: "SES", tint: "#F9E4D4" },
   { name: "Lambda", tint: "#EFD9CE" },
   { name: "S3", tint: "#F2D7EE" },
+  { name: "EC2", tint: "#E8D5F2" },
   { name: "Athena", tint: "#F4C2C2" },
   { name: "PostgreSQL", tint: "#F4C2C2" },
   { name: "MongoDB", tint: "#EFD9CE" },
+  { name: "Motor (async MongoDB)", tint: "#F2D7EE" },
+  { name: "ETL Pipelines", tint: "#F9E4D4" },
   { name: "Docker", tint: "#EAE2F8" },
   { name: "REST APIs", tint: "#F2D7EE" },
   { name: "OAuth 2.0", tint: "#F9E4D4" },
+  { name: "Webhooks", tint: "#EFD9CE" },
+  { name: "CI/CD", tint: "#E8D5F2" },
+  { name: "GitHub Actions", tint: "#F4C2C2" },
+  { name: "Jenkins", tint: "#EAE2F8" },
   { name: "Sentry", tint: "#F2D7EE" },
+  { name: "Incident Response", tint: "#F9E4D4" },
   { name: "Tableau", tint: "#EFD9CE" },
   { name: "Airflow", tint: "#EAE2F8" },
+  { name: "Postman", tint: "#F4C2C2" },
   { name: "Zendesk", tint: "#F9E4D4" },
   { name: "HubSpot", tint: "#F4C2C2" },
+  { name: "Housecall Pro", tint: "#F9E4D4" },
+  { name: "QuickBooks", tint: "#EFD9CE" },
+  { name: "Stripe Connect", tint: "#F2D7EE" },
+  { name: "Resend", tint: "#E8D5F2" },
   { name: "Jira", tint: "#EFD9CE" },
   { name: "SOC 2", tint: "#EAE2F8" },
   { name: "Green Button", tint: "#F2D7EE" },
   { name: "Anthropic API", tint: "#EFD9CE" },
+  { name: "Claude Code", tint: "#F4C2C2" },
+  { name: "Agentic Workflows", tint: "#E8D5F2" },
+  { name: "Prompt Engineering", tint: "#F9E4D4" },
+  { name: "Structured Extraction", tint: "#F2D7EE" },
+  { name: "Multimodal", tint: "#EAE2F8" },
 ];
 
 export const MARQUEE_TOKENS = [
@@ -94,7 +124,7 @@ export const HATS_PROOF = [
     icon: "production",
     title: "The Production Owner",
     proof:
-      "Trusted with direct production access: SSH'd into prod to run scripts and migrations, and built the Django filters and new logic needed to handle stopped meters across a 40-utility deprecation, revoking ~20,000 authorizations with zero downtime. Co-owned a billing engine spanning 12+ stipulations and 24 edge cases, and led cross-functional data meetings across engineering, product, and account management.",
+      "Trusted with direct production access: SSH'd into prod to run scripts and migrations, and built the Django filters and new logic needed to handle stopped meters across a deprecation spanning ~1.3 million meters, revoking 57,112 authorizations with zero downtime. Co-owned a billing engine spanning 12+ stipulations and 24 edge cases, and led cross-functional data meetings across engineering, product, and account management.",
   },
   {
     icon: "builder",
@@ -134,7 +164,7 @@ export const CLIENT_BRIEF = {
 // the Software Engineer role on the normal (non-Demo & Brief) portfolio view.
 // Deliberately reworded rather than reused verbatim.
 export const CAREER_ARC_SUMMARY =
-  "Promoted twice in under 3 years. When the entire support engineering team was cut in a mass layoff, I was the one kept, specifically because I could do both support and engineering. What started as volunteering for holiday coverage turned into stabilizing 14 silently failed scrapers solo and building a triage system leadership adopted company-wide. Moved from the backend team to the frontend team in spring 2025, picking up new stack experience along the way. A year later, I was the one trusted to execute the very deprecation those scrapers had been protecting against, from the audit through SSH'ing into production myself.";
+  "Promoted twice in under 3 years, retained through a 50% company-wide layoff. Covered a holiday code freeze solo, shipping roughly 185 scraper fixes and closing half the ticket backlog in one week, then built a triage system leadership adopted company-wide. Moved from backend to frontend in spring 2025, then executed the deprecation those fixes had been protecting against myself, from the audit through SSH'ing into production.";
 
 export const CAREER_ARC = [
   {
@@ -142,88 +172,88 @@ export const CAREER_ARC = [
     title: "Where It Started",
     date: "July 2022",
     customer:
-      "Joined the company on the front line of technical support, learning the business by working directly with customers rather than from a manual. Partnered closely with customer success, routed opportunities to sales, and handled post-sales support end to end, including serving as the dedicated technical resource for Fort Collins Utilities' city-mandated energy benchmarking program. That customer-first grounding became the foundation for everything that followed.",
+      "Joined the front line of technical support, learning the business directly from customers. Partnered with customer success, routed opportunities to sales, and served as the dedicated technical resource for Fort Collins Utilities' city-mandated energy benchmarking program.",
     middle:
-      "Started in technical software support for enterprise and non-enterprise customers alike. Came in with a personal engineering and schooling history already, and learned the product, the codebase, and the API from the customer's point of view, alongside them: which scrapers were flaky, which broke on specific utility site layouts, which had regex issues. Worked with simple Python scripts, monitoring dashboards, Sentry, and rate limits, live-monitoring system status day to day. Mentored along the way.",
+      "Started in technical support for UtilityAPI's enterprise and SMB customers, handling an 80+ ticket/day Zendesk queue through 300% company growth. Learned the product, codebase, and API from the customer's point of view: which scrapers were flaky, which broke on specific utility layouts, which had regex issues. Mentored 1:1 by the CTO.",
     technical:
-      "Started in technical support for UtilityAPI's enterprise and SMB customer base. Already had a CS background, so I onboarded onto the product, codebase, and API surface from the support seat: identifying flaky scrapers, utility-specific layout breakage, and regex pattern failures in the parsing layer firsthand. Wrote simple Python scripts for one-off diagnostics, monitored Sentry for exceptions, tracked API rate limits, and kept live tabs on system status. Mentored by senior engineers throughout.",
+      "Started in technical support for UtilityAPI's enterprise and SMB base, handling an 80+ ticket/day Zendesk queue through 300% company growth and serving as engineering liaison for enterprise accounts. Onboarded onto the product, codebase, and API surface from the support seat: flaky scrapers, utility-specific layout breakage, regex failures in the parsing layer. Wrote diagnostic scripts, monitored Sentry, tracked rate limits. Mentored 1:1 by the CTO for 16 months.",
   },
   {
     id: "moved-to-application-support",
     title: "Moved to Application Support Engineering",
     date: "August 2023",
     customer:
-      "Moved into a newly created role built around bridging customer support and engineering. Helped build out the team from the ground up, including hiring.",
+      "Promoted into a new role built around bridging support and engineering, retained through a 50% company-wide layoff based on performance. Helped build out the team, including hiring.",
     middle:
-      "Moved into a newly created Application Support Engineering team, sitting at the intersection of support and engineering: sprint planning, point-planning sessions, and kanban on one side, the technical escalation queue and Level 1 through 3 support on the other. Helped interview and had real weight in hiring the rest of the team.",
+      "Promoted into a newly created Application Support Engineering team: sprint planning and kanban on one side, the technical escalation queue on the other. Retained through a 50% company-wide layoff. Helped interview and hire the rest of the team.",
     technical:
-      "Moved into a newly formed Application Support Engineering team positioned between the support queue and engineering backlog: participated in sprint planning and point planning, and owned the L1 to L3 technical escalation queue across roughly 50 utilities, taking customer-reported bugs (scraper failures, Green Button Connect My Data issues, XML and parser errors) and resolving them end to end where possible, or diagnosing them as far as I could before handing off to the core engineering team. Interviewed candidates and had real input on hiring decisions for the rest of the team.",
+      "Promoted into a newly formed Application Support Engineering team positioned between the support queue and engineering backlog, retained through a 50% company-wide layoff. Owned the L1 to L3 technical escalation queue across roughly 50 utilities, resolving customer-reported bugs end to end or diagnosing and handing off. Interviewed candidates and had real input on hiring.",
   },
   {
     id: "holiday-incident-2023",
     title: "Holiday Incident 2023",
     date: "December 2023",
     customer:
-      "After a company-wide layoff eliminated my entire team, I was the one they chose to keep, specifically because I could handle both support and engineering. During the holiday code freeze, when no changes are normally allowed, I worked to get ahead of a growing backlog. When the freeze lifted, I closed out half of the entire ticket backlog in the first week alone.",
+      "Took on solo holiday coverage during the seasonal code freeze, when normal maintenance pauses. Closed out half the entire ticket backlog in the first week once the freeze lifted.",
     middle:
-      "After a company-wide layoff left me as the one team member retained, I picked up holiday coverage during the seasonal code freeze. Scrapers need constant upkeep since utility bill formats and websites change often, and with that maintenance lapsed, several scrapers had quietly accumulated dozens of issues each rather than one clean failure apiece. I stabilized as many as I could solo (about 150 frontend selector fixes, about 35 parser regex fixes) and staged everything ahead of the freeze lifting. Once it lifted, I closed out half of the entire ticket backlog in the first week.",
+      "Covered the holiday code freeze solo, stabilizing scrapers that had quietly accumulated dozens of issues each without their usual maintenance: about 150 frontend selector fixes and 35 parser regex fixes, staged ahead of the freeze lifting. Closed out half the entire ticket backlog in the first week.",
     technical:
-      "After a company-wide layoff, I was the sole engineer retained on the team, chosen for my dual support/engineering skillset, and covered holidays during the seasonal code freeze. Scrapers require continuous maintenance since utility websites and bill formats change frequently; every unseen bill format is effectively a new parsing case. With maintenance lapsed, several scrapers had accumulated dozens of distinct issues each (layout drift, regex mismatches, format changes) rather than a single point of failure. I stabilized as many as possible solo (roughly 150 frontend selector fixes, roughly 35 parser-level regex fixes) and staged prioritized PRs ahead of the freeze lifting. Once it lifted, I closed out half of the entire ticket backlog in the first week.",
+      "Covered the holiday code freeze solo. Utility scrapers require continuous maintenance since bill formats and site layouts shift constantly; with maintenance paused, several had accumulated dozens of distinct issues each rather than one clean failure. Shipped roughly 150 frontend selector fixes and 35 parser-level regex fixes as staged, prioritized PRs ahead of the freeze lifting, then closed half the entire ticket backlog in the first week back.",
   },
   {
     id: "what-outlasted-the-fix",
     title: "What Outlasted the Fix",
     date: "Early 2024",
     customer:
-      "While already using our existing project tracking tool, I took the initiative to organize the entire recovery effort myself: every bug tracked individually, grouped and prioritized, with full context and traceability back to the original customer issues. What started as a self-directed side project became big enough that leadership formally adopted it as a company-wide initiative.",
+      "Organized the entire recovery effort as a self-directed initiative: every bug tracked individually, grouped and prioritized, with full traceability back to the original customer issues. Leadership adopted it company-wide.",
     middle:
-      "We already used Jira, but I went ahead on my own and built out a full triage structure as a side project: individual tickets for every bug, grouped by utility and by parser versus scraper issues, prioritized by impact, with full context and links to the dozens of related Zendesk tickets and Sentry errors each one belonged to. It grew large enough that it got turned into a formal Epic, and leadership adopted the approach company-wide.",
+      "Built a full triage structure as a self-directed side project on top of our existing Jira setup: individual tickets per bug, grouped by utility and by parser vs. scraper issue, prioritized by impact, cross-linked to the related Zendesk tickets and Sentry errors. Grew into a formal Epic; leadership adopted the approach company-wide.",
     technical:
-      "Jira was already our tracking tool, but the triage framework itself was a self-directed side project: individual tickets per bug, grouped by utility and by parser vs. scraper failure type, prioritized by customer impact, each cross-linked to its originating Zendesk tickets (often dozens per issue) and corresponding Sentry error events. The project grew large enough to be formalized into its own Epic, and the structure was adopted as the company-wide triage standard afterward.",
+      "Built a self-directed triage framework on top of Jira: individual tickets per bug, grouped by utility and by parser vs. scraper failure type, prioritized by customer impact, cross-linked to originating Zendesk tickets and Sentry error events. Formalized into its own Epic and adopted as the company-wide triage standard.",
   },
   {
     id: "the-audit",
     title: "The Audit and the Promotion",
     date: "August 2024",
     customer:
-      "Was asked to assess which parts of our utility integrations were no longer delivering enough value to justify the ongoing cost of maintaining them. That assessment became the business case for a major cost-cutting initiative. Promoted to Software Engineer that same month.",
+      "Assessed which utility integrations no longer justified their maintenance cost, building the business case for a major cost-cutting initiative. Promoted to Software Engineer that same month.",
     middle:
-      "Tasked with auditing scraper usage and customer activity across all utilities to identify which ones weren't pulling their weight relative to maintenance cost anymore. That audit planted the idea for the deprecation project. Promoted to Software Engineer that same month.",
+      "Audited scraper usage and customer activity across all utilities to identify which weren't pulling their weight relative to maintenance cost. That audit became the deprecation project. Promoted to Software Engineer that same month.",
     technical:
-      "Conducted a utilization audit across our utility integrations: ran custom scripts against our API to pull active customer authorization counts, data pull frequency, and support ticket volume per utility, then cross-referenced maintenance cost against customer value. Findings directly informed the deprecation scope and prioritization. Promoted to Software Engineer that same month.",
+      "Ran a utilization audit across our utility integrations: pulled active customer authorization counts, data pull frequency, and support ticket volume per utility via custom scripts, then cross-referenced maintenance cost against customer value. Findings directly shaped the deprecation scope. Promoted to Software Engineer that same month.",
   },
   {
     id: "the-prep-work",
     title: "The Prep Work",
     date: "September 2024",
     customer:
-      "Built the internal tools and system updates needed to safely retire utilities at scale, while also doing feature work and bug fixing as part of the engineering effort, preparing customer-facing communications, and serving as the single point of contact across Support, Customer Success, Marketing, and Product throughout the transition.",
+      "Built the internal tools needed to safely retire utilities at scale, while doing feature work, preparing customer-facing communications, and acting as the single point of contact across Support, Customer Success, Marketing, and Product.",
     middle:
-      "Tasked with building the Django features and filters on meters and utilities needed to prep for deprecation: added activated_at and deactivated_at fields, ran bulk backfills and migrations, and updated documentation. Also on the frontend team at the time doing feature work and bug fixing, prepped email templates and support materials, and was the point of contact for Support, Customer Success, Marketing, and Product throughout the transition.",
+      "Built the Django features and filters needed to prep for deprecation: added activated_at and deactivated_at fields, ran bulk backfills and migrations. Also on the frontend team doing feature work and bug fixing, prepped email templates and support materials, and was the point of contact for Support, Customer Success, Marketing, and Product.",
     technical:
-      "Built the Django model changes and admin filters needed to support deprecation at scale: added activated_at and deactivated_at fields to the meter and utility models, wrote and ran bulk backfill scripts and schema migrations across production data, and updated internal documentation. Concurrently embedded on the frontend team doing feature work and bug fixing, built customer-facing email templates and support materials, and served as the technical point of contact for Support, Customer Success, Marketing, and Product throughout the rollout.",
+      "Built the Django model changes and admin filters needed to support deprecation at scale: activated_at and deactivated_at fields on the meter and utility models, bulk backfill scripts, schema migrations across production data. Concurrently embedded on the frontend team, built customer-facing email templates and support materials, and served as technical point of contact for Support, Customer Success, Marketing, and Product.",
   },
   {
     id: "backend-to-frontend",
     title: "Moved to the Frontend Team",
     date: "Spring 2025",
     customer:
-      "Took on a new challenge by moving from backend to frontend engineering, broadening my range across the full product, all while continuing to deliver on the utility retirement project already underway. Also took on leading regular cross-functional data sessions, connecting the data side of the business to whoever on the team needed it.",
+      "Moved from backend to frontend engineering, broadening my range across the full product while continuing to deliver the utility retirement project already underway. Took on leading regular cross-functional data sessions.",
     middle:
-      "Moved from the backend team to the frontend team, picking up React and TypeScript along the way, while continuing to own the utility deprecation project already in progress. Also nominated to lead data office hours, connecting the data side to whoever on the team needed it.",
+      "Moved from backend to frontend, picking up React and TypeScript, while continuing to own the utility deprecation project in progress. Nominated by two principal engineers to lead data office hours.",
     technical:
-      "Rotated onto the frontend team as it was actively migrating from legacy HTML/JS to React and TypeScript, ramping up on the new stack alongside the rest of the team while simultaneously carrying the in-progress utility deprecation project to completion. Nominated by a principal engineer and seconded by VP Engineering to lead recurring cross-functional data office hours, connecting the data platform to engineering, product, and account management as needed.",
+      "Rotated onto the frontend team as it migrated from legacy HTML/JS to React and TypeScript, ramping up on the new stack while carrying the in-progress utility deprecation to completion. Nominated by two principal engineers to lead recurring cross-functional data office hours.",
   },
   {
     id: "full-circle",
     title: "Full Circle",
     date: "September 2025",
     customer:
-      "I was the one entrusted to execute the entire retirement solo: safely shutting down access across 40 utilities and about 20,000 customer meter authorizations, one utility at a time using tooling I had built months earlier, with zero downtime and no unplanned incidents, all while keeping Marketing, Product, Support, and Customer Success in the loop so each team could release their materials and prepare on the right timeline. The same engineer who stabilized the crisis years earlier was the one trusted to close it out completely.",
+      "Executed the entire retirement solo: safely shutting down access spanning about 1.3 million meters and 57,112 customer authorizations, one utility at a time, with zero downtime and no unplanned incidents. Kept Marketing, Product, Support, and Customer Success in the loop throughout.",
     middle:
-      "Executed the deprecation myself: SSH'd into production and ran scripted, batched jobs to revoke third-party credential access one utility at a time, using the activated_at and deactivated_at filters I'd built into the API months earlier. Covered ~40 utilities and about 20,000 customer meter authorizations, with zero downtime. Updated documentation throughout, monitored Athena and Sentry to catch anything before it became a customer problem, and coordinated timing with Marketing, Product, Support, and Customer Success so each team could release their materials and prepare accordingly.",
+      "Executed the deprecation myself: SSH'd into production and ran scripted, batched jobs to revoke third-party credential access one utility at a time, using filters I'd built into the API months earlier. Covered about 1.3 million meters and 57,112 authorizations with zero downtime. Monitored Athena and Sentry throughout and coordinated timing with Marketing, Product, Support, and Customer Success.",
     technical:
-      "Executed the production deprecation solo: wrote and ran scripted bulk jobs, deprecating utilities one at a time via SSH into production, using the activated_at and deactivated_at API filters I'd built months earlier during the prep phase to safely gate and stage each cutover. Revoked third-party credential access across ~40 utilities, approximately 20,000 customer meter authorizations, with zero downtime. Maintained real-time documentation and runbook updates throughout the rollout to preserve an accurate audit trail, ran continuous monitoring via Athena query logs and Sentry error tracking to catch regressions before they reached customers, and coordinated rollout timing with Marketing, Product, Support, and Customer Success so each team could stage their materials and prepare accordingly.",
+      "Executed the production deprecation solo: dry-run and batched bulk jobs, deprecating utilities one at a time via SSH into production, using the activated_at and deactivated_at API filters built months earlier. Held rollout approval authority throughout. Revoked third-party credential access across ~1.3 million meters and 57,112 authorizations with zero downtime. Ran continuous monitoring via Athena and Sentry, and coordinated rollout timing with Marketing, Product, Support, and Customer Success.",
   },
 ];
 
@@ -268,7 +298,7 @@ const ALL_PROJECTS = [
     blurb:
       "My upstairs AC unit is newer than the one downstairs and somehow costs more to run. Instead of guessing why, I built a tool that pulls my real bills, thermostat data, and weather to settle it.",
     brief:
-      "Two units, one 2018 and one from the 90s, and a power bill that never added up. I wanted proof, not a guess.\n\nSo I built something that parses my real utility bills and monthly thermostat runtime reports with Claude, splits my actual usage across both units by runtime share, and checks all of it against real hourly weather for my address. It flags the stuff that actually matters, like a unit running long without hitting setpoint, and it's upfront everywhere about what's measured versus estimated versus placeholder.\n\nBuilt on FastAPI, MongoDB, and React, with Claude Haiku doing the document parsing and Open-Meteo for weather.",
+      "Two units, one 2018 and one from the 90s, and a power bill that never added up. I wanted proof, not a guess.\n\nSo I built something that parses my real utility bills and monthly thermostat runtime reports with Claude, splits my actual usage across both units by runtime share, and checks all of it against real hourly weather for my address. The attribution engine uses bisect-indexed thermostat readings for O(log n) interval lookups against 15-minute Green Button intervals. Five detectors run on top of it: extended runtime without reaching setpoint, overnight compressor draw on mild nights, efficiency regression, weather-disproportionate usage, and setpoint gap widening. Every value is tagged mock, estimated, or measured, right in the UI, so nothing inferred ever passes as something I actually measured.\n\nBuilt on FastAPI, MongoDB, and React, with Claude Haiku doing the document parsing and Open-Meteo for weather.",
     stack: ["FastAPI", "MongoDB", "React", "Claude Haiku 4.5", "Open-Meteo"],
     href: "https://github.com/trshipesdev/hvac",
     image:
@@ -283,6 +313,8 @@ const ALL_PROJECTS = [
     tag: "Live product · Preview access · 2026",
     blurb:
       "A Private Chef Business OS and CRM for the culinary world, built solo as a production iOS/Android app. Stripe-powered payments, AI-assisted workflows via the Claude API, and a client-facing portal. Live at guestandgarnish.com. Full public access is gated to protect the product roadmap, but you can peek behind the curtain with a preview password.",
+    brief:
+      "Built solo, end to end: React Native + Expo (TypeScript) on the front end, FastAPI backend, MongoDB with Motor for async, JWT auth, bcrypt, and Pydantic contracts to validate everything moving through the API. Deployed on Railway and Vercel.\n\nSix production Claude API workflows: structured recipe extraction, vision-based receipt scanning, cost estimation, allergen checking, ingredient substitutions, and drafted client broadcasts.\n\nStripe Connect handles payments with Express accounts and Checkout Sessions, with webhook verification keeping the chef as the merchant of record. On top of that, an 8-stage CRM pipeline, a public client approval portal, and Resend for transactional email.",
     stack: ["React Native", "Expo", "TypeScript", "FastAPI", "MongoDB"],
     href: "https://guestandgarnish.com",
     password: "preview-gg-resume",
@@ -378,8 +410,9 @@ export const EXPERIENCE = [
     period: "July 2022 to November 2025",
     highlights: [
       "Promoted twice in under 3 years, growing from Technical Support Engineer into a full Software Engineer role bridging Support and Engineering.",
-      "Tasked with fixing Connect My Data integrations that had never worked across multiple utilities. An on-and-off effort spanning months of reaching out and troubleshooting until they did, delivering a working integration for a major Northeast utility.",
-      "Executed a large-scale deprecation of ~40 utilities, safely revoking ~20,000 authorizations without downtime.",
+      "Built OAuth 2.0 flows for API v3 using Django/DRF; owned TDD-backed backend logic for Duration-Based Pricing across 12+ billing stipulations and thousands of accounts.",
+      "Inherited a broken Green Button integration; debugged the OAuth authorization-code exchange failure with the founder, then led implementation through production.",
+      "Led a pivotal, multi-day deprecation spanning ~1.3 million meters and 57,112 authorizations; built dry-run and batched execution safeguards, held rollout approval authority, and monitored Athena, CloudWatch, application logs, and Sentry through zero downtime and no customer disruption beyond the intended deprecations.",
       "Co-owned the Duration-Based Pricing system across 12+ billing stipulations.",
       "Absorbed the full application support scope solo through a company-wide layoff, with no handoff or coverage gap.",
       "Mentored 1:1 by the CTO; participated in interviewing and onboarding junior engineers.",
@@ -397,10 +430,17 @@ export const EXPERIENCE = [
   },
 ];
 
-export const EDUCATION = {
-  school: "Charleston Southern University",
-  degree: "Bachelor's degree in Applied Computing + Cybersecurity",
-  years: "2012–2016, 2023–2024",
-  year: "2024",
-  certs: ["CompTIA Security+ Certified"],
-};
+export const EDUCATION = [
+  {
+    school: "Charleston Southern University",
+    degree: "Bachelor's degree in Applied Computing + Cybersecurity",
+    years: "2012–2016, 2023–2024",
+  },
+  {
+    school: "Eastern University",
+    degree: "Dual M.S. Data Science / M.B.A., AI Business Strategy",
+    years: "In Progress",
+  },
+];
+
+export const CERTS = ["CompTIA Security+ Certified (SY0-701)"];

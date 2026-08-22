@@ -30,6 +30,7 @@ import {
   PROJECTS,
   EXPERIENCE,
   EDUCATION,
+  CERTS,
   MARQUEE_TOKENS,
   HATS_PROOF,
   CAREER_ARC,
@@ -491,18 +492,22 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
               <div className="w-12 h-12 rounded-full bg-white/70 flex items-center justify-center flex-shrink-0">
                 <GraduationCap size={22} className="glam-gold" />
               </div>
-              <div>
-                <p className="glam-serif text-xl md:text-2xl font-semibold leading-snug">
-                  {EDUCATION.degree}
-                </p>
-                <p className="text-sm text-neutral-600 mt-1">
-                  {EDUCATION.school} &middot; {EDUCATION.years}
-                </p>
+              <div className="space-y-3">
+                {EDUCATION.map((ed) => (
+                  <div key={ed.school}>
+                    <p className="glam-serif text-xl md:text-2xl font-semibold leading-snug">
+                      {ed.degree}
+                    </p>
+                    <p className="text-sm text-neutral-600 mt-1">
+                      {ed.school} &middot; {ed.years}
+                    </p>
+                  </div>
+                ))}
                 <span
-                  className="glam-chip inline-flex items-center gap-1 mt-3 text-[11px]"
+                  className="glam-chip inline-flex items-center gap-1 mt-1 text-[11px]"
                   data-testid="about-secplus"
                 >
-                  <Sparkles size={11} /> {EDUCATION.certs[0]}
+                  <Sparkles size={11} /> {CERTS[0]}
                 </span>
               </div>
             </div>
@@ -859,6 +864,60 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
                 >
                   {cardBody}
                 </motion.button>
+              );
+            }
+
+            if (isGated && p.brief) {
+              const isExpanded = !!expandedBriefs[p.id];
+              return (
+                <motion.div key={p.id} {...motionWrapperProps} {...commonProps}>
+                  <button
+                    type="button"
+                    onClick={() => setGatedProject(p)}
+                    className="flex flex-col flex-1 group text-left"
+                  >
+                    {cardBody}
+                  </button>
+                  <div className="px-6 md:px-8 pb-6 md:pb-8 -mt-4">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setExpandedBriefs((prev) => ({
+                          ...prev,
+                          [p.id]: !prev[p.id],
+                        }))
+                      }
+                      data-testid={`project-brief-toggle-${p.id}`}
+                      className="text-sm text-neutral-700 hover:text-black flex items-center gap-1 transition"
+                    >
+                      {isExpanded ? "hide the brief" : "see the brief"}
+                      <ChevronDown
+                        size={14}
+                        className={`transition-transform ${isExpanded ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {isExpanded && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          data-testid={`project-brief-content-${p.id}`}
+                          className="overflow-hidden"
+                        >
+                          {p.brief.split("\n\n").map((para, i) => (
+                            <p
+                              key={i}
+                              className="text-sm text-neutral-700 leading-relaxed mt-3"
+                            >
+                              {para}
+                            </p>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </motion.div>
               );
             }
 
