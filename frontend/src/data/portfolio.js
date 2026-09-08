@@ -1,11 +1,11 @@
 // Portfolio content for Tara Shipes
 export const PROFILE = {
   name: "Tara Shipes",
-  title: "Full Stack Software & Customer Integration Engineer",
+  title: "Software Engineer — AI Systems, Platform & Customer Integration",
   tagline:
     "I ship production code across the stack. Customer-facing support, escalation, and integration engineering. Plus, I've been told I'm really cool to work with. Pinky promise. :)",
   professionalSummary:
-    "Full stack engineer who's spent her career at the intersection of support, engineering, and the people in between: sole escalation engineer bridging support and engineering teams, hands-on with production systems carrying real financial and data risk, and equally comfortable being the technical point of contact for enterprise clients and small businesses alike. Backend-heavy in Python, with working experience across several other languages, and has worked on both backend and frontend engineering teams.",
+    "Software engineer with 4+ years building production AI systems and backend infrastructure, shipping LLM-integrated platforms end to end: data pipelines, monitoring, edge-case handling, and the adoption work. Built multimodal Claude API workflows, OAuth 2.0 flows, and time-series attribution engines. Backend-heavy in Python, with a career spent at the intersection of support, engineering, and the people in between: sole escalation engineer bridging support and engineering teams, hands-on with production systems carrying real financial and data risk, and equally comfortable being the technical point of contact for enterprise clients and small businesses alike.",
   greetingCardHref:
     "https://www.groupgreeting.com/card/b21844a21543af6/delivered",
   location: "Open to remote positions",
@@ -82,6 +82,21 @@ export const SKILLS = [
   { name: "Prompt Engineering", tint: "#F9E4D4" },
   { name: "Structured Extraction", tint: "#F2D7EE" },
   { name: "Multimodal", tint: "#EAE2F8" },
+  { name: "FastAPI", tint: "#EFD9CE" },
+  { name: "Pydantic", tint: "#F2D7EE" },
+  { name: "Cursor", tint: "#F9E4D4" },
+  { name: "LoRA Fine-Tuning", tint: "#E8D5F2" },
+  { name: "Model Training", tint: "#F4C2C2" },
+  { name: "Dataset Curation", tint: "#EFD9CE" },
+  { name: "ComfyUI", tint: "#F2D7EE" },
+  { name: "Kohya_ss", tint: "#EAE2F8" },
+  { name: "pandas", tint: "#F9E4D4" },
+  { name: "NumPy", tint: "#F4C2C2" },
+  { name: "Matplotlib", tint: "#EFD9CE" },
+  { name: "Time-Series Data", tint: "#E8D5F2" },
+  { name: "Data Provenance", tint: "#F2D7EE" },
+  { name: "Railway", tint: "#F9E4D4" },
+  { name: "Vercel", tint: "#EAE2F8" },
 ];
 
 export const MARQUEE_TOKENS = [
@@ -268,8 +283,8 @@ const ALL_PROJECTS = [
     name: "Honest Abe Plumbing",
     tag: "Live client · Freelance",
     blurb:
-      "Family-owned plumbing company serving the Charleston, SC Lowcountry. I run their digital operation: WordPress development, Housecall Pro FSM with Zapier automation, and local SEO strategy that drove a 200% increase in Google Business Profile interactions across 8+ service area cities.",
-    stack: ["WordPress", "SEO", "GBP", "Zapier", "APIs"],
+      "Family-owned plumbing company serving the Charleston, SC Lowcountry. I'm their sole technical operator: internal automation connecting field service management, marketing, reporting, and billing workflows, plus WordPress development and local SEO strategy that drove a 200% increase in Google Business Profile interactions across 8+ service area cities.",
+    stack: ["WordPress", "Zapier", "Automation", "APIs", "SEO"],
     href: "https://honestabeplumbingsc.com",
     image:
       "/images/projects/honest-abe-plumbing.jpg",
@@ -299,7 +314,7 @@ const ALL_PROJECTS = [
       "My upstairs AC unit is newer than the one downstairs and somehow costs more to run. Instead of guessing why, I built a tool that pulls my real bills, thermostat data, and weather to settle it.",
     brief:
       "Two units, one 2018 and one from the 90s, and a power bill that never added up. I wanted proof, not a guess.\n\nSo I built something that parses my real utility bills and monthly thermostat runtime reports with Claude, splits my actual usage across both units by runtime share, and checks all of it against real hourly weather for my address. The attribution engine uses bisect-indexed thermostat readings for O(log n) interval lookups against 15-minute Green Button intervals. Five detectors run on top of it: extended runtime without reaching setpoint, overnight compressor draw on mild nights, efficiency regression, weather-disproportionate usage, and setpoint gap widening. Every value is tagged mock, estimated, or measured, right in the UI, so nothing inferred ever passes as something I actually measured.\n\nBuilt on FastAPI, MongoDB, and React, with Claude Haiku doing the document parsing and Open-Meteo for weather.",
-    stack: ["FastAPI", "MongoDB", "React", "Claude Haiku 4.5", "Open-Meteo"],
+    stack: ["FastAPI", "MongoDB", "React 19", "Claude Haiku 4.5", "Open-Meteo"],
     href: "https://github.com/trshipesdev/hvac",
     image:
       "/images/projects/hvac-analyzer-demo.gif",
@@ -395,13 +410,15 @@ export const PROJECTS = ALL_PROJECTS.filter((p) => !p.hidden);
 
 export const EXPERIENCE = [
   {
-    role: "Digital Operations Lead, Freelance Retainer",
+    role: "Software Engineer, Digital Operations",
     company: "Honest Abe Plumbing",
-    period: "2026 to Present",
+    period: "January 2026 to Present · Part-time retainer (initially full-time contract)",
     highlights: [
-      "Digital operations lead for a $1M+ plumbing company: built and maintain their WordPress site (custom development, Elementor Pro, JSON-LD structured data for local SEO), Housecall Pro field service management with Zapier automation pipelines, and local SEO strategy across 8+ service area cities including Summerville and Charleston, SC.",
-      "Drove a 200% increase in Google Business Profile interactions (March to June) through GBP optimization, verification, and local SEO.",
-      "Built content and workflow templates spanning storm-response communications, newsletters, blog posts, and an inventory tracking system.",
+      "Sole technical operator for a $1M+ plumbing company: build internal and customer-facing systems, and architect solutions when off-the-shelf tools can't solve an operational problem.",
+      "Designed and shipped internal automation connecting field service management, marketing, reporting, and billing workflows, replacing manual handoffs with systems the owners and their accountant use daily.",
+      "Partner with the owners and their accountant to find where operational processes lose money, including incomplete job-status workflows that kept completed work from being billed.",
+      "Own system architecture, API integrations, validation, and production deployment, using AI coding tools to move quickly across unfamiliar tools and languages.",
+      "Led local market growth across 8+ service area cities, driving a 200% increase in Google Business Profile interactions (March to June) through local SEO, verification, and rapid storm-response campaigns.",
     ],
   },
   {
@@ -409,13 +426,11 @@ export const EXPERIENCE = [
     company: "UtilityAPI",
     period: "July 2022 to November 2025",
     highlights: [
-      "Promoted twice in under 3 years, growing from Technical Support Engineer into a full Software Engineer role bridging Support and Engineering.",
-      "Built OAuth 2.0 flows for API v3 using Django/DRF; owned TDD-backed backend logic for Duration-Based Pricing across 12+ billing stipulations and thousands of accounts.",
-      "Inherited a broken Green Button integration; debugged the OAuth authorization-code exchange failure with the founder, then led implementation through production.",
+      "Built OAuth 2.0 flows for API v3 using Django/DRF; owned TDD-backed backend logic for the Duration-Based Pricing feature, along with other feature work.",
+      "Inherited a broken Green Button integration; diagnosed the legacy code failure and data-handoff issues with the founder, then carried the revised approach through production.",
       "Led a pivotal, multi-day deprecation spanning ~1.3 million meters and 57,112 authorizations; built dry-run and batched execution safeguards, held rollout approval authority, and monitored Athena, CloudWatch, application logs, and Sentry through zero downtime and no customer disruption beyond the intended deprecations.",
-      "Co-owned the Duration-Based Pricing system across 12+ billing stipulations.",
-      "Absorbed the full application support scope solo through a company-wide layoff, with no handoff or coverage gap.",
-      "Mentored 1:1 by the CTO; participated in interviewing and onboarding junior engineers.",
+      "Owned customer-blocking issues from ticket through production resolution: parser fixes, scraper repairs, API edge cases, and full-stack production bugs.",
+      "Led twice-weekly cross-functional data office hours across data, support, and engineering.",
     ],
   },
   {
