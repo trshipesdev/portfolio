@@ -1,5 +1,6 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
+import { useTimedComplete } from "@/hooks/useTimedComplete";
 
 /**
  * ReverseTransition — aging in reverse: futuristic gloss degrades into a
@@ -8,10 +9,7 @@ import { motion } from "framer-motion";
  * ~2.4s total.
  */
 const ReverseTransition = ({ onComplete, label = "rewinding to 2007" }) => {
-  useEffect(() => {
-    const timer = setTimeout(onComplete, 2400);
-    return () => clearTimeout(timer);
-  }, [onComplete]);
+  useTimedComplete(onComplete, 2400);
 
   // VHS static noise blocks
   const noiseBlocks = useMemo(

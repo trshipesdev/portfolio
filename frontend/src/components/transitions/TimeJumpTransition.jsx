@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
+import { useTimedComplete } from "@/hooks/useTimedComplete";
 
 /**
  * TimeJumpTransition — a quick CRT-flicker cut between the vintage eras
@@ -7,10 +8,7 @@ import { motion } from "framer-motion";
  * through the time machine still feels snappy, unlike the big sparkle makeover.
  */
 const TimeJumpTransition = ({ onComplete }) => {
-  useEffect(() => {
-    const timer = setTimeout(onComplete, 900);
-    return () => clearTimeout(timer);
-  }, [onComplete]);
+  useTimedComplete(onComplete, 900);
 
   return (
     <motion.div

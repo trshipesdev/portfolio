@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import EraWebring from "@/components/EraWebring";
+import EraWebring from "@/components/common/EraWebring";
 
 const FAKE_REACTIONS = [
   { user: "xoxo_becky", color: "text-yellow-300", text: "wait is that literally her FUTURE BOSS in the chat rn??? 😭" },

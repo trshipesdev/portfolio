@@ -1,5 +1,6 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
+import { useTimedComplete } from "@/hooks/useTimedComplete";
 
 // Future page's rainbow blended with MySpace's lime/yellow.
 const SPARKLE_PALETTE = ["#ffffff", "#ffd166", "#ff2fd6", "#66ffff", "#c299fc", "#a3e635"];
@@ -85,10 +86,7 @@ const MakeoverTransition = ({ onComplete }) => {
     []
   );
 
-  useEffect(() => {
-    const timer = setTimeout(onComplete, 2400);
-    return () => clearTimeout(timer);
-  }, [onComplete]);
+  useTimedComplete(onComplete, 2400);
 
   return (
     <motion.div

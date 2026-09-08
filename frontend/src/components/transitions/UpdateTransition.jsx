@@ -1,5 +1,6 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
+import { useTimedComplete } from "@/hooks/useTimedComplete";
 
 const STATUS_LINES = [
   "Removing glitter.exe...",
@@ -18,10 +19,7 @@ const STATUS_LINES = [
 const UpdateTransition = ({ onComplete }) => {
   const dots = useMemo(() => [0, 1, 2], []);
 
-  useEffect(() => {
-    const timer = setTimeout(onComplete, 2000);
-    return () => clearTimeout(timer);
-  }, [onComplete]);
+  useTimedComplete(onComplete, 2000);
 
   return (
     <motion.div

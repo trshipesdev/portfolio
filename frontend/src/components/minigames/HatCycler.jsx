@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { HATS } from "../data/portfolio";
+import { HATS } from "@/data/portfolio";
 
 /**
  * HatCycler — animated cute-goofy hat that jiggles and cycles.

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { PROFILE, SKILLS, EXPERIENCE, EDUCATION, CERTS, PROJECTS } from "../data/portfolio";
-import EraWebring from "@/components/EraWebring";
-import MagicEightBallToast from "@/components/MagicEightBallToast";
-import CareerTrailGame from "@/components/CareerTrailGame";
-import TerminalPasswordToast from "@/components/TerminalPasswordToast";
+import { PROFILE, SKILLS, EXPERIENCE, EDUCATION, CERTS, PROJECTS } from "@/data/portfolio";
+import EraWebring from "@/components/common/EraWebring";
+import MagicEightBallToast from "@/components/minigames/MagicEightBallToast";
+import CareerTrailGame from "@/components/minigames/CareerTrailGame";
+import TerminalPasswordToast from "@/components/minigames/TerminalPasswordToast";
 
 const BOOT_LINES = [
   "BIOS v0.1 ................................ OK",

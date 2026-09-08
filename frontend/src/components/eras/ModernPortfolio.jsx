@@ -35,14 +35,14 @@ import {
   CLIENT_BRIEF,
   CAREER_ARC,
   CAREER_ARC_SUMMARY,
-} from "../data/portfolio";
+} from "@/data/portfolio";
 
 const MODERN_PROOF_TITLES = ["The Customer-Facing Engineer", "The Escalation Engineer"];
 const MODERN_PROOF_ICONS = {
   "The Customer-Facing Engineer": Headset,
   "The Escalation Engineer": AlertTriangle,
 };
-import EraWebring from "@/components/EraWebring";
+import EraWebring from "@/components/common/EraWebring";
 
 const initials = PROFILE.name
   .split(" ")

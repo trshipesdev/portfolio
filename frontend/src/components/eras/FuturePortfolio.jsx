@@ -34,8 +34,8 @@ import {
   MARQUEE_TOKENS,
   HATS_PROOF,
   CAREER_ARC,
-} from "../data/portfolio";
-import HatCycler from "@/components/HatCycler";
+} from "@/data/portfolio";
+import HatCycler from "@/components/minigames/HatCycler";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
