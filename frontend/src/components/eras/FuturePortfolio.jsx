@@ -375,21 +375,24 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
                 )}
               </p>
             </div>
-            <motion.a
-              href={PROFILE.greetingCardHref}
-              target="_blank"
-              rel="noreferrer"
-              data-testid="greeting-card-link"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.97 }}
-              className="glam-glass glam-rainbow-hover mt-6 inline-flex items-center gap-3 rounded-2xl px-5 py-4 text-sm md:text-base font-medium hover:text-[#b8952e] transition"
-            >
-              <span className="w-9 h-9 rounded-full bg-white/70 flex items-center justify-center flex-shrink-0">
-                <Gift size={16} className="glam-gold" />
-              </span>
-              see what my coworkers say about me for yourself (a card I got
-              when I went back and finished my degree 😎💪)
-            </motion.a>
+            {/* Temporarily hidden — flip to `true` to bring the greeting-card link back. */}
+            {false && (
+              <motion.a
+                href={PROFILE.greetingCardHref}
+                target="_blank"
+                rel="noreferrer"
+                data-testid="greeting-card-link"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                className="glam-glass glam-rainbow-hover mt-6 inline-flex items-center gap-3 rounded-2xl px-5 py-4 text-sm md:text-base font-medium hover:text-[#b8952e] transition"
+              >
+                <span className="w-9 h-9 rounded-full bg-white/70 flex items-center justify-center flex-shrink-0">
+                  <Gift size={16} className="glam-gold" />
+                </span>
+                see what my coworkers say about me for yourself (a card I got
+                when I went back and finished my degree 😎💪)
+              </motion.a>
+            )}
           </motion.div>
           <motion.div
             initial="hidden"
