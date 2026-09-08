@@ -133,13 +133,13 @@ export const HATS_PROOF = [
     icon: "escalation",
     title: "The Escalation Engineer",
     proof:
-      "Sole escalation engineer bridging Support and Engineering: sprint planning, point-planning sessions, and kanban on one side, the technical escalation queue and offering Level 1 through 3 support on the other. Absorbed the entire application support queue solo through a company-wide layoff, with zero coverage gap.",
+      "Sole escalation engineer bridging Support and Engineering: sprint planning, point-planning sessions, and kanban on one side, the technical escalation queue and offering Level 1 through 3 support on the other. Absorbed the entire application support queue solo, with no handoff or coverage gap.",
   },
   {
     icon: "production",
     title: "The Production Owner",
     proof:
-      "Trusted with direct production access: SSH'd into prod to run scripts and migrations, and built the Django filters and new logic needed to handle stopped meters across a deprecation spanning ~1.3 million meters, revoking 57,112 authorizations with zero downtime. Co-owned a billing engine spanning 12+ stipulations and 24 edge cases, and led cross-functional data meetings across engineering, product, and account management.",
+      "Trusted with direct production access: SSH'd into prod to run scripts and migrations, and built the Django filters and new logic needed to handle stopped meters across a deprecation spanning more than a dozen utility integrations and 57,112 authorizations, with zero downtime. Co-owned a billing engine spanning 12+ stipulations and 24 edge cases, and led cross-functional data meetings across engineering, product, and account management.",
   },
   {
     icon: "builder",
@@ -154,10 +154,10 @@ export const HATS_PROOF = [
       "Supported two very different customer bases: Fortune 500 utilities on one side, independent operators like solar installers on the other. Worked closely with account management and customer success, owning the technical response end to end regardless of company size. Comfortable context-switching across radically different customers to get to the root of what each one actually needs, including hands-on reliability support for customer-facing demos.",
   },
   {
-    icon: "business",
-    title: "The Business Operator",
+    icon: "ai",
+    title: "The AI Engineer",
     proof:
-      "Runs the entire digital operation for a real company. Drove a 200% increase in Google Business Profile interactions for a $1M+ business.",
+      "Ships LLM-integrated features end to end: six production Claude API workflows in a single app for structured extraction, receipt vision, and generation, a Claude-powered utility-bill parser feeding a time-series attribution engine, and FastAPI/Pydantic contracts that constrain model output so the systems downstream can trust it. Also works below the API: fine-tuned a custom FLUX LoRA from a self-curated, hand-captioned dataset, tuning network rank, alpha, and LR schedule across training runs and clearing an Apple MPS FP8 incompatibility that blocked local GPU training. Currently formalizing the strategy side with a Dual M.S. in Data Science and an M.B.A. in AI Business Strategy.",
   },
 ];
 
@@ -179,7 +179,7 @@ export const CLIENT_BRIEF = {
 // the Software Engineer role on the normal (non-Demo & Brief) portfolio view.
 // Deliberately reworded rather than reused verbatim.
 export const CAREER_ARC_SUMMARY =
-  "Promoted twice in under 3 years, retained through a 50% company-wide layoff. Covered a holiday code freeze solo, shipping roughly 185 scraper fixes and closing half the ticket backlog in one week, then built a triage system leadership adopted company-wide. Moved from backend to frontend in spring 2025, then executed the deprecation those fixes had been protecting against myself, from the audit through SSH'ing into production.";
+  "Grew from technical support into a full software engineering role over three years. Covered a holiday code freeze solo, shipping roughly 185 scraper fixes and closing half the ticket backlog in one week, then built a triage system leadership adopted company-wide. Moved from backend to frontend in spring 2025, then led the deprecation those fixes had been protecting against, from the audit through the production rollout.";
 
 export const CAREER_ARC = [
   {
@@ -189,20 +189,20 @@ export const CAREER_ARC = [
     customer:
       "Joined the front line of technical support, learning the business directly from customers. Partnered with customer success, routed opportunities to sales, and served as the dedicated technical resource for Fort Collins Utilities' city-mandated energy benchmarking program.",
     middle:
-      "Started in technical support for UtilityAPI's enterprise and SMB customers, handling an 80+ ticket/day Zendesk queue through 300% company growth. Learned the product, codebase, and API from the customer's point of view: which scrapers were flaky, which broke on specific utility layouts, which had regex issues. Mentored 1:1 by the CTO.",
+      "Started in technical support for UtilityAPI's enterprise and SMB customers, handling an 80+ ticket/day Zendesk queue through 300% company growth. Learned the product, codebase, and API from the customer's point of view: which scrapers were flaky, which broke on specific utility layouts, which had regex issues.",
     technical:
-      "Started in technical support for UtilityAPI's enterprise and SMB base, handling an 80+ ticket/day Zendesk queue through 300% company growth and serving as engineering liaison for enterprise accounts. Onboarded onto the product, codebase, and API surface from the support seat: flaky scrapers, utility-specific layout breakage, regex failures in the parsing layer. Wrote diagnostic scripts, monitored Sentry, tracked rate limits. Mentored 1:1 by the CTO for 16 months.",
+      "Started in technical support for UtilityAPI's enterprise and SMB base, handling an 80+ ticket/day Zendesk queue through 300% company growth and serving as engineering liaison for enterprise accounts. Onboarded onto the product, codebase, and API surface from the support seat: flaky scrapers, utility-specific layout breakage, regex failures in the parsing layer. Wrote diagnostic scripts, monitored Sentry, tracked rate limits.",
   },
   {
     id: "moved-to-application-support",
     title: "Moved to Application Support Engineering",
     date: "August 2023",
     customer:
-      "Promoted into a new role built around bridging support and engineering, retained through a 50% company-wide layoff based on performance. Helped build out the team, including hiring.",
+      "Promoted into a new role built around bridging support and engineering. Helped build out the team, including hiring.",
     middle:
-      "Promoted into a newly created Application Support Engineering team: sprint planning and kanban on one side, the technical escalation queue on the other. Retained through a 50% company-wide layoff. Helped interview and hire the rest of the team.",
+      "Promoted into a newly created Application Support Engineering team: sprint planning and kanban on one side, the technical escalation queue on the other. Helped interview and hire the rest of the team.",
     technical:
-      "Promoted into a newly formed Application Support Engineering team positioned between the support queue and engineering backlog, retained through a 50% company-wide layoff. Owned the L1 to L3 technical escalation queue across roughly 50 utilities, resolving customer-reported bugs end to end or diagnosing and handing off. Interviewed candidates and had real input on hiring.",
+      "Promoted into a newly formed Application Support Engineering team positioned between the support queue and engineering backlog. Owned the L1 to L3 technical escalation queue across roughly 50 utilities, resolving customer-reported bugs end to end or diagnosing and handing off. Interviewed candidates and had real input on hiring.",
   },
   {
     id: "holiday-incident-2023",
@@ -264,11 +264,11 @@ export const CAREER_ARC = [
     title: "Full Circle",
     date: "September 2025",
     customer:
-      "Executed the entire retirement solo: safely shutting down access spanning about 1.3 million meters and 57,112 customer authorizations, one utility at a time, with zero downtime and no unplanned incidents. Kept Marketing, Product, Support, and Customer Success in the loop throughout.",
+      "Led the retirement end to end: safely shutting down access across more than a dozen utility integrations and 57,112 customer authorizations, one at a time, with zero downtime and no unplanned incidents. Kept Marketing, Product, Support, and Customer Success in the loop throughout.",
     middle:
-      "Executed the deprecation myself: SSH'd into production and ran scripted, batched jobs to revoke third-party credential access one utility at a time, using filters I'd built into the API months earlier. Covered about 1.3 million meters and 57,112 authorizations with zero downtime. Monitored Athena and Sentry throughout and coordinated timing with Marketing, Product, Support, and Customer Success.",
+      "Led the deprecation: SSH'd into production and ran scripted, batched jobs to revoke third-party credential access one utility at a time, using filters I'd built into the API months earlier. Covered more than a dozen utility integrations and 57,112 authorizations with zero downtime. Monitored Athena and Sentry throughout and coordinated timing with Marketing, Product, Support, and Customer Success.",
     technical:
-      "Executed the production deprecation solo: dry-run and batched bulk jobs, deprecating utilities one at a time via SSH into production, using the activated_at and deactivated_at API filters built months earlier. Held rollout approval authority throughout. Revoked third-party credential access across ~1.3 million meters and 57,112 authorizations with zero downtime. Ran continuous monitoring via Athena and Sentry, and coordinated rollout timing with Marketing, Product, Support, and Customer Success.",
+      "Led the production deprecation: dry-run and batched bulk jobs, deprecating utilities one at a time via SSH into production, using the activated_at and deactivated_at API filters built months earlier. Held rollout approval authority throughout. Revoked third-party credential access across more than a dozen utility integrations and 57,112 authorizations with zero downtime. Ran continuous monitoring via Athena and Sentry, and coordinated rollout timing with Marketing, Product, Support, and Customer Success.",
   },
 ];
 
@@ -428,7 +428,7 @@ export const EXPERIENCE = [
     highlights: [
       "Built OAuth 2.0 flows for API v3 using Django/DRF; owned TDD-backed backend logic for the Duration-Based Pricing feature, along with other feature work.",
       "Inherited a broken Green Button integration; diagnosed the legacy code failure and data-handoff issues with the founder, then carried the revised approach through production.",
-      "Led a pivotal, multi-day deprecation spanning ~1.3 million meters and 57,112 authorizations; built dry-run and batched execution safeguards, held rollout approval authority, and monitored Athena, CloudWatch, application logs, and Sentry through zero downtime and no customer disruption beyond the intended deprecations.",
+      "Led a pivotal, multi-day deprecation spanning more than a dozen utility integrations and 57,112 authorizations; built dry-run and batched execution safeguards, held rollout approval authority, and monitored Athena, CloudWatch, application logs, and Sentry through zero downtime and no customer disruption beyond the intended deprecations.",
       "Owned customer-blocking issues from ticket through production resolution: parser fixes, scraper repairs, API edge cases, and full-stack production bugs.",
       "Led twice-weekly cross-functional data office hours across data, support, and engineering.",
     ],

@@ -22,7 +22,7 @@ import {
   Server,
   Hammer,
   Headset,
-  Briefcase,
+  BrainCircuit,
 } from "lucide-react";
 import {
   PROFILE,
@@ -50,7 +50,7 @@ const HAT_ICONS = {
   production: Server,
   builder: Hammer,
   customer: Headset,
-  business: Briefcase,
+  ai: BrainCircuit,
 };
 
 const fadeUp = {
