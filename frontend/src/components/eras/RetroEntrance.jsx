@@ -165,7 +165,7 @@ const RetroEntrance = ({ onEnter, onEraPrev, onEraNext }) => {
           <span className="retro-rainbow">~*~ Tara&apos;s Web Zone ~*~</span>
         </motion.h1>
         <p className="text-cyan-300 text-xl mt-2 font-bold">
-          <span className="retro-blink">♡</span> a software and customer escalation engineer&apos;s homepage{" "}
+          <span className="retro-blink">♡</span> a software engineer&apos;s homepage{" "}
           <span className="retro-blink">♡</span>
         </p>
         <p className="text-pink-300 text-sm mt-1">

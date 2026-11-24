@@ -1,11 +1,11 @@
 // Portfolio content for Tara Shipes
 export const PROFILE = {
   name: "Tara Shipes",
-  title: "Software Engineer — AI Systems, Platform & Customer Integration",
+  title: "Software Engineer — Backend, APIs & Integrations",
   tagline:
-    "I ship production code across the stack. Customer-facing support, escalation, and integration engineering. Plus, I've been told I'm really cool to work with. Pinky promise. :)",
+    "I ship production code across the stack, and I'm the engineer you can put in front of a customer. Plus, I've been told I'm really cool to work with. Pinky promise. :)",
   professionalSummary:
-    "Software engineer with 4+ years building production AI systems and backend infrastructure, shipping LLM-integrated platforms end to end: data pipelines, monitoring, edge-case handling, and the adoption work. Built multimodal Claude API workflows, OAuth 2.0 flows, and time-series attribution engines. Backend-heavy in Python, with a career spent at the intersection of support, engineering, and the people in between: sole escalation engineer bridging support and engineering teams, hands-on with production systems carrying real financial and data risk, and equally comfortable being the technical point of contact for enterprise clients and small businesses alike.",
+    "Software engineer who has been building for clients since 2015 and working on production Python and Django systems since 2022. At UtilityAPI I was promoted twice, built OAuth 2.0 flows, pricing logic, and data integrations, and retired 19 utility integrations in production with zero unintended customer disruption. I write and fix the code myself, and I'm comfortable being the engineer in the room with the customer, whether that's a Fortune 500 utility or a local business. Lately I've been shipping products built on the Claude API.",
   greetingCardHref:
     "https://www.groupgreeting.com/card/b21844a21543af6/delivered",
   location: "Open to remote positions",
@@ -14,7 +14,7 @@ export const PROFILE = {
   githubDev: "https://github.com/trshipesdev",
   linkedin: "https://www.linkedin.com/in/tara-shipes",
   heroAvailability:
-    "Open to various engineering roles with a preference for customer-facing engineering",
+    "Open to software engineering roles, including ones that work directly with customers",
 };
 
 export const SKILLS = [
@@ -130,22 +130,16 @@ export const HATS = [
 // Proof cards: one per professional "hat", evidence-based rather than a skill list.
 export const HATS_PROOF = [
   {
-    icon: "escalation",
-    title: "The Escalation Engineer",
+    icon: "builder",
+    title: "The Builder",
     proof:
-      "Sole escalation engineer bridging Support and Engineering: sprint planning, point-planning sessions, and kanban on one side, the technical escalation queue and offering Level 1 through 3 support on the other. Absorbed the entire application support queue solo, with no handoff or coverage gap.",
+      "Ships feature work embedded in engineering teams, and ships entire products solo end to end: payments, AI, data model, deployment. Comfortable owning a slice of a system, or the whole thing.",
   },
   {
     icon: "production",
     title: "The Production Owner",
     proof:
-      "Trusted with direct production access: SSH'd into prod to run scripts and migrations, and built the Django filters and new logic needed to handle stopped meters across a deprecation spanning more than a dozen utility integrations and 57,112 authorizations, with zero downtime. Co-owned a billing engine spanning 12+ stipulations and 24 edge cases, and led cross-functional data meetings across engineering, product, and account management.",
-  },
-  {
-    icon: "builder",
-    title: "The Builder",
-    proof:
-      "Ships feature work embedded in engineering teams, and ships entire products solo end to end: payments, AI, data model, deployment. Comfortable owning a slice of a system, or the whole thing.",
+      "Trusted with direct production access: SSH'd into prod to run scripts and migrations, and built the Django filters and new logic needed to handle stopped meters across a deprecation spanning 19 utility integrations and 57,112 authorizations, with zero downtime. Co-owned a billing engine spanning 12+ stipulations and 24 edge cases, and led cross-functional data meetings across engineering, product, and account management.",
   },
   {
     icon: "customer",
@@ -158,6 +152,12 @@ export const HATS_PROOF = [
     title: "The AI Engineer",
     proof:
       "Ships LLM-integrated features end to end: six production Claude API workflows in a single app for structured extraction, receipt vision, and generation, a Claude-powered utility-bill parser feeding a time-series attribution engine, and FastAPI/Pydantic contracts that constrain model output so the systems downstream can trust it. Also works below the API: fine-tuned a custom FLUX LoRA from a self-curated, hand-captioned dataset, tuning network rank, alpha, and LR schedule across training runs and clearing an Apple MPS FP8 incompatibility that blocked local GPU training. Currently formalizing the strategy side with a Dual M.S. in Data Science and an M.B.A. in AI Business Strategy.",
+  },
+  {
+    icon: "escalation",
+    title: "The Debugger",
+    proof:
+      "The engineer production problems got routed to. Sat in sprint planning and point-planning with the engineering team while owning the technical queue across roughly 50 utilities, fixing customer-reported bugs in the code end to end. Covered that entire queue solo, with no handoff or coverage gap.",
   },
 ];
 
@@ -179,7 +179,7 @@ export const CLIENT_BRIEF = {
 // the Software Engineer role on the normal (non-Demo & Brief) portfolio view.
 // Deliberately reworded rather than reused verbatim.
 export const CAREER_ARC_SUMMARY =
-  "Grew from technical support into a full software engineering role over three years. Covered a holiday code freeze solo, shipping roughly 185 scraper fixes and closing half the ticket backlog in one week, then built a triage system leadership adopted company-wide. Moved from backend to frontend in spring 2025, then led the deprecation those fixes had been protecting against, from the audit through the production rollout.";
+  "Grew from technical support into a full software engineering role over three years. Built a bug triage system that leadership adopted company-wide, moved from backend to frontend in 2025, then led a utility deprecation from the audit through the production rollout.";
 
 export const CAREER_ARC = [
   {
@@ -205,22 +205,11 @@ export const CAREER_ARC = [
       "Promoted into a newly formed Application Support Engineering team positioned between the support queue and engineering backlog. Owned the L1 to L3 technical escalation queue across roughly 50 utilities, resolving customer-reported bugs end to end or diagnosing and handing off. Interviewed candidates and had real input on hiring.",
   },
   {
-    id: "holiday-incident-2023",
-    title: "Holiday Incident 2023",
-    date: "December 2023",
-    customer:
-      "Took on solo holiday coverage during the seasonal code freeze, when normal maintenance pauses. Closed out half the entire ticket backlog in the first week once the freeze lifted.",
-    middle:
-      "Covered the holiday code freeze solo, stabilizing scrapers that had quietly accumulated dozens of issues each without their usual maintenance: about 150 frontend selector fixes and 35 parser regex fixes, staged ahead of the freeze lifting. Closed out half the entire ticket backlog in the first week.",
-    technical:
-      "Covered the holiday code freeze solo. Utility scrapers require continuous maintenance since bill formats and site layouts shift constantly; with maintenance paused, several had accumulated dozens of distinct issues each rather than one clean failure. Shipped roughly 150 frontend selector fixes and 35 parser-level regex fixes as staged, prioritized PRs ahead of the freeze lifting, then closed half the entire ticket backlog in the first week back.",
-  },
-  {
     id: "what-outlasted-the-fix",
-    title: "What Outlasted the Fix",
+    title: "The Triage System",
     date: "Early 2024",
     customer:
-      "Organized the entire recovery effort as a self-directed initiative: every bug tracked individually, grouped and prioritized, with full traceability back to the original customer issues. Leadership adopted it company-wide.",
+      "Organized the bug backlog as a self-directed initiative: every bug tracked individually, grouped and prioritized, with full traceability back to the original customer issues. Leadership adopted it company-wide.",
     middle:
       "Built a full triage structure as a self-directed side project on top of our existing Jira setup: individual tickets per bug, grouped by utility and by parser vs. scraper issue, prioritized by impact, cross-linked to the related Zendesk tickets and Sentry errors. Grew into a formal Epic; leadership adopted the approach company-wide.",
     technical:
@@ -228,14 +217,14 @@ export const CAREER_ARC = [
   },
   {
     id: "the-audit",
-    title: "The Audit and the Promotion",
-    date: "August 2024",
+    title: "The Audit",
+    date: "2024",
     customer:
-      "Assessed which utility integrations no longer justified their maintenance cost, building the business case for a major cost-cutting initiative. Promoted to Software Engineer that same month.",
+      "Assessed which utility integrations no longer justified their maintenance cost, building the business case for a major cost-cutting initiative.",
     middle:
-      "Audited scraper usage and customer activity across all utilities to identify which weren't pulling their weight relative to maintenance cost. That audit became the deprecation project. Promoted to Software Engineer that same month.",
+      "Audited scraper usage and customer activity across all utilities to identify which weren't pulling their weight relative to maintenance cost. That audit became the deprecation project.",
     technical:
-      "Ran a utilization audit across our utility integrations: pulled active customer authorization counts, data pull frequency, and support ticket volume per utility via custom scripts, then cross-referenced maintenance cost against customer value. Findings directly shaped the deprecation scope. Promoted to Software Engineer that same month.",
+      "Ran a utilization audit across our utility integrations: pulled active customer authorization counts, data pull frequency, and support ticket volume per utility via custom scripts, then cross-referenced maintenance cost against customer value. Findings directly shaped the deprecation scope.",
   },
   {
     id: "the-prep-work",
@@ -283,7 +272,7 @@ const ALL_PROJECTS = [
     name: "Honest Abe Plumbing",
     tag: "Live client · Freelance",
     blurb:
-      "Family-owned plumbing company serving the Charleston, SC Lowcountry. I'm their sole technical operator: internal automation connecting field service management, marketing, reporting, and billing workflows, plus WordPress development and local SEO strategy that drove a 200% increase in Google Business Profile interactions across 8+ service area cities.",
+      "Family-owned plumbing company serving the Charleston, SC Lowcountry. I handle their website, integrations, reporting, and local search.",
     stack: ["WordPress", "Zapier", "Automation", "APIs", "SEO"],
     href: "https://honestabeplumbingsc.com",
     image:
@@ -410,15 +399,14 @@ export const PROJECTS = ALL_PROJECTS.filter((p) => !p.hidden);
 
 export const EXPERIENCE = [
   {
-    role: "Software Engineer, Digital Operations",
+    role: "Software Engineer (Freelance, part-time)",
     company: "Honest Abe Plumbing",
-    period: "January 2026 to Present · Part-time retainer (initially full-time contract)",
+    period: "January 2026 to Present",
     highlights: [
-      "Sole technical operator for a $1M+ plumbing company: build internal and customer-facing systems, and architect solutions when off-the-shelf tools can't solve an operational problem.",
-      "Designed and shipped internal automation connecting field service management, marketing, reporting, and billing workflows, replacing manual handoffs with systems the owners and their accountant use daily.",
-      "Partner with the owners and their accountant to find where operational processes lose money, including incomplete job-status workflows that kept completed work from being billed.",
-      "Own system architecture, API integrations, validation, and production deployment, using AI coding tools to move quickly across unfamiliar tools and languages.",
-      "Led local market growth across 8+ service area cities, driving a 200% increase in Google Business Profile interactions (March to June) through local SEO, verification, and rapid storm-response campaigns.",
+      "Freelance engineer for a local plumbing company, plus websites and scripts for other local businesses.",
+      "Built internal reporting on the Housecall Pro and QuickBooks APIs.",
+      "Built city pages, service pages, and online booking on the WordPress site using Python and its REST API.",
+      "Wrote an automated health check for the site and its lead forms.",
     ],
   },
   {
@@ -426,21 +414,24 @@ export const EXPERIENCE = [
     company: "UtilityAPI",
     period: "July 2022 to November 2025",
     highlights: [
-      "Built OAuth 2.0 flows for API v3 using Django/DRF; owned TDD-backed backend logic for the Duration-Based Pricing feature, along with other feature work.",
-      "Inherited a broken Green Button integration; diagnosed the legacy code failure and data-handoff issues with the founder, then carried the revised approach through production.",
-      "Led a pivotal, multi-day deprecation spanning more than a dozen utility integrations and 57,112 authorizations; built dry-run and batched execution safeguards, held rollout approval authority, and monitored Athena, CloudWatch, application logs, and Sentry through zero downtime and no customer disruption beyond the intended deprecations.",
-      "Owned customer-blocking issues from ticket through production resolution: parser fixes, scraper repairs, API edge cases, and full-stack production bugs.",
-      "Led twice-weekly cross-functional data office hours across data, support, and engineering.",
+      "Built OAuth 2.0 authentication flows for API v3 in Django REST Framework.",
+      "Built Duration-Based Pricing end to end, test-first: backend, migrations, backfills, and frontend across 24 edge cases.",
+      "Found and fixed a leap-year bug in production pricing code that had been causing 200+ customer complaints a month.",
+      "Retired 19 utility integrations (about 1.3M meters and 57,112 customer authorizations) with scripted, batched migrations and backfills, monitored in CloudWatch, Athena, and Sentry. Zero unintended customer disruption.",
+      "Rebuilt a legacy Green Button OAuth integration alongside the founder and took the fix to production.",
+      "Debugged production issues daily across REST APIs, scrapers, parsers, and auth flows, fixing most without escalation.",
+      "Ran twice-weekly office hours on API and data behavior for non-engineering teams; mentored junior engineers.",
     ],
   },
   {
-    role: "Digital Illustrator & NFT Artist",
-    company: "Independent / Anonymous Collective",
-    period: "2016 to 2024",
+    role: "Freelance Web Developer and Digital Designer",
+    company: "Independent",
+    period: "2015 to July 2022",
     highlights: [
-      "Founded and led an anonymous NFT art community during the 2021 to 2022 NFT/Web3 boom, centered on diversity and self-empowerment, releasing multiple hand-drawn collections and hosting community events.",
-      "Sold out multiple collection drops within an hour, and was invited to join Foundation (foundation.app), an invite-only platform reserved for select artists.",
-      "Delivered digital design, branding, and photography work, including assets used in a $10k+ Kickstarter campaign.",
+      "Built websites for local businesses for seven years, moving from Wix to custom HTML/CSS and custom domains.",
+      "Design work for Etsy shops and local businesses (logos, branding, digital portraits) led to a $5,000 project through Fiverr. That client's Kickstarter raised over $10,000 and she kept working with me for two years.",
+      "Learned NFTs from scratch in about two months, then sold my own handmade art collections on OpenSea. January 2022 drops sold out, with $5,000 in sales in under an hour.",
+      "Founded and led an anonymous NFT art community centered on diversity and self-empowerment, and was invited to join Foundation (foundation.app), an invite-only platform for select artists.",
     ],
   },
 ];

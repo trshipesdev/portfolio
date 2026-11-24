@@ -1022,10 +1022,9 @@ const FuturePortfolio = ({ onExit, onGoToProfessional }) => {
             <span className="italic glam-rainbow-text">something fetch</span>.
           </h2>
           <p className="mt-6 text-neutral-600 max-w-2xl mx-auto">
-            Open to senior technical support, integration, forward-deployed,
-            and customer engineering roles, plus full stack, backend,
-            front-end, Python, and data engineering. I do my best work in the
-            space between the customer and the code.
+            Open to software engineering roles: backend, full stack,
+            integrations, and forward-deployed or solutions engineering. I
+            write the code, and I&apos;m good in the room with the customer.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <button

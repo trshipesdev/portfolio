@@ -37,10 +37,10 @@ import {
   CAREER_ARC_SUMMARY,
 } from "@/data/portfolio";
 
-const MODERN_PROOF_TITLES = ["The Customer-Facing Engineer", "The Escalation Engineer"];
+const MODERN_PROOF_TITLES = ["The Production Owner", "The Customer-Facing Engineer"];
 const MODERN_PROOF_ICONS = {
+  "The Production Owner": AlertTriangle,
   "The Customer-Facing Engineer": Headset,
-  "The Escalation Engineer": AlertTriangle,
 };
 import EraWebring from "@/components/common/EraWebring";
 
@@ -322,7 +322,7 @@ const ModernPortfolio = ({ onEraPrev, onEraNext }) => {
       <main className="max-w-5xl mx-auto px-6 md:px-12">
         {/* Proof */}
         <section id="proof" className="py-16 modern-divider">
-          <p className="modern-eyebrow mb-6">Good to Talk To</p>
+          <p className="modern-eyebrow mb-6">Code and Customers</p>
           <div className="grid md:grid-cols-2 gap-6">
             {HATS_PROOF.filter((h) => MODERN_PROOF_TITLES.includes(h.title)).map(
               (h) => {
