@@ -293,7 +293,7 @@ const ALL_PROJECTS = [
     tag: "Web3 · WIP · 2025",
     blurb:
       "A production-grade multi-chain crypto trading bot across Solana, ETH, Base, BSC, and Polygon. Composable capital management with reserve floors, exposure caps, and drawdown brakes. Rug pull detection with automatic exit logic, cryptographic request signing, Telegram bot interface, and Flask admin dashboard.",
-    stack: ["Python", "Solana", "Flask", "MongoDB", "AWS EC2 (early version, retired)"],
+    stack: ["Python", "Solana", "Flask", "Telegram", "AWS EC2 (early version, retired)"],
     href: "https://github.com/trshipesdev/tothemoon-portfolio",
     image:
       "/images/projects/tothemoon-dashboard.jpg",

@@ -37,4 +37,4 @@ Framer Motion for the transitions, Tailwind, `sonner` for toasts.
 ## Deploy
 
 Vercel, project root `frontend/`, build command `npm run build`, output
-`build/`. Pushing to `main` deploys production.
+`build/`. Deploys are manual: run `vercel --prod` from `frontend/`.
